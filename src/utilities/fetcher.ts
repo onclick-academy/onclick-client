@@ -1,10 +1,10 @@
 type FetcherT = {
   url: string;
-  method: "GET" | "POST" | "PUT" | "DELETE";
-  body: object;
+  method?: "GET" | "POST" | "PUT" | "DELETE";
+  body?: object;
 };
 
-export const fetcher = async ({ url, method, body }: FetcherT) => {
+export const fetcher = async ({ url, method="GET", body={} }: FetcherT) => {
   const fullUrl = `${process.env.NEXT_PUBLIC_API_URL}${url}`;
   const res = await fetch(fullUrl, {
     method,
@@ -12,7 +12,7 @@ export const fetcher = async ({ url, method, body }: FetcherT) => {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*"
     },
-    body: JSON.stringify(body)
+    body: method === "GET" ? undefined : JSON.stringify(body)
   });
 
   if (!res.ok) {

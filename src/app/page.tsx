@@ -1,10 +1,32 @@
+import { fetcher } from "@/utilities/fetcher";
 import styles from "./page.module.css";
-import { useAuth } from "@/hooks/useAuth";
 
-export default function Home() {
-  const { user } = useAuth();
+type UserT = {
+  id: string;
+  email: string;
+  username: string;
+  role: string;
+};
 
-  console.log(user);
+async function getData() {
+  const userInfo = await fetcher({
+    url: "/users/userinfo",
+  });
+
+  if (userInfo.id) {
+    const currentUser = await fetcher({
+      url: `/users/${userInfo.id}`,
+    });
+    return currentUser;
+  }
+}
+ 
+
+export default async function Home() {
+  const data = await getData()
+  console.log(data);
+  
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
