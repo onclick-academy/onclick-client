@@ -1,49 +1,44 @@
 "use client";
-import { createContext, useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { fetcher } from "@/utilities/fetcher";
 
 type UserT = {
   id: string;
   email: string;
   username: string;
+  role: string;
 };
 
-const AuthContext = createContext({
-  user: null as UserT | null
-});
-
-export function AuthProvider({ children }: any) {
+export function useAuth() {
   const [user, setUser] = useState<UserT | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const checkUserLoggedIn = async () => {
       try {
-        const user = await fetcher({
-          url: "/users/userinfo",
+        const userInfo = await fetcher({
+          url: "/api/users/userinfo",
           method: "GET",
           body: {}
         });
 
-        const url = "/users/" + user.id;
-        const currentUser = await fetcher({
-          url,
-          method: "GET",
-          body: {}
-        });
-        setUser(currentUser);
+        if (userInfo.id) {
+          const currentUser = await fetcher({
+            url: `/api/users/${userInfo.id}`,
+            method: "GET",
+            body: {}
+          });
+          setUser(currentUser);
+        }
       } catch (error) {
-        console.error("Failed to fetch user details:", error);
+        console.error("Failed to fetch user info", error);
+        router.push("/login");
       }
     };
 
     checkUserLoggedIn();
-  }, []);
+  }, [router]);
 
-  return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
-  );
-}
-
-export function useAuth() {
-  return useContext(AuthContext);
+  return { user };
 }
