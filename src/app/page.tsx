@@ -10,22 +10,20 @@ type UserT = {
 
 async function getData() {
   const userInfo = await fetcher({
-    url: "/users/userinfo",
+    url: "/users/userinfo"
   });
 
-  if (userInfo.id) {
-    const currentUser = await fetcher({
-      url: `/users/${userInfo.id}`,
-    });
-    return currentUser;
-  }
+  console.log(userInfo);
+  if (!userInfo.data.id) throw Error("Error: User not found.");
+  const currentUser = await fetcher({
+    url: `/users/${userInfo.data.id}`
+  });
+  return currentUser;
 }
- 
 
 export default async function Home() {
-  const data = await getData()
+  const data = await getData();
   console.log(data);
-  
 
   return (
     <main className={styles.main}>
