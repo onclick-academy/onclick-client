@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./page.module.css";
 import getData from "@/utilities/getUserData";
 
@@ -8,7 +9,7 @@ export default async function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <p>was here</p>
+        <Link href={"/register"}>Register</Link>
       </div>
       <div className={styles.center}>
         <div className={styles.logo} />
