@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-form": "^0.0.3",
     "@types/jsonwebtoken": "^9.0.6",
     "cookie": "^0.6.0",
