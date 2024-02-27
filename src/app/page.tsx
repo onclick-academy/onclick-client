@@ -1,29 +1,9 @@
-import { fetcher } from "@/utilities/fetcher";
 import styles from "./page.module.css";
-
-type UserT = {
-  id: string;
-  email: string;
-  username: string;
-  role: string;
-};
-
-async function getData() {
-  const userInfo = await fetcher({
-    url: "/users/userinfo"
-  });
-
-  console.log(userInfo);
-  if (!userInfo.data.id) throw Error("Error: User not found.");
-  const currentUser = await fetcher({
-    url: `/users/${userInfo.data.id}`
-  });
-  return currentUser;
-}
+import getData from "@/utilities/getUserData";
 
 export default async function Home() {
   const data = await getData();
-  console.log(data);
+  console.log("data", data);
 
   return (
     <main className={styles.main}>
