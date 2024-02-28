@@ -8,10 +8,9 @@ import {
   FormLabel,
   Input,
   Select,
-  Option,
   FormHelperText,
-  Textarea
-} from "@mui/joy";
+  TextField,
+} from "@mui/material"
 import { headers } from "next/headers";
 // import "./style.css";
 
@@ -137,9 +136,9 @@ const RegisterForm = () => {
                 name={field.name}
               >
                 {field.options.map((option) => (
-                  <Option key={option} value={option}>
+                  <option key={option} value={option}>
                     {option}
-                  </Option>
+                  </option>
                 ))}
               </Select>
               {errors[field.name] && (
@@ -150,7 +149,7 @@ const RegisterForm = () => {
             </>
           ) : field.type == "textarea" ? (
             <>
-              <Textarea
+              <TextField
                 {...register(field.name, field.validation)}
                 id={field.name}
                 name={field.name}
@@ -173,7 +172,7 @@ const RegisterForm = () => {
           )}
         </FormControl>
       ))}
-      <Button type="submit" variant="solid">
+      <Button type="submit" variant="contained">
         Submit
       </Button>
     </Box>
