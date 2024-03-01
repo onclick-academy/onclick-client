@@ -2,33 +2,43 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { Box, Button, FormControl, FormLabel, Input } from "@mui/joy";
+import { useSearchParams } from "next/navigation";
 
 const ResetPasswordForm = () => {
-
-  let userId = "";
-  let token = "";
-
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm();
+  const params = useSearchParams();
+  const email = params.get("email");
+  const code = params.get("code");
 
   const handleFormSubmit = async (data: any) => {
-    console.log(data);
-    const res = await fetch(
-      process.env.NEXT_PUBLIC_API_URL +
-        `/auth/password/resetpassword/${userId}/${token}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+    try {
+      if (data.password !== data.passwordConfirm) {
+        console.log("passwords do not match");
+        return;
       }
-    );
-    const user = await res.json();
-    console.log(user);
+      const res = await fetch(
+        process.env.NEXT_PUBLIC_API_URL + "/auth/password/resetpassword",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email,
+            code,
+            password: data.password
+          })
+        }
+      );
+      const user = await res.json();
+      console.log(user);
+    } catch (err) {
+      console.log("error", err);
+    }
   };
 
   return (
@@ -42,7 +52,7 @@ const ResetPasswordForm = () => {
         maxWidth: 500,
         m: "auto",
         p: 2,
-        gap: 2,
+        gap: 2
       }}
     >
       <h1>Reset Your Password.</h1>
@@ -55,8 +65,8 @@ const ResetPasswordForm = () => {
             required: "This is required",
             minLength: {
               value: 8,
-              message: "Minimum length should be 6",
-            },
+              message: "Minimum length should be 6"
+            }
           })}
         />
       </FormControl>
@@ -69,8 +79,8 @@ const ResetPasswordForm = () => {
             required: "This is required",
             minLength: {
               value: 8,
-              message: "Minimum length should be 6",
-            },
+              message: "Minimum length should be 6"
+            }
           })}
         />
       </FormControl>

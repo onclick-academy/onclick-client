@@ -1,3 +1,5 @@
+import { cookies } from "next/headers";
+
 type FetcherT = {
   url: string;
   method?: "GET" | "POST" | "PUT" | "DELETE";
@@ -10,11 +12,12 @@ export const fetcher = async ({ url, method = "GET", body = {} }: FetcherT) => {
     method,
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
+  
     },
-    credentials: "include",
+
     body: method === "GET" ? undefined : JSON.stringify(body)
   });
+  console.log("res", res);
 
   if (!res.ok) {
     throw new Error("An error occurred while fetching the data.");

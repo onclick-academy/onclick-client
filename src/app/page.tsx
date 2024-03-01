@@ -3,8 +3,8 @@ import styles from "./page.module.css";
 import getData from "@/utilities/getUserData";
 
 export default async function Home() {
-  const data = await getData();
-  console.log("data", data);
+  // const data = await getData();
+  // console.log("data", data);
 
   return (
     <main className={styles.main}>
