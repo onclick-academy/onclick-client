@@ -64,7 +64,7 @@ const ResetPasswordForm = () => {
           {...register("password", {
             required: "This is required",
             minLength: {
-              value: 8,
+              value: 6,
               message: "Minimum length should be 6"
             }
           })}
@@ -78,7 +78,7 @@ const ResetPasswordForm = () => {
           {...register("passwordConfirm", {
             required: "This is required",
             minLength: {
-              value: 8,
+              value: 6,
               message: "Minimum length should be 6"
             }
           })}

@@ -3,6 +3,8 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import { Box, Button, FormControl, FormLabel, Input } from "@mui/joy";
 import { useRouter } from "next/navigation";
+import { GetEmail } from "./GetEmailForm";
+import { GetCode } from "./GetCodeForm";
 
 // TODO create another component for vliadation code
 const ForgetPasswordForm = () => {
@@ -78,47 +80,9 @@ const ForgetPasswordForm = () => {
       }}
     >
       {isForget ? (
-        <>
-          <h1>Please Enter Your Email To Reset Your Password.</h1>
-          <FormControl key={"email"}>
-            <FormLabel htmlFor="email">Email</FormLabel>
-            <Input
-              id="email"
-              type="email"
-              {...register("email", {
-                required: "This is required",
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: "Wrong Email Format"
-                }
-              })}
-            />
-            {/* <FormHelperText error>{errors.email?.message}</FormHelperText> */}
-          </FormControl>
-
-          <Button type="submit" variant="solid">
-            Submit
-          </Button>
-        </>
+        <GetEmail register={register} />
       ) : (
-        <>
-          <h1>Please Enter enter your code.</h1>
-          <FormControl key={"code"}>
-            <FormLabel htmlFor="code">Code</FormLabel>
-            <Input
-              id="code"
-              type="code"
-              {...register("code", {
-                required: "This is required"
-              })}
-            />
-            {/* <FormHelperText error>{errors.email?.message}</FormHelperText> */}
-          </FormControl>
-
-          <Button type="submit" variant="solid">
-            Submit
-          </Button>
-        </>
+        <GetCode register={register} />
       )}
     </Box>
   );
