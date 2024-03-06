@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <Link href={"/register"}>Register</Link>
+        <Link href={"/registeration"}>Register</Link>
       </div>
       <div className={styles.center}>
         <div className={styles.logo} />
