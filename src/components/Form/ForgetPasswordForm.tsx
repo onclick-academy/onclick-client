@@ -1,10 +1,12 @@
 "use client";
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { Box, Button, FormControl, FormLabel, Input } from "@mui/joy";
+import { Box, Button, FormControl, FormLabel, Input } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { GetEmail } from "./GetEmailForm";
 import { GetCode } from "./GetCodeForm";
+import "../../app/style.scss";
+
 
 // TODO create another component for vliadation code
 const ForgetPasswordForm = () => {
@@ -76,7 +78,8 @@ const ForgetPasswordForm = () => {
         maxWidth: 500,
         m: "auto",
         p: 2,
-        gap: 2
+        gap: 2,
+        alignItems: "center",
       }}
     >
       {isForget ? (
