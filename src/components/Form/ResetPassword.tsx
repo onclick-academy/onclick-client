@@ -1,10 +1,14 @@
 "use client";
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { Box, Button, FormControl, FormLabel, Input } from "@mui/joy";
+import { Box, Button, FormControl, FormLabel, Input, useMediaQuery } from "@mui/material";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import "../../app/style.scss";
 
 const ResetPasswordForm = () => {
+  const mediaQuery = useMediaQuery("(max-width: 800px)"); //done
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -50,14 +54,18 @@ const ResetPasswordForm = () => {
         flexDirection: "column",
         width: "90%",
         maxWidth: 500,
-        m: "auto",
+        m:"auto",
         p: 2,
-        gap: 2
+        gap: 3,
+        
       }}
+      style={{ padding: "1%", background: "linear-gradient(to left, #181717, #09161f)",
+      borderRadius: 35 }}
     >
-      <h1>Reset Your Password.</h1>
+        <h2 style={{textAlign:"center", color:"#fff"}} >Reset Your Password</h2>
+
+    <div style={{ margin: mediaQuery ? "auto 0" : "0", width: "60%", display:"flex", flexDirection:"column"}}>
       <FormControl key={"password"}>
-        <FormLabel htmlFor="password">Password</FormLabel>
         <Input
           id="password"
           type="password"
@@ -68,10 +76,11 @@ const ResetPasswordForm = () => {
               message: "Minimum length should be 6"
             }
           })}
+          placeholder="Password"
+          style={{width:"100%"}}
         />
       </FormControl>
       <FormControl key={"confirmPassword"}>
-        <FormLabel htmlFor="passwordConfirm">Confirm Password</FormLabel>
         <Input
           id="passwordConfirm"
           type="password"
@@ -82,14 +91,33 @@ const ResetPasswordForm = () => {
               message: "Minimum length should be 6"
             }
           })}
+          placeholder="Confirm Password"
         />
       </FormControl>
-      <Button type="submit" variant="solid" color="primary">
-        Reset Password
-      </Button>
-      <Button type="submit" variant="solid" color="warning">
-        Cancel
-      </Button>
+    </div>
+    <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "0 auto",
+          width:"60%",
+        }}
+      >
+        <Button
+          type="submit"
+          variant="contained"
+          style={{ width: "38%", background: "#031999" }}
+        >
+          Reset
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => router.push("/")}
+          style={{ width: "38%", background: "#031999" }}
+        >
+          Cancel
+        </Button>
+      </div>
     </Box>
   );
 };
