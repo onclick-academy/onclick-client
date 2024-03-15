@@ -17,6 +17,22 @@ export const ApplyInstructor = () => {
     data.userId = "userId";
 
     console.log(data);
+
+    const url = "http://localhost:3000/api/v1/instructors/"
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+    console.log(result);
+    if (result.success) {
+      window.alert("Applied Successfully");
+      router.push("/");
+    }
   };
 
   return (
