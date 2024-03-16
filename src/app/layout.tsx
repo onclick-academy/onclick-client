@@ -15,7 +15,18 @@ const darkTheme = createTheme({
       main: lightBlue[200],
       dark: lightBlue[400]
     }
-  }
+  },
+  typography: {
+    subtitle1: {
+      fontSize: 12,
+    },
+    body1: {
+      fontWeight: 500,
+    },
+    h4: {
+      color: "rgba(66, 107, 219, 0.815)"
+    }
+  },
 })
 
 const inter = Inter({ subsets: ['latin'] })
