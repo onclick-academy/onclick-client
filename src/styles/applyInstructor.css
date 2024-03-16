@@ -1,17 +1,15 @@
-body {
-  background: linear-gradient(to right, #000000, #091d77ce);
-}
+
 .instructorApply {
   display: flex;
   flex-direction: column;
   width: 80%;
   height: 100vh;
   margin: 0 auto;
-  padding: 5%;
+  padding: 3%;
 
-  h1 {
+  h3 {
     color: rgba(66, 107, 219, 0.815);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   p {
@@ -20,7 +18,7 @@ body {
     margin-bottom: 1rem;
   }
 
-  h2 {
+  h5 {
     color: rgba(139, 22, 32, 0.829);
     margin-bottom: 0.5rem;
   }
@@ -37,7 +35,7 @@ body {
     }
   }
 
-  h4 {
+  h6 {
     font-weight: 600;
     margin-bottom: 1rem;
     color: white;
@@ -51,38 +49,40 @@ body {
   }
 }
 
-
 .applyInstForm {
-    .applyFormHeading {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      h1 {
-        color:white;
-        margin-bottom: 0.1rem;
-      }
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 70%;
-        gap: 2rem;
-        margin: 5% auto;
-    }
-
-    Label {
-      color: rgba(255, 255, 255, 0.651);
-      margin-bottom: 0.1rem;
-    }
-
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  justify-content: center;
+  .applyFormHeading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
     .applybtnForm {
         display: flex;
-        width: 30%;
-        justify-content: space-between;
+        gap: 1rem;
+        justify-content: flex-end
     }
+}
+
+@media screen and (max-width: 768px){
+  h3 {
+    font-size: 24px !important;
+  }
+
+  h4 {
+    font-size: 20px !important;
+  }
+
+  h5 {
+    font-size: 20px !important;
+  }
+
+  h6 {
+    font-size: 16px !important;
+  }
 }
