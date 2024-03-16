@@ -2,6 +2,7 @@
   "name": "onclick-client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -16,7 +17,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.50.1",
-    "sass": "^1.71.1"
+    "sass": "^1.71.1",
+    "universal-cookie": "^7.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
