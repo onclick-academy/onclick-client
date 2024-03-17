@@ -1,0 +1,426 @@
+$activeIndex: 0;
+
+@keyframes draw-from-above-#{$activeIndex} {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@for $i from 0 through 10 {
+  @keyframes draw-from-above-#{$i} {
+    from {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes draw-from-around-#{$activeIndex} {
+  from {
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.wordStyle {
+  font-size: 2.1rem;
+}
+
+@media (max-width: 768px) {
+  .wordStyle {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .wordStyle {
+    font-size: 1.5rem;
+  }
+}
+
+.animation {
+  animationName: draw-from-above-#{$activeIndex};
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+
+.wordStyle {
+  font-size: 2.1rem;
+}
+
+@media (max-width: 768px) {
+  .wordStyle {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .wordStyle {
+    font-size: 1.5rem;
+  }
+}
+
+.animation {
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+
+.wordStyle {
+  font-size: 2.1rem;
+  opacity: 0;
+  font-family: monospace;
+  text-transform: uppercase;
+  font-weight: 800;
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  position: absolute;
+  top:0%;
+  z-index: 888;
+}
+
+.animationStyle{
+  animationName: fade-out;
+  animationDuration: 20s;
+  animationTimingFunction: ease-in-out;
+  animationFillMode: forwards;
+} 
+
+.activeStyle{
+  opacity: 1;
+}
+
+.containerStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  margin-top: 10%;
+}
+
+.Headstyle {
+  position: relative;
+  white-space:pre ;
+  z-index: 888;
+}
+.letterStyle{
+  width: 100%;
+}
+
+
+
+.firstSvg{
+   position: absolute;
+          top: 47%;
+          left: 75%;
+          color: #bbff8e;
+          width: 170px;
+          zIndex: 1;
+}
+
+.secondSvg{
+  position: absolute;
+          top: 30%;
+          left: 12%;
+          color: #ff0000;
+          width: 205px;
+          zIndex: 1;
+}
+
+.thirdSvg{
+  position: absolute;
+          top: 90%;
+          left: 38%;
+          color: #bbff8e;
+          width: 260px;
+          zIndex: 1;
+}
+
+.fourthSvg{
+  position: absolute;
+          top: 78%;
+          left: 12%;
+          transform: rotate(270deg);
+          color: #bbff8e;
+          width: 70px;
+          zIndex: 1;
+}
+
+.fifthSvg{
+  position: absolute;
+          top: 30%;
+          left: 0%;
+          color: #ff0000;
+          width: 205px;
+          zIndex: 1;
+}
+
+
+.sixthSvg{
+  position: absolute;
+          top: 75%;
+          left: 12%;
+          color: #9ee46f;
+          width: 70px;
+          zIndex: 1;
+}
+
+.seventhSvg{
+  position: absolute;
+          top: 90%;
+          left: 70%;
+          color: #9ee46f;
+          width: 250px;
+          zIndex: 1;
+}
+
+.eightSvg{
+  position: absolute;
+          top: 48%;
+          left: 45%;
+          color: #ff0000;
+          width: 190px;
+          zIndex: 999;
+}
+
+
+.ninthSvg{
+  position: absolute;
+          bottom: 20%;
+          right: 55%;
+          color: #9ee46f;
+          transform: rotate(270deg);
+          width: 70px;
+          zIndex: 999;
+}
+
+
+.tenthSvg{
+  position: absolute;
+          bottom:20%;
+          right: 53%;
+          color: #9ee46f;
+          transform: rotate(270deg);
+          width: 80px;
+          zIndex: 888;
+}
+
+
+.eleventhSvg{
+  position: absolute;
+          bottom: 20%;
+          right: 50%;
+          color: #9ee46f;
+          transform: rotate(270deg);
+          width: 100px;
+          zIndex: 888;
+}
+
+.twelvethSvg{
+  position: absolute;
+          bottom: 9%;
+          right: 60%;
+          color: #9ee46f;
+          width: 250px;
+          zIndex: 888;
+}
+
+.thirteenthSvg{
+  position: absolute;
+          top: 10%;
+          left: 0%;
+          color: #ff0000;
+          width: 280px;
+          zIndex: 1;
+}
+
+.fourteenthSvg{
+  position: absolute;
+          bottom: 6%;
+          left: 5%;
+          color: #9ee46f;
+          width: 550px;
+          zIndex: 1;
+}
+
+@media (max-width: 1000px) {
+  .wordStyle {
+    font-size: 1.70rem;
+  }
+  .firstSvg{
+    width: 135px;
+  }
+  .secondSvg{
+    width: 165px;
+  }
+  .thirdSvg{
+    width: 210px;
+  }
+  .fourthSvg{
+    width: 60px;
+  }
+  .fifthSvg{
+    width: 165px;
+  }
+  .sixthSvg{
+    width: 60px;
+  }
+  .seventhSvg{
+    width: 210px;
+  }
+  .eightSvg{
+    width: 160px;
+  }
+  .ninthSvg{
+    width: 60px;
+  }
+  .tenthSvg{
+    width: 70px;
+  }
+  .eleventhSvg{
+    width: 90px;
+  }
+  .twelvethSvg{
+    width: 210px;
+  }
+  .thirteenthSvg{
+    width: 240px;
+  }
+  .fourteenthSvg{
+    width: 400px;
+  }
+}
+
+@media (max-width: 800px) {
+  .wordStyle {
+    font-size: 1.20rem;
+  }
+  .firstSvg{
+    width: 100px;
+  }
+  .secondSvg{
+    width: 120px;
+  }
+  .thirdSvg{
+    width: 150px;
+  }
+  .fourthSvg{
+    width: 50px;
+  }
+  .fifthSvg{
+    width: 120px;
+  }
+  .sixthSvg{
+    width: 50px;
+  }
+  .seventhSvg{
+    width: 150px;
+    
+  }
+  .eightSvg{
+    width: 110px;
+
+  }
+  .ninthSvg{
+    width: 50px;
+    right: 55%;
+  }
+  .tenthSvg{
+    width: 60px;
+    right: 52%;
+  }
+  .eleventhSvg{
+    width: 80px;
+    right: 48%;
+  }
+  .twelvethSvg{
+    width: 150px;
+  }
+  .thirteenthSvg{
+    width: 180px;
+  }
+  .fourteenthSvg{
+    width: 300px;
+  }
+
+}
+@media (max-width: 600px) {
+  .wordStyle {
+    font-size: 0.90rem;
+  }
+  .containerStyle {
+    margin-top: 20%;
+  }
+  .firstSvg{
+    width: 70px;
+  }
+  .secondSvg{
+    width: 90px;
+  }
+  .thirdSvg{
+    width: 110px;
+  }
+  .fourthSvg{
+    width: 40px;
+  }
+  .fifthSvg{
+    width: 90px;
+  }
+  .sixthSvg{
+    width: 40px;
+  }
+  .seventhSvg{
+    width: 110px;
+  }
+  .eightSvg{
+    width: 80px;
+  }
+  .ninthSvg{
+    width: 40px;
+    right: 54%;
+  }
+  .tenthSvg{
+    width: 50px;
+    right: 51%;
+  }
+  .eleventhSvg{
+    width: 60px;
+    right: 47%;
+  }
+  .twelvethSvg{
+    width: 110px;
+  }
+
+  .thirteenthSvg{
+    width: 130px;
+  }
+  .fourteenthSvg{
+    width: 220px;
+  }
+}

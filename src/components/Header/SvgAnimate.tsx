@@ -9,7 +9,7 @@ function SvgAnimate({ svgIndex, svgStyle, activeIndex }) {
   }
 
   return (
-    <svg key={`${svgIndex}-${activeIndex}`} {...svg} style={svgStyle}>
+    <svg key={`${svgIndex}-${activeIndex}`} {...svg} className={svgStyle}>
       {svg.paths.map((path, idx) => (
         <path key={idx} {...path}>
           {path.animate && <animate {...path.animate}></animate>}
