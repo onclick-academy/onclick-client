@@ -1,0 +1,44 @@
+.intro-container{
+    display: flex;
+    justify-content: center;
+    gap: 3%;
+    align-items: center;
+    padding: 0 10%;
+    height: 100vh;
+}
+
+.left-container{
+        display: flex;
+        width:50%;
+        flex-direction: row;
+        gap: 2%;
+}
+
+.left-side{
+        display: flex;
+        flex-direction: column;
+        gap: 4%;
+}
+
+.right-container{
+        display: flex;
+        width: 45%;
+        flex-direction: column;
+        gap: 0%;
+        height:50%;
+}
+
+.container-icons{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 5%;
+        border-bottom: 0.5px solid  #DDD8F9;
+        
+}
+
+.play-image{
+        border-radius: 7px;
+        filter: brightness(0.8);
+}
+
