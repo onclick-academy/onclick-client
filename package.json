@@ -21,8 +21,10 @@
     "react-parallax": "^3.5.1",
     "react-scroll-parallax": "^3.4.5",
     "react-spring": "^9.7.3",
+    "react-swipeable": "^7.0.1",
     "react-window": "^1.8.10",
-    "sass": "^1.71.1"
+    "sass": "^1.71.1",
+    "swiper": "^11.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",

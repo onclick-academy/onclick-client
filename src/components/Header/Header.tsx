@@ -1,15 +1,18 @@
 import React from "react";
-import A4Animation from "../TextReaveal/A4Layout";
-import Cursor from "../Cursor/Cursor";
 import Nav from "../Nav/Nav";
-import StylingTransition from "../Header/Headtrial";
+import StylingTransition from "./AnimatedHeader";
 export default function Header() {
   return (
-    <div>
+    <div
+      style={{
+        width: "100%",
+        backgroundImage:
+          "linear-gradient(60deg, #29323c 0%, #485563 100%)",
+      }}
+    >
       <Nav />
-      {/* <Cursor />
-      <A4Animation /> */}
       <StylingTransition />
+      
     </div>
   );
 }

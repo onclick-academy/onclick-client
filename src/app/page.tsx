@@ -14,9 +14,6 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <Link href={"/register"}>Register</Link>
-      </div>
       <div className={styles.center}>
         <div className={styles.logo} />
       </div>
