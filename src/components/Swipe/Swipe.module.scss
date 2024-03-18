@@ -1,0 +1,15 @@
+/* Swipe.module.scss */
+
+.swipeContainer {
+  overflow: hidden;
+  position: relative;
+}
+
+.swipeContent {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.slide {
+  flex: 0 0 100%; /* Ensure each slide takes up the full width */
+}

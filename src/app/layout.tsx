@@ -5,6 +5,10 @@ import "../styles/globals.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { lightBlue } from "@mui/material/colors";
+import Navbar from "@/components/Nav/Nav";
+import Header from "@/components/Header/Header";
+import Main from "@/components/Main/Main";
+import MySwiper from "@/components/Swiper/MySwiper";
 
 const darkTheme = createTheme({
   palette: {
@@ -20,7 +24,7 @@ const darkTheme = createTheme({
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -29,10 +33,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
-          <main className={styles.main}>
-            <div className={styles.center}>
-              <div className={styles.logo} />
-            </div>
+          <Header />
+          <MySwiper width="50px" height="50px" />
+          <Main/>
             {children}
           </main>
         </ThemeProvider>

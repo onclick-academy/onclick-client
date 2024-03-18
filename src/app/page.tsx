@@ -23,8 +23,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
+    <main>
+      <div>
         <Link href={'/register'}>Register</Link>
       </div>
     </main>
