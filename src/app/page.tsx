@@ -1,10 +1,19 @@
 'use client';
 import Link from 'next/link';
 import styles from './page.module.css';
+import getData from '@/utilities/getUserData';
 import { useEffect } from 'react';
-import getAuthUser from '@/utilities/getAuthUser';
+import { getDeviceToken } from '@/utilities/device';
+
 
 export default function Home() {
+  // const data = await getData();
+  // console.log("data", data);
+  const fetchDeviceToken = async () => {
+    const deviceToken = await getDeviceToken();
+    console.log('deviceToken', deviceToken);
+    // TODO save the token in DB
+  };
   useEffect(() => {
     const _ = async () => {
       const authUser = await getAuthUser();
@@ -17,9 +26,6 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.description}>
         <Link href={'/register'}>Register</Link>
-      </div>
-      <div className={styles.center}>
-        <div className={styles.logo} />
       </div>
     </main>
   );
