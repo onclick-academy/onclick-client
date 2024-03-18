@@ -16,9 +16,9 @@ const darkTheme = createTheme({
     primary: {
       light: lightBlue[100],
       main: lightBlue[200],
-      dark: lightBlue[400],
-    },
-  },
+      dark: lightBlue[400]
+    }
+  }
 });
 
 const inter = Inter({ subsets: ["latin"] });
@@ -35,12 +35,7 @@ export default function RootLayout({
           <CssBaseline />
           <Header />
           <MySwiper width="50px" height="50px" />
-          <Main />
-
-          <main className={styles.main}>
-            <div className={styles.center}>
-              <div className={styles.logo} />
-            </div>
+          <Main/>
             {children}
           </main>
         </ThemeProvider>

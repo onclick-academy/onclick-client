@@ -2,6 +2,7 @@
   "name": "onclick-client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,6 +15,9 @@
     "@mui/icons-material": "^5.15.11",
     "@mui/material": "^5.15.11",
     "framer-motion": "^11.0.8",
+    "firebase": "^10.8.1",
+    "firebase-admin": "^12.0.0",
+
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
@@ -25,6 +29,7 @@
     "react-window": "^1.8.10",
     "sass": "^1.71.1",
     "swiper": "^11.0.7"
+    "universal-cookie": "^7.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
