@@ -15,6 +15,7 @@ import Image from "next/image";
 import { LanguageRounded } from "@mui/icons-material";
 import NestedList from "../Pops&Drops/TabPanel";
 import SideList from "../Pops&Drops/SideList";
+import NotificationMenu from "../Notification/Notifications";
 
 const Container = styled(Box)({
   position: "relative",
@@ -281,6 +282,24 @@ export default function PrimarySearchAppBar() {
             >
               <ShoppingCartOutlined />
             </IconButton>
+
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-haspopup="true"
+              sx={{
+                color: "white",
+                "&:hover": {
+                  textDecoration: "none",
+                  color: "#7157b3",
+                  backgroundColor: "transparent",
+                },
+              }}
+            >
+            <NotificationMenu />
+            </IconButton>
+
             <Box
               sx={{
                 marginLeft: {
