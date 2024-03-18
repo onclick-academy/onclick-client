@@ -7,8 +7,7 @@ import { getDeviceToken } from '@/utilities/device';
 
 
 export default function Home() {
-  // const data = await getData();
-  // console.log("data", data);
+
   const fetchDeviceToken = async () => {
     const deviceToken = await getDeviceToken();
     console.log('deviceToken', deviceToken);
@@ -18,6 +17,7 @@ export default function Home() {
     const _ = async () => {
       const authUser = await getAuthUser();
       console.log(authUser);
+      await fetchDeviceToken();
     };
     _();
   }, []);

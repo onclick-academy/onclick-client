@@ -86,3 +86,7 @@
 .Button:focus {
   box-shadow: 0 0 0 2px black;
 }
+
+h1 {
+  color:  rgba(55, 132, 194, 0.336)
+}
