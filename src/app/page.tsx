@@ -5,6 +5,7 @@ import getData from '@/utilities/getUserData';
 import { useEffect } from 'react';
 import { getDeviceToken } from '@/utilities/device';
 
+
 export default function Home() {
   // const data = await getData();
   // console.log("data", data);
@@ -14,16 +15,11 @@ export default function Home() {
     // TODO save the token in DB
   };
   useEffect(() => {
-    fetchDeviceToken();
-    const eventSource = new EventSource(
-      'http://localhost:3000/api/v1/notifications/real-time'
-    );
-    eventSource.onmessage = function (event) {
-      console.log('New message:', JSON.parse(event.data));
+    const _ = async () => {
+      const authUser = await getAuthUser();
+      console.log(authUser);
     };
-    return () => {
-      eventSource.close();
-    };
+    _();
   }, []);
 
   return (
