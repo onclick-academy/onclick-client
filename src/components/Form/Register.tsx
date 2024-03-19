@@ -26,7 +26,7 @@ const RegisterForm = () => {
   const confirmPassword = useRef({})
   confirmPassword.current = watch('confirmPassword', '')
 
-  const handleFormSubmit = async data => {
+  const handleFormSubmit = async (data:any) => {
     const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/auth/register', {
       headers: {
         'Content-Type': 'application/json',
