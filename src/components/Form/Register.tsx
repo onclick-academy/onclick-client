@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 
 import "../../app/style.scss";
+import Cookies from 'js-cookie';
 
 
 const RegisterForm = () => {
@@ -48,7 +49,11 @@ const RegisterForm = () => {
     );
     const user = await res.json();
     console.log(user);
-    if (user.status === "success") router.push("/");
+    if (user.status === "success") {
+      Cookies.set('accessToken', user.accessToken);
+      Cookies.set('userId', user.data.id);
+      router.push("/");
+    }
   };
 
 

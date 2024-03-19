@@ -11,6 +11,8 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
+import Cookies from 'js-cookie';
+
 
 import "../../app/style.scss";
 
@@ -53,7 +55,11 @@ const LoginForm = () => {
     });
     const user = await res.json();
     console.log(user);
-    if (res.status === 200) router.push("/");
+    if (res.status === 200){
+      Cookies.set('accessToken', user.accessToken);
+      Cookies.set('userId', user.data.id);
+      router.push("/");
+    }
   };
 
   return (
