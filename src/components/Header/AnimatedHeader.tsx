@@ -89,14 +89,7 @@ export default function StylingTransition() {
             opacity: 0;
           }
         }
-        @keyframes draw-from-around-${activeIndex} {
-          from {
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
+        
         }
       `}</style>
       <div style={{ position: "relative", height: "400px" }}>

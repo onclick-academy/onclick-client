@@ -13,8 +13,8 @@ import logo2 from "../../img/logo2.png";
 import logo3 from "../../img/logo3.png";
 import Image from "next/image";
 import { LanguageRounded } from "@mui/icons-material";
-import NestedList from "../Pops&Drops/TabPanel";
-import SideList from "../Pops&Drops/SideList";
+import NestedList from "./TabPanel";
+import SideList from "./SideList";
 import NotificationMenu from "../Notification/Notifications";
 
 const Container = styled(Box)({

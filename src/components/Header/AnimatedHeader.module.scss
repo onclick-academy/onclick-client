@@ -60,11 +60,10 @@ $activeIndex: 0;
 }
 
 .animation {
-  animationName: draw-from-above-#{$activeIndex};
+  animationname: draw-from-above-#{$activeIndex};
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
 }
-
 
 .wordStyle {
   font-size: 2.1rem;
@@ -87,7 +86,6 @@ $activeIndex: 0;
   animation-timing-function: ease-in-out;
 }
 
-
 .wordStyle {
   font-size: 2.1rem;
   opacity: 0;
@@ -99,18 +97,18 @@ $activeIndex: 0;
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
   position: absolute;
-  top:0%;
+  top: 0%;
   z-index: 888;
 }
 
-.animationStyle{
-  animationName: fade-out;
-  animationDuration: 20s;
-  animationTimingFunction: ease-in-out;
-  animationFillMode: forwards;
-} 
+.animationStyle {
+  animationname: fade-out;
+  animationduration: 20s;
+  animationtimingfunction: ease-in-out;
+  animationfillmode: forwards;
+}
 
-.activeStyle{
+.activeStyle {
   opacity: 1;
 }
 
@@ -126,301 +124,292 @@ $activeIndex: 0;
 
 .Headstyle {
   position: relative;
-  white-space:pre ;
+  white-space: pre;
   z-index: 888;
 }
-.letterStyle{
+.letterStyle {
   width: 100%;
 }
 
-
-
-.firstSvg{
-   position: absolute;
-          top: 47%;
-          left: 75%;
-          color: #bbff8e;
-          width: 170px;
-          zIndex: 1;
+.firstSvg {
+  position: absolute;
+  top: 47%;
+  left: 75%;
+  color: #bbff8e;
+  width: 18%;
+  zindex: 1;
 }
 
-.secondSvg{
+.secondSvg {
   position: absolute;
-          top: 30%;
-          left: 12%;
-          color: #ff0000;
-          width: 205px;
-          zIndex: 1;
+  top: 30%;
+  left: 12%;
+  color: #ff0000;
+  width: 22%;
+  zindex: 1;
 }
 
-.thirdSvg{
+.thirdSvg {
   position: absolute;
-          top: 90%;
-          left: 38%;
-          color: #bbff8e;
-          width: 260px;
-          zIndex: 1;
+  top: 90%;
+  left: 38%;
+  color: #bbff8e;
+  width: 29%;
+  zindex: 1;
 }
 
-.fourthSvg{
+.fourthSvg {
   position: absolute;
-          top: 78%;
-          left: 12%;
-          transform: rotate(270deg);
-          color: #bbff8e;
-          width: 70px;
-          zIndex: 1;
+  top: 78%;
+  left: 12%;
+  transform: rotate(270deg);
+  color: #bbff8e;
+  width: 8%;
+  zindex: 1;
 }
 
-.fifthSvg{
+.fifthSvg {
   position: absolute;
-          top: 30%;
-          left: 0%;
-          color: #ff0000;
-          width: 205px;
-          zIndex: 1;
+  top: 30%;
+  left: 0%;
+  color: #ff0000;
+  width: 22%;
+  zindex: 1;
 }
 
-
-.sixthSvg{
+.sixthSvg {
   position: absolute;
-          top: 75%;
-          left: 12%;
-          color: #9ee46f;
-          width: 70px;
-          zIndex: 1;
+  top: 75%;
+  left: 12%;
+  color: #9ee46f;
+  width: 8%;
+  zindex: 1;
 }
 
-.seventhSvg{
+.seventhSvg {
   position: absolute;
-          top: 90%;
-          left: 70%;
-          color: #9ee46f;
-          width: 250px;
-          zIndex: 1;
+  top: 90%;
+  left: 70%;
+  color: #9ee46f;
+  width: 29%;
+  zindex: 1;
 }
 
-.eightSvg{
+.eightSvg {
   position: absolute;
-          top: 48%;
-          left: 45%;
-          color: #ff0000;
-          width: 190px;
-          zIndex: 999;
+  top: 48%;
+  left: 45%;
+  color: #ff0000;
+  width: 20%;
+  zindex: 999;
 }
 
-
-.ninthSvg{
+.ninthSvg {
   position: absolute;
-          bottom: 20%;
-          right: 55%;
-          color: #9ee46f;
-          transform: rotate(270deg);
-          width: 70px;
-          zIndex: 999;
+  bottom: 20%;
+  right: 55%;
+  color: #9ee46f;
+  transform: rotate(270deg);
+  width: 8%;
+  zindex: 999;
 }
 
-
-.tenthSvg{
+.tenthSvg {
   position: absolute;
-          bottom:20%;
-          right: 53%;
-          color: #9ee46f;
-          transform: rotate(270deg);
-          width: 80px;
-          zIndex: 888;
+  bottom: 20%;
+  right: 53%;
+  color: #9ee46f;
+  transform: rotate(270deg);
+  width: 9%;
+  zindex: 888;
 }
 
-
-.eleventhSvg{
+.eleventhSvg {
   position: absolute;
-          bottom: 20%;
-          right: 50%;
-          color: #9ee46f;
-          transform: rotate(270deg);
-          width: 100px;
-          zIndex: 888;
+  bottom: 20%;
+  right: 50%;
+  color: #9ee46f;
+  transform: rotate(270deg);
+  width: 12%;
+  zindex: 888;
 }
 
-.twelvethSvg{
+.twelvethSvg {
   position: absolute;
-          bottom: 9%;
-          right: 60%;
-          color: #9ee46f;
-          width: 250px;
-          zIndex: 888;
+  bottom: 9%;
+  right: 60%;
+  color: #9ee46f;
+  width: 29%;
+  zindex: 888;
 }
 
-.thirteenthSvg{
+.thirteenthSvg {
   position: absolute;
-          top: 10%;
-          left: 0%;
-          color: #ff0000;
-          width: 280px;
-          zIndex: 1;
+  top: 10%;
+  left: 0%;
+  color: #ff0000;
+  width: 50%;
+  zindex: 1;
 }
 
-.fourteenthSvg{
+.fourteenthSvg {
   position: absolute;
-          bottom: 6%;
-          left: 5%;
-          color: #9ee46f;
-          width: 550px;
-          zIndex: 1;
+  bottom: 6%;
+  left: 4%;
+  color: #9ee46f;
+  width: 98%;
+  zindex: 1;
 }
 
 @media (max-width: 1000px) {
   .wordStyle {
-    font-size: 1.70rem;
+    font-size: 1.7rem;
   }
-  .firstSvg{
-    width: 135px;
+  .firstSvg {
+    width: 19%;
   }
-  .secondSvg{
-    width: 165px;
+  .secondSvg {
+    width: 22%;
   }
-  .thirdSvg{
-    width: 210px;
+  .thirdSvg {
+    width: 31%;
   }
-  .fourthSvg{
-    width: 60px;
+  .fourthSvg {
+    width: 9%;
   }
-  .fifthSvg{
-    width: 165px;
+  .fifthSvg {
+    width: 22%;
   }
-  .sixthSvg{
-    width: 60px;
+  .sixthSvg {
+    width: 8%;
   }
-  .seventhSvg{
-    width: 210px;
+  .seventhSvg {
+    width: 31%;
   }
-  .eightSvg{
-    width: 160px;
+  .eightSvg {
+    width: 22%;
   }
-  .ninthSvg{
-    width: 60px;
+  .ninthSvg {
+    width: 9%;
   }
-  .tenthSvg{
-    width: 70px;
+  .tenthSvg {
+    width: 10%;
   }
-  .eleventhSvg{
-    width: 90px;
+  .eleventhSvg {
+    width: 13%;
   }
-  .twelvethSvg{
-    width: 210px;
+  .twelvethSvg {
+    width: 30%;
   }
-  .thirteenthSvg{
-    width: 240px;
+  .thirteenthSvg {
+    width: 50%;
   }
-  .fourteenthSvg{
-    width: 400px;
+  .fourteenthSvg {
+    width: 100%;
   }
 }
 
 @media (max-width: 800px) {
   .wordStyle {
-    font-size: 1.20rem;
+    font-size: 1.2rem;
   }
-  .firstSvg{
-    width: 100px;
+  .firstSvg {
+    width: 18%;
   }
-  .secondSvg{
-    width: 120px;
+  .secondSvg {
+    width: 22%;
   }
-  .thirdSvg{
-    width: 150px;
+  .thirdSvg {
+    width: 31%;
   }
-  .fourthSvg{
-    width: 50px;
+  .fourthSvg {
+    width: 9%;
   }
-  .fifthSvg{
-    width: 120px;
+  .fifthSvg {
+    width: 22%;
   }
-  .sixthSvg{
-    width: 50px;
+  .sixthSvg {
+    width: 8%;
   }
-  .seventhSvg{
-    width: 150px;
-    
+  .seventhSvg {
+    width: 31%;
   }
-  .eightSvg{
-    width: 110px;
-
+  .eightSvg {
+    width: 22%;
   }
-  .ninthSvg{
-    width: 50px;
+  .ninthSvg {
+    width: 9%;
     right: 55%;
   }
-  .tenthSvg{
-    width: 60px;
+  .tenthSvg {
+    width: 10%;
     right: 52%;
   }
-  .eleventhSvg{
-    width: 80px;
+  .eleventhSvg {
+    width: 13%;
     right: 48%;
   }
-  .twelvethSvg{
-    width: 150px;
+  .twelvethSvg {
+    width: 30%;
   }
-  .thirteenthSvg{
-    width: 180px;
+  .thirteenthSvg {
+    width: 50%;
   }
-  .fourteenthSvg{
-    width: 300px;
+  .fourteenthSvg {
+    width: 100%;
   }
-
 }
 @media (max-width: 600px) {
   .wordStyle {
-    font-size: 0.90rem;
+    font-size: 0.9rem;
   }
   .containerStyle {
     margin-top: 20%;
   }
-  .firstSvg{
-    width: 70px;
+  .firstSvg {
+    width: 18%;
   }
-  .secondSvg{
-    width: 90px;
+  .secondSvg {
+    width: 22%;
   }
-  .thirdSvg{
-    width: 110px;
+  .thirdSvg {
+    width: 31%;
   }
-  .fourthSvg{
-    width: 40px;
+  .fourthSvg {
+    width:  9%;
   }
-  .fifthSvg{
-    width: 90px;
+  .fifthSvg {
+    width: 22%;
   }
-  .sixthSvg{
-    width: 40px;
+  .sixthSvg {
+    width: 8%;
   }
-  .seventhSvg{
-    width: 110px;
+  .seventhSvg {
+    width: 31%;
   }
-  .eightSvg{
-    width: 80px;
+  .eightSvg {
+    width: 22%;
   }
-  .ninthSvg{
-    width: 40px;
+  .ninthSvg {
+    width: 9%;
     right: 54%;
   }
-  .tenthSvg{
-    width: 50px;
+  .tenthSvg {
+    width: 10%;
     right: 51%;
   }
-  .eleventhSvg{
-    width: 60px;
+  .eleventhSvg {
+    width: 13%;
     right: 47%;
   }
-  .twelvethSvg{
-    width: 110px;
+  .twelvethSvg {
+    width: 30%;
   }
 
-  .thirteenthSvg{
-    width: 130px;
+  .thirteenthSvg {
+    width: 50%;
   }
-  .fourteenthSvg{
-    width: 220px;
+  .fourteenthSvg {
+    width: 100%;
   }
 }

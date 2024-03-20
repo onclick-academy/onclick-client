@@ -1,6 +1,6 @@
 'use client'
 import { Inter } from 'next/font/google'
-import '../styles/globals.css'
+// import '../styles/globals.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import { lightBlue } from '@mui/material/colors'
