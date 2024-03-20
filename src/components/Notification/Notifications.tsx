@@ -72,8 +72,7 @@ export default function NotificationMenu() {
     }
 
     const fetchData = async () => {
-      const user = await getData()
-      const userId = user.data.id
+      const userId = localStorage.getItem('userId')
 
       const fetchedNotifications = await getAllNotifications()
 
@@ -120,7 +119,7 @@ export default function NotificationMenu() {
       title: 'Notification 2',
       type: 'COURSE_COMPLETION',
       message:
-      'This is notification 2 message. verrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrryyyyyyyyyyyyyyyyyyy loooooooooooooooooooooongggggg',
+        'This is notification 2 message. verrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrryyyyyyyyyyyyyyyyyyy loooooooooooooooooooooongggggg',
       isRead: true,
       additionalInfo: 'Additional information for notification 2.',
       link: '/notification2'
@@ -217,7 +216,9 @@ export default function NotificationMenu() {
     }
   ]
 
-  const [unreadNotification, setUnreadNotification] = useState(dummyNotifications.filter(notification => !notification.isRead).length)
+  const [unreadNotification, setUnreadNotification] = useState(
+    dummyNotifications.filter(notification => !notification.isRead).length
+  )
 
   return (
     notifications && (
@@ -231,7 +232,9 @@ export default function NotificationMenu() {
           onClick={handleClick}
         >
           <NotificationsIcon />
-          <span className='notification-badge' style={{display:unreadNotification === 0? "none": "block"}}>{unreadNotification}</span>
+          <span className='notification-badge' style={{ display: unreadNotification === 0 ? 'none' : 'block' }}>
+            {unreadNotification}
+          </span>
         </IconButton>
         <Menu
           id='long-menu'
@@ -247,12 +250,7 @@ export default function NotificationMenu() {
               maxHeight: ITEM_HEIGHT * 4.5,
               width: '40ch',
               overflowY: 'auto',
-              scrollbarWidth: 'none',
-              '-ms-overflow-style': 'none',
-              'scrollbar-width': 'none',
-              '&::-webkit-scrollbar': {
-                display: 'none'
-              }
+              scrollbarWidth: 'none'
             }
           }}
         >
@@ -280,7 +278,7 @@ export default function NotificationMenu() {
                   {handleNotificationIcon(notification.type)}
                 </div>
                 <div style={{ width: '80%' }}>
-                  <p style={{ width: '100%'}}>{notification.title}</p>
+                  <p style={{ width: '100%' }}>{notification.title}</p>
                   <p style={{ width: '100%', fontSize: '14px' }}>{notification.message}</p>
                 </div>
               </div>
