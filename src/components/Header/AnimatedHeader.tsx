@@ -92,7 +92,7 @@ export default function StylingTransition() {
         
         }
       `}</style>
-      <div style={{ position: "relative", height: "400px" }}>
+      <div style={{ position: "relative", height: "50vh" }}>
         <aside className={styles.containerStyle}>
           {wordsWithSvgIndexes.map(({ sentence, svgs, svgStyles }, index) => (
             <div
@@ -117,7 +117,7 @@ export default function StylingTransition() {
                   animation: `draw-from-above-${index} 1s ease-in-out`,
                   position: "relative",
                   whiteSpace: "pre",
-                  zIndex: 888,
+                  zIndex: 99,
                 }}
                 className={styles.letterStyle}
               >
