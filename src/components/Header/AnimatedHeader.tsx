@@ -92,7 +92,7 @@ export default function StylingTransition() {
         
         }
       `}</style>
-      <div style={{ position: "relative", height: "50vh" }}>
+      <div style={{ position: "relative", height: "400px" }}>
         <aside className={styles.containerStyle}>
           {wordsWithSvgIndexes.map(({ sentence, svgs, svgStyles }, index) => (
             <div
