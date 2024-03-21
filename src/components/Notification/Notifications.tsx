@@ -5,7 +5,6 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 // import MoreVertIcon from "@mui/icons-material/MoreVert";
 import NotificationsIcon from '@mui/icons-material/Notifications'
-import getData from '@/utilities/getUserData'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import RateReviewIcon from '@mui/icons-material/RateReview'
 import CampaignIcon from '@mui/icons-material/Campaign'
@@ -14,9 +13,10 @@ import GradeIcon from '@mui/icons-material/Grade'
 import ForumIcon from '@mui/icons-material/Forum'
 
 import { useRouter } from 'next/navigation'
-import { Typography } from '@mui/material'
 
 import './notification.css'
+import { getDeviceToken } from '@/utilities/device'
+import { fetcher } from '@/utilities/fetcher'
 
 const ITEM_HEIGHT = 100
 
@@ -24,10 +24,10 @@ export default function NotificationMenu() {
   const [anchorEl, setAnchorEl] = useState(null)
   const [notifications, setNotifications] = useState([])
 
-  const router = useRouter()
-  // TODO Browser
-  const [permission, setPermission] = useState(Notification.permission)
+  const [unreadNotification, setUnreadNotification] = useState(0)
 
+  const router = useRouter()
+  const [permission, setPermission] = useState(Notification.permission)
   const open = Boolean(anchorEl)
 
   const handleClick = event => {
@@ -39,7 +39,6 @@ export default function NotificationMenu() {
   }
 
   useEffect(() => {
-    // #TODO Browser
     const updatePermission = async () => {
       const perm = await Notification.requestPermission()
       setPermission(perm)
@@ -49,39 +48,24 @@ export default function NotificationMenu() {
       updatePermission()
     }
 
-    const getAllNotifications = async () => {
-      try {
-        const url = 'http://localhost:3000/api/v1/notifications'
-        const options = {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            credentials: 'include'
-          }
-        }
-        const res = await fetch(url, options)
-        if (!res.ok) {
-          throw new Error('Failed to fetch notifications')
-        }
-        const notifications = await res.json()
-        return notifications
-      } catch (error) {
-        console.error('Error fetching notifications:', error)
-        return []
-      }
-    }
-
     const fetchData = async () => {
       const userId = localStorage.getItem('userId')
 
-      const fetchedNotifications = await getAllNotifications()
+      const fetchedNotifications = await fetcher({
+        url: `/notifications/`,
+        method: 'GET',
+        body: { recipientId: userId }
+      })
 
-      const userNotification = fetchedNotifications.filter(notification => notification.recipientId === userId)
-      setNotifications(userNotification)
+      setNotifications(fetchedNotifications.data)
+
+      const unread = fetchedNotifications.data.filter(notification => !notification.isRead)
+      setUnreadNotification(unread.length)
     }
 
     fetchData()
   }, [])
+
 
   const handleNotificationIcon = (type: any) => {
     if (type === 'COURSE_ENROLLMENT') {
@@ -104,121 +88,14 @@ export default function NotificationMenu() {
     }
   }
 
-  const dummyNotifications = [
-    {
-      id: 1,
-      title: 'Notification 1',
-      type: 'COURSE_ENROLLMENT',
-      message: 'This is notification 1 message.',
-      isRead: false,
-      additionalInfo: 'Additional information for notification 1.',
-      link: '/notification1'
-    },
-    {
-      id: 2,
-      title: 'Notification 2',
-      type: 'COURSE_COMPLETION',
-      message:
-        'This is notification 2 message. verrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrryyyyyyyyyyyyyyyyyyy loooooooooooooooooooooongggggg',
-      isRead: true,
-      additionalInfo: 'Additional information for notification 2.',
-      link: '/notification2'
-    },
-    {
-      id: 3,
-      title: 'Notification 3',
-      type: 'NEW_COURSE_AVAILABLE',
-      message: 'This is notification 3 message.',
-      isRead: false,
-      additionalInfo: 'Additional information for notification 3.',
-      link: '/notification3'
-    },
-    {
-      id: 4,
-      title: 'Notification 4',
-      type: 'INSTRUCTOR_FEEDBACK',
-      message: 'This is notification 4 message.',
-      isRead: false,
-      additionalInfo: 'Additional information for notification 4.',
-      link: '/notification4'
-    },
-    {
-      id: 5,
-      title: 'Notification 5',
-      type: 'ADMIN_ANNOUNCEMENT',
-      message: 'This is notification 5 message.',
-      isRead: false,
-      additionalInfo: 'Additional information for notification 5.',
-      link: '/notification5'
-    },
-    {
-      id: 6,
-      title: 'Notification 6',
-      type: 'REVIEW_COURESE',
-      message: 'This is notification 6 message.',
-      isRead: false,
-      additionalInfo: 'Additional information for notification 6.',
-      link: '/notification6'
-    },
-    {
-      id: 7,
-      title: 'Notification 7',
-      type: 'COURSE_ENROLLMENT',
-      message: 'This is notification 7 message.',
-      isRead: false,
-      additionalInfo: 'Additional information for notification 7.',
-      link: '/notification7'
-    },
-    {
-      id: 8,
-      title: 'Notification 8',
-      type: 'COURSE_COMPLETION',
-      message: 'This is notification 8 message.',
-      isRead: true,
-      additionalInfo: 'Additional information for notification 8.',
-      link: '/notification8'
-    },
-    {
-      id: 9,
-      title: 'Notification 9',
-      type: 'NEW_COURSE_AVAILABLE',
-      message: 'This is notification 9 message.',
-      isRead: false,
-      additionalInfo: 'Additional information for notification 9.',
-      link: '/notification9'
-    },
-    {
-      id: 10,
-      title: 'Notification 10',
-      type: 'INSTRUCTOR_FEEDBACK',
-      message: 'This is notification 10 message.',
-      isRead: false,
-      additionalInfo: 'Additional information for notification 10.',
-      link: '/notification10'
-    },
-    {
-      id: 11,
-      title: 'Notification 11',
-      type: 'ADMIN_ANNOUNCEMENT',
-      message: 'This is notification 11 message.',
-      isRead: false,
-      additionalInfo: 'Additional information for notification 11.',
-      link: '/notification11'
-    },
-    {
-      id: 12,
-      title: 'Notification 12',
-      type: 'REVIEW_COURESE',
-      message: 'This is notification 12 message.',
-      isRead: false,
-      additionalInfo: 'Additional information for notification 12.',
-      link: '/notification12'
-    }
-  ]
-
-  const [unreadNotification, setUnreadNotification] = useState(
-    dummyNotifications.filter(notification => !notification.isRead).length
-  )
+  const clearNotifications = () => {
+    notifications.forEach(async notification => {
+      if (!notification.isRead) {
+        await fetcher({ url: `/notifications/${notification.id}`, method: 'PUT', body: { isRead: true } })
+      }
+    })
+    setUnreadNotification(0)
+  }
 
   return (
     notifications && (
@@ -232,7 +109,7 @@ export default function NotificationMenu() {
           onClick={handleClick}
         >
           <NotificationsIcon />
-          <span className='notification-badge' style={{ display: unreadNotification === 0 ? 'none' : 'block' }}>
+          <span className='notification-badge' style={{ display: unreadNotification < 1 ? 'none' : 'block' }}>
             {unreadNotification}
           </span>
         </IconButton>
@@ -244,7 +121,7 @@ export default function NotificationMenu() {
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
-          onClick={() => setUnreadNotification(0)}
+          onClick={() => clearNotifications()}
           PaperProps={{
             style: {
               maxHeight: ITEM_HEIGHT * 4.5,
@@ -254,7 +131,7 @@ export default function NotificationMenu() {
             }
           }}
         >
-          {dummyNotifications.map(notification => (
+          {notifications.map(notification => (
             <MenuItem key={notification.id} onClick={handleClose}>
               <div
                 onClick={() => router.push(notification.link)}
