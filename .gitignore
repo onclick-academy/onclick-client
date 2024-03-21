@@ -37,3 +37,5 @@ next-env.d.ts
 
 // sw
 *-sw.js
+admins.json
+```
