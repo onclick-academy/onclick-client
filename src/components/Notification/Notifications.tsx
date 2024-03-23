@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import RateReviewIcon from '@mui/icons-material/RateReview'
@@ -58,6 +57,15 @@ export default function NotificationMenu() {
       })
 
       setNotifications(fetchedNotifications.data)
+
+      const newNotifications = fetchedNotifications.data.filter(notification => !notifications.some(existingNotification => existingNotification.id === notification.id))
+      setNotifications(fetchedNotifications.data)
+
+      if (newNotifications.length > 0) {
+        newNotifications.forEach(notification => {
+          new Notification(notification.title, { body: notification.message });
+        });
+      }
 
       const unread = fetchedNotifications.data.filter(notification => !notification.isRead)
       setUnreadNotification(unread.length)
@@ -167,19 +175,7 @@ export default function NotificationMenu() {
   )
 }
 
-// if permission is not granted, show a button to request permission
-// if permission is granted, show the notifications
-// if permission is denied, show a message to the user
 
-// if permission is granted i need to get all the notifications , sort them by date and show them in the menu and the last 5 in the notification bell
 // i need to also pop up a notification when a new notification is added to the list
-// i need to mark a notification as read when it is clicked
-// i need to mark all notifications as read when the menu is opened
 // i need to show the number of unread notifications in the notification bell // TODO '/unread/:recipientId' => COUNT THEM
-// i need to show the number of unread notifications in the tab title
-// i need to show the number of unread notifications in the favicon
-// i need to show the number of unread notifications in the browser notification
-// i need to make sure that the notifications are not duplicated and that the last 5 are shown in the notification bell
 // i need to make sure that i handle the differences between the browsers and the view of the notifications in the browser
-// i need to make sure that the notifications are shown in the correct order
-// onClick of the notification, i need to redirect the user to the correct page // TODO '/:notificationId' => REDIRECT TO THE CORRECT PAGE
