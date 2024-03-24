@@ -27,7 +27,7 @@ export const authFetcher = async ({ body = {}, action }: AuthFetcherT) => {
   // Initialize the Cookies instance
   const cookies = new Cookies()
 
-  if (data.status === 'success') {
+  if (res.ok) {
     // Save tokens in cookies instead of localStorage
     cookies.set('accessToken', accessTokn)
     cookies.set('refreshToken', refreshToken)
@@ -48,10 +48,6 @@ export const fetcher = async ({ url, method = 'GET', body = {} }: FetcherT) => {
     body: method === 'GET' ? undefined : JSON.stringify(body)
   })
   console.log('res', res)
-
-  if (!res.ok) {
-    throw new Error('An error occurred while fetching the data.')
-  }
 
   return await res.json()
 }
