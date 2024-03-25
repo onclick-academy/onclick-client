@@ -1,0 +1,50 @@
+#long-menu:last-child {
+  margin-bottom: 0;
+}
+
+.notification-item {
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+#notification-container-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  border-radius: 10px;
+  gap: 0.4rem;
+  margin-block: 0.5rem;
+  margin-inline: 1rem;
+  padding: 0.6rem 1rem;
+}
+
+.notification-menu {
+  & .MuiMenu-paper {
+    overflow-y: auto; // Ensures content can still scroll
+
+    // Customizing scrollbar
+    &::-webkit-scrollbar {
+      width: 2px; // Reducing scrollbar width
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent; // Making scrollbar track transparent
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #888; // Optional: change scrollbar color
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555; // Optional: change scrollbar color on hover
+    }
+  }
+}

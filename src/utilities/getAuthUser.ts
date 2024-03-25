@@ -1,5 +1,5 @@
 const getAuthUser = async () => {
-  const url = `http://localhost:3000/api/v1/users/user`;
+  const url = `http://localhost:3000/api/v1/users/userinfo`
   try {
     const res = await fetch(url, {
       method: 'GET',
@@ -7,13 +7,13 @@ const getAuthUser = async () => {
         'Content-Type': 'application/json'
       },
       credentials: 'include'
-    });
-    const user = await res.json();
+    })
+    const user = await res.json()
 
-    return user;
+    return user
   } catch (err) {
-    console.error('ERRO: ' + err);
+    console.error('ERRO: ' + err)
   }
-};
+}
 
-export default getAuthUser;
+export default getAuthUser
