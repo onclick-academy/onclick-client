@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Box, Button, FormControl, Input, FormHelperText, useMediaQuery } from '@mui/material'
 
 import '../../app/style.scss'
+import { authFetcher } from '@/utilities/fetcher'
 
 const RegisterForm = () => {
   const mediaQuery = useMediaQuery('(max-width: 800px)') //done
@@ -26,18 +27,9 @@ const RegisterForm = () => {
   const confirmPassword = useRef({})
   confirmPassword.current = watch('confirmPassword', '')
 
-  const handleFormSubmit = async data => {
-    const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/auth/register', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      method: 'POST',
-      body: JSON.stringify(data)
-    })
-    const user = await res.json()
-    console.log(user)
-    if (res.status === 200) router.push('/')
+  const handleFormSubmit = async (data: any) => {
+    const res = await authFetcher({ body: data, action: 'register' })
+    console.log(res)
   }
 
   return (

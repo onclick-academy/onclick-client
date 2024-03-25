@@ -13,6 +13,7 @@ import {
 import { useRouter } from "next/navigation";
 
 import "../../app/style.scss";
+import { authFetcher } from "@/utilities/fetcher";
 
 const formFields = [
   {
@@ -42,19 +43,10 @@ const LoginForm = () => {
 
   if (!mediaQuery) router.push("/registeration");
 
-  const handleFormSubmit = async (data) => {
-    const res = await fetch(process.env.NEXT_PUBLIC_API_URL + "/auth/login", {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      method: "POST",
-      body: JSON.stringify(data),
-    });
-    const user = await res.json();
-    console.log(user);
-    if (res.status === 200) router.push("/");
-  };
+  const handleFormSubmit = async (data: any) => {
+    const res = await authFetcher({ body: data, action: 'login' })
+    console.log(res)
+  }
 
   return (
     <Box
