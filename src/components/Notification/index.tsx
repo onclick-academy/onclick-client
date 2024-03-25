@@ -92,20 +92,47 @@ export default function NotificationMenu() {
         open={open}
         onClose={handleClose}
       >
-        {allNotifications
-          .sort((a, b) => {
-            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-          })
-          .map((notification: NotificationI) => (
-            <NotificationItem
-              key={notification.id}
-              notification={notification}
-              onClose={handleClose}
-              handleDelete={handleDelete}
-              handleRead={handleRead}
-              setAllNotifications={setAllNotifications}
-            />
-          ))}
+        {allNotifications.length > 0 ? (
+          allNotifications
+            .sort((a, b) => {
+              return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            })
+            .map((notification: NotificationI) => (
+              <NotificationItem
+                key={notification.id}
+                notification={notification}
+                onClose={handleClose}
+                handleDelete={handleDelete}
+                handleRead={handleRead}
+                setAllNotifications={setAllNotifications}
+              />
+            ))
+        ) : (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '0.8rem',
+              border: '1px solid #f18181',
+              marginInline: '1rem',
+              borderRadius: '10px',
+              padding: '1rem',
+              gap: '4px'
+            }}
+          >
+            <p>No Notifications yet</p>
+            <p
+              style={{
+                fontSize: '0.6rem',
+                color: '#8b8b8b'
+              }}
+            >
+              Here you will see all the notifications you receive from our side.
+            </p>
+          </div>
+        )}
         {!permission && (
           <div
             style={{
