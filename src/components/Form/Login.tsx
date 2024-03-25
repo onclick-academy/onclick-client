@@ -28,7 +28,7 @@ const LoginForm = () => {
     formState: { errors }
   } = useForm()
 
-  const handleFormSubmit = async data => {
+  const handleFormSubmit = async (data: any) => {
     const res = await authFetcher({ body: data, action: 'login' })
     console.log(res)
   }

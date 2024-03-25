@@ -24,3 +24,27 @@
   margin-inline: 1rem;
   padding: 0.6rem 1rem;
 }
+
+.notification-menu {
+  & .MuiMenu-paper {
+    overflow-y: auto; // Ensures content can still scroll
+
+    // Customizing scrollbar
+    &::-webkit-scrollbar {
+      width: 2px; // Reducing scrollbar width
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent; // Making scrollbar track transparent
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #888; // Optional: change scrollbar color
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555; // Optional: change scrollbar color on hover
+    }
+  }
+}

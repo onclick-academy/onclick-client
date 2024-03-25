@@ -10,10 +10,20 @@ import {
   ThumbUpAlt as ThumbUpAltIcon,
   ThumbDownAlt as ThumbDownAltIcon,
   Block as BlockIcon
-  // other icons you might use
 } from '@mui/icons-material'
 
-export const getNotificationIcon = type => {
+export type NotifiacationType =
+  | 'COURSE_ENROLLMENT'
+  | 'COURSE_COMPLETION'
+  | 'NEW_COURSE_AVAILABLE'
+  | 'ADMIN_ANNOUNCEMENT'
+  | 'REVIEW_COURSE'
+  | 'NEW_EVENT'
+  | 'REQUEST_APPROVED'
+  | 'REQUEST_DECLINED'
+  | 'SUSPEND_USER'
+
+export const getNotificationIcon = (type: NotifiacationType) => {
   const iconProps = { style: { fontSize: '25px' } } // Adjust icon size as needed
   switch (type) {
     case 'COURSE_ENROLLMENT':
