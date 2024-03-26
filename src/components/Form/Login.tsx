@@ -1,34 +1,27 @@
-'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form'
-import { Box, Button, FormControl, Input, FormHelperText, Link } from '@mui/material'
+import { Box, Button, TextField, Link, Checkbox, FormControlLabel, Grid, Typography } from '@mui/material'
 
-import '../../app/style.scss'
+import '../../styles/auth.scss'
 import { authFetcher } from '@/utilities/fetcher'
+import { useRouter } from 'next/navigation'
 
-const formFields = [
-  {
-    name: 'email',
-    label: 'Email',
-    type: 'text',
-    validation: { required: true }
-  },
-  {
-    name: 'password',
-    label: 'Password',
-    type: 'password',
-    validation: { required: true }
-  }
-]
+interface UserLoginI {
+  email: string
+  password: string
+  isRememberMe: boolean
+}
 
 const LoginForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm()
+  } = useForm<UserLoginI>()
 
-  const handleFormSubmit = async (data: any) => {
+  const router = useRouter()
+
+  const handleFormSubmit = async (data: UserLoginI) => {
     const res = await authFetcher({ body: data, action: 'login' })
     console.log(res)
   }
@@ -41,72 +34,77 @@ const LoginForm = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 0.9,
-        width: '60%',
-        maxWidth: 500,
-        margin: 'auto'
+        alignItems: 'flex-start',
+        margin: 'auto',
+        gap: 1
       }}
     >
-      <div
-        style={{
-          display: false ? 'flex' : 'none',
-          flexDirection: 'column',
-          textAlign: 'center',
-          color: 'white',
-          gap: '.6rem'
-        }}
-      >
-        <h3>Welcome Back!</h3>
-        <p style={{ color: 'GrayText' }}>
-          Log in to continue your learning! or{' '}
-          <a href='/register' style={{ color: '#031999' }}>
-            Sign Up
-          </a>
-        </p>
-      </div>
-
-      {formFields.map(field => (
-        <FormControl key={field.name} error={Boolean(errors[field.name])}>
-          <Input
-            {...register(field.name, field.validation)}
-            id={field.name}
-            type={field.type}
-            name={field.name}
-            placeholder={field.label === 'Email' ? 'Email or username' : 'Password'}
-          />
-          {errors[field.name] && <FormHelperText>{String(errors[field.name]?.message)}</FormHelperText>}
-        </FormControl>
-      ))}
-      <div style={{ display: 'flex' }}>
-        <Input
-          {...register('isRememberMe')}
-          type='checkbox'
-          id='isRememberMe'
-          name='isRememberMe'
-          // style={{ display: "inline" }}
-        />{' '}
-        <p style={{ marginLeft: '5px' }}>Remember me?</p>
-      </div>
-      <div
-        style={{
+      <Box
+        sx={{
           display: 'flex',
-          justifyContent: 'space-between',
-          margin: false ? '0 auto' : '0',
-          width: false ? '80%' : '100%'
+          flexDirection: 'column',
+          width: '70%',
+          gap: 1
         }}
       >
-        <Button type='submit' variant='contained' style={{ width: '40%', background: '#031999' }}>
-          Login
-        </Button>
-        <Button variant='contained' style={{ width: '40%', background: '#031999' }}>
-          Cancel
-        </Button>
-      </div>
-      <Box mt={2}>
-        <Link href='/forgetpassword' style={{ color: '#031999' }}>
+        <TextField
+          {...register('email', { required: 'Email is required' })}
+          id='email'
+          label='Email'
+          variant='outlined'
+          error={Boolean(errors.email)}
+          helperText={errors.email?.message}
+          fullWidth
+        />
+        <TextField
+          {...register('password', { required: 'Password is required' })}
+          id='password'
+          label='Password'
+          type='password'
+          variant='outlined'
+          error={Boolean(errors.password)}
+          helperText={errors.password?.message}
+          fullWidth
+        />
+      </Box>
+      <Box>
+        <Link
+          href='/forgetpassword'
+          style={{
+            color: 'blue',
+            fontSize: '0.8rem'
+          }}
+        >
           Forgot Password?
         </Link>
       </Box>
+      <FormControlLabel
+        control={<Checkbox {...register('isRememberMe')} id='isRememberMe' name='isRememberMe' />}
+        label='Remember me?'
+      />
+      <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%', gap: 1 }}>
+        <Button type='submit' variant='contained' sx={{ width: '50%' }}>
+          Login
+        </Button>
+      </Box>
+      <Typography
+        sx={{
+          width: '70%',
+          color: '#b0cdff',
+          cursor: 'pointer',
+          fontSize: '1.1rem',
+          letterSpacing: '0.3px',
+          textDecoration: 'underline',
+          pb: '50px'
+        }}
+        className='hidden'
+        onClick={() => {
+          router.push('/auth?type=register')
+        }}
+        id='register'
+      >
+        Or Create Account
+      </Typography>
     </Box>
   )
 }

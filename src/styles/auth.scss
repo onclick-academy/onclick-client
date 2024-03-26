@@ -1,15 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
-body {
+.auth-wrapper {
   background-color: #000000;
-  background: linear-gradient(to left, #181717, #09161f);
+  background: linear-gradient(to left, #232323, #343434, #181717, #09161f);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,53 +20,20 @@ body {
 .container {
   background-color: #000000;
   border-radius: 35px;
-  box-shadow: 0 5px 15px rgba(141, 141, 141, 0.2);
+  box-shadow: 0 5px 15px #8d8d8d33;
   position: relative;
-  overflow: hidden;
-  width: 80%;
-  max-inline-size: 1000px;
-  min-block-size: 60%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 90%;
+  max-inline-size: 80vw;
+  min-block-size: 95%;
   color: #fff;
-
-  p {
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.3px;
-    margin: 20px 0;
-  }
 
   span {
     font-size: 12px;
   }
 
-  a {
-    color: #333;
-    font-size: 13px;
-    text-decoration: none;
-    margin: 15px 0 10px;
-  }
-
-  button {
-    background-color: #153f75;
-    color: #fff;
-    font-size: 12px;
-    padding: 10px 45px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-top: 10px;
-    cursor: pointer;
-
-    &.hidden {
-      background-color: transparent;
-      border-color: #fff;
-    }
-  }
-
-  form,
-  Box {
+  form {
     background-color: #000000;
     display: flex;
     align-items: center;
@@ -84,7 +51,6 @@ body {
   Input {
     background-color: #00000065;
     border: none;
-    border-bottom: 1px solid #ffffff17;
     margin: 8px 0;
     padding: 10px 15px;
     font-size: 13px;
@@ -161,7 +127,7 @@ option:hover {
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
-    animation: move 0.6s;
+    animation: move 0.3s;
   }
 
   .toggle-container {
@@ -183,12 +149,10 @@ option:hover {
 }
 
 @keyframes move {
-  0%,
-  49.99% {
+  0% {
     opacity: 0;
-    z-index: 1;
+    z-index: 0;
   }
-  50%,
   100% {
     opacity: 1;
     z-index: 5;
@@ -208,7 +172,7 @@ option:hover {
 
   .toggle {
     height: 100%;
-    background: linear-gradient(to right, #000000a4, #031877);
+    background: linear-gradient(to right, #000000, #09133f);
     color: #fff;
     position: relative;
     left: -100%;
@@ -242,16 +206,64 @@ option:hover {
     transform: translateX(0);
   }
 }
+// --------------------------------------------------------
 
-@media (max-inline-size: 800px) {
-  body {
-    background: linear-gradient(to left, #181717, #09161f) !important;
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  /* Adjustments for the container */
+  max-width: 95%;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center the forms in the container */
+  transition: transform 0.6s ease-in-out;
+}
+
+.form-container {
+  width: 50%; /* Make each form take half of the container's width */
+  transition: opacity 0.3s, visibility 0.2s;
+}
+
+[data-hidden='login'] .sign-up,
+[data-hidden='register'] .sign-in {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.toggle-container {
+  display: none; /* Hide toggle container by default */
+}
+
+@media (min-width: 769px) {
+  .toggle-container {
+    display: block; /* Show toggle container on larger screens */
   }
 
-  .form-header {
-    flex-direction: column !important;
-    gap: 1.2rem;
-    width: 100% !important;
+  .form-container {
+    width: 50%; /* Adjust if necessary for your layout */
+  }
+}
+
+@media (max-width: 768px) {
+  .container .auth-register {
+    padding: 50px;
+    transform: translateX(-100%); /* No shift needed since we're showing only one form */
+  }
+  .container {
+    border-radius: 0;
+    min-width: 100vw;
+    height: 100vh;
+    transform: translateX(0%); /* No shift needed since we're showing only one form */
   }
 
+  .form-container {
+    width: 100%; /* Each form should take the full width on smaller screens */
+    opacity: 1 !important; /* Ensure visibility */
+    visibility: visible !important;
+  }
 }
