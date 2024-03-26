@@ -38,6 +38,7 @@ const LoginForm = () => {
         margin: 'auto',
         gap: 1
       }}
+      className='auth-login'
     >
       <Box
         sx={{

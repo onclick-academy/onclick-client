@@ -38,7 +38,6 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [profilePicPreview, setProfilePicPreview] = useState('')
-  const [hovered, setHovered] = useState(false)
 
   const {
     register,
@@ -60,16 +59,23 @@ const RegisterForm = () => {
       reader.onloadend = () => {
         setProfilePicPreview(reader?.result?.toString() ?? '')
       }
-      reader.readAsDataURL(watchProfilePic[0])
+      const file = watchProfilePic[0] as unknown as Blob // Cast watchProfilePic[0] to Blob
+      reader.readAsDataURL(file)
     }
   }, [watchProfilePic])
 
   const onSubmit = async (data: UserRegisterI) => {
     // Assuming `authFetcher` is an async function that handles registration
     try {
-      const res = await authFetcher({ body: data, action: 'register' })
-      console.log(res)
-      router.push('/') // Navigate to home or dashboard page
+      const res = await authFetcher({
+        body: {
+          ...data,
+          profilePic: data.profilePic ? data.profilePic : null
+        },
+        action: 'register'
+      })
+      console.log(data)
+      // router.push('/') // Navigate to home or dashboard page
     } catch (error) {
       console.error('Registration failed:', error)
     }
@@ -94,14 +100,19 @@ const RegisterForm = () => {
               alt='Profile Picture'
               sx={{ width: 80, height: 80, margin: 'auto', cursor: 'pointer' }}
             >
-              <AddPhotoAlternateIcon sx={{ fontSize: 40, color: hovered ? 'primary.main' : 'primary.light' }} />
+              <AddPhotoAlternateIcon sx={{ fontSize: 40 }} />
             </Avatar>
             <TextField
               {...register('profilePic')}
               type='file'
               id='profilePicInput'
               inputProps={{ accept: 'image/*' }}
-              onChange={e => setProfilePicPreview(URL.createObjectURL(e.target.files[0]))}
+              onChange={e => {
+                const target = e.target as HTMLInputElement
+                if (target.files) {
+                  setProfilePicPreview(URL.createObjectURL(target.files[0]))
+                }
+              }}
               style={{ display: 'none' }}
             />
           </label>
@@ -128,7 +139,7 @@ const RegisterForm = () => {
           />
         </Grid>
         <Grid item xs={8} sm={4}>
-          <TextField fullWidth {...register('gender')} select label='Gender'>
+          <TextField fullWidth {...register('gender', { required: 'gender is required' })} select label='Gender'>
             <MenuItem value='MALE'>Male</MenuItem>
             <MenuItem value='FEMALE'>Female</MenuItem>
           </TextField>
@@ -140,7 +151,7 @@ const RegisterForm = () => {
             label='Bio'
             multiline
             rows={3}
-            {...register('bio')}
+            {...register('bio', { required: 'Please write our a brief of yourself' })}
             error={Boolean(errors.bio)}
             helperText={errors.bio?.message}
           />

@@ -22,8 +22,8 @@
   border-radius: 35px;
   box-shadow: 0 5px 15px #8d8d8d33;
   position: relative;
-  overflow-y: auto;
-  overflow-x: hidden;
+
+  overflow: hidden;
   width: 90%;
   max-inline-size: 80vw;
   min-block-size: 95%;
@@ -31,16 +31,6 @@
 
   span {
     font-size: 12px;
-  }
-
-  form {
-    background-color: #000000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    height: 100%;
   }
 
   .form-header {
@@ -107,12 +97,28 @@ option:hover {
 
 .sign-in {
   left: 0;
-  width: 50%;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .container.active .sign-in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   transform: translateX(100%);
+}
+
+.auth-login {
+  display: block;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
+  max-width: 400px;
 }
 
 .sign-up {
@@ -120,6 +126,13 @@ option:hover {
   width: 50%;
   opacity: 0;
   z-index: 1;
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  height: 100%;
 }
 
 .container.active {
@@ -128,6 +141,10 @@ option:hover {
     opacity: 1;
     z-index: 5;
     animation: move 0.3s;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-block: 40px;
+    display: block !important;
   }
 
   .toggle-container {
@@ -251,13 +268,28 @@ option:hover {
 
 @media (max-width: 768px) {
   .container .auth-register {
-    padding: 50px;
-    transform: translateX(-100%); /* No shift needed since we're showing only one form */
+    padding: 0 25px 0px 25px !important;
+    overflow-y: auto;
+    display: block !important;
+    overflow-y: auto;
+    transform: translateX(-130%); /* No shift needed since we're showing only one form */
+  }
+  .container.active {
+    .sign-up {
+      transform: translateX(130%); /* No shift needed since we're showing only one form */
+
+      overflow: unset;
+      padding: 25px 0;
+    }
+    .sign-in {
+      width: 100vw;
+    }
   }
   .container {
     border-radius: 0;
     min-width: 100vw;
     height: 100vh;
+    overflow-y: auto;
     transform: translateX(0%); /* No shift needed since we're showing only one form */
   }
 
