@@ -1,279 +1,326 @@
 'use client'
-import React, { useRef, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import React, { useState, useEffect } from 'react'
+import { useForm, Controller } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { Box, Button, FormControl, Input, FormHelperText, useMediaQuery } from '@mui/material'
-
-import '../../app/style.scss'
+import { Box, Button, Grid, TextField, InputAdornment, IconButton, MenuItem, Avatar, Typography } from '@mui/material'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import '../../styles/auth.scss' // Ensure this SCSS file contains all the necessary styles.
 import { authFetcher } from '@/utilities/fetcher'
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import dayjs, { Dayjs } from 'dayjs'
+
+const EDUCATION_LEVELS = [
+  { value: 'ELEMENTARY', label: 'Elementary' },
+  { value: 'MIDDLE', label: 'Middle' },
+  { value: 'HIGH', label: 'High' },
+  { value: 'COLLEGE', label: 'College' },
+  { value: 'UNIVERSITY', label: 'University' },
+  { value: 'MASTER', label: 'Master' },
+  { value: 'PHD', label: 'PhD' }
+]
+
+type EducationLevels = 'ELEMENTARY' | 'MIDDLE' | 'HIGH' | 'COLLEGE' | 'UNIVERSITY' | 'MASTER' | 'PHD'
+interface UserRegisterI {
+  fullName: string
+  email: string
+  username: string
+  password: string
+  confirmPassword: string
+  bio: string
+  phoneNum: string
+  birthDate: string
+  educationLevel: EducationLevels
+  gender: 'Male' | 'Female'
+  profilePic: string
+}
 
 const RegisterForm = () => {
-  const mediaQuery = useMediaQuery('(max-width: 800px)') //done
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [profilePicPreview, setProfilePicPreview] = useState({
+    sendV: '',
+    previewV: ''
+  })
+  const [registerError, setRegisterError] = useState({
+    phoneNumber: '',
+    email: '',
+    username: ''
+  })
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    watch
-  } = useForm()
-
+    watch,
+    control,
+    formState: { errors }
+  } = useForm<UserRegisterI>()
   const router = useRouter()
 
-  const password = useRef({})
-  password.current = watch('password', '')
-  const confirmPassword = useRef({})
-  confirmPassword.current = watch('confirmPassword', '')
+  const isOldEnough = (value: string) => {
+    return dayjs().subtract(16, 'year').isAfter(value) || 'Must be at least 16 years old'
+  }
+  const maxDate = dayjs().subtract(16, 'years')
 
-  const handleFormSubmit = async (data: any) => {
-    const res = await authFetcher({ body: data, action: 'register' })
-    console.log(res)
-    // if (user.status === 'success') {
-    //   router.push('/')
-    // }
+  const toggleShowPassword = () => setShowPassword(!showPassword)
+  const toggleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword)
+
+  const onSubmit = async (data: UserRegisterI) => {
+    try {
+      const res = await authFetcher({
+        body: {
+          ...data,
+          profilePic: profilePicPreview.sendV || 'default-avatar.png'
+        },
+        action: 'register'
+      })
+      console.log(res.status)
+      if (res.status === 'success') {
+        router.push('/')
+      } else {
+        setRegisterError({
+          phoneNumber: res.error.toLowerCase().includes('phone') ? res.error : '',
+          email: res.error.toLowerCase().includes('email') ? res.error : '',
+          username: res.error.toLowerCase().includes('username') ? res.error : ''
+        })
+      }
+    } catch (error) {
+      console.error('Registration failed:', error)
+    }
   }
 
   return (
-    <Box
-      component='form'
-      method='POST'
-      onSubmit={handleSubmit(handleFormSubmit)}
-      sx={
-        mediaQuery
-          ? {
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 1.2,
-              width: '50%',
-              maxWidth: 500,
-              margin: '0 auto'
-            }
-          : {
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 0.9,
-              margin: '0 auto'
-            }
-      }
-    >
-      <div
-        style={{
-          display: mediaQuery ? 'flex' : 'none',
-          flexDirection: 'column',
-          textAlign: 'center',
-          color: 'white',
-          gap: '.6rem'
-        }}
-      >
-        <h3>Sign Up</h3>
-        <p style={{ color: 'GrayText' }}>Start your learning journey now with us!</p>
-      </div>
+    <Box className='auth-register' component='form' method='POST' onSubmit={handleSubmit(onSubmit)}>
+      <Grid container spacing={2}>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: 2
+          }}
+        >
+          <label htmlFor='profilePicInput'>
+            <Avatar
+              src={profilePicPreview.previewV}
+              alt='Profile Picture'
+              sx={{ width: 80, height: 80, margin: 'auto', cursor: 'pointer' }}
+            >
+              <AddPhotoAlternateIcon sx={{ fontSize: 40 }} />
+            </Avatar>
+            <TextField
+              {...register('profilePic')}
+              type='file'
+              id='profilePicInput'
+              inputProps={{ accept: 'image/*' }}
+              onChange={e => {
+                const target = e.target as HTMLInputElement
+                if (target.files) {
+                  const file = target.files[0]
+                  const reader = new FileReader()
+                  reader.onloadend = () => {
+                    setProfilePicPreview({
+                      sendV: file.name.toString(),
+                      previewV: reader.result?.toString() ?? ''
+                    })
+                  }
+                  reader.readAsDataURL(file)
+                }
+              }}
+              style={{ display: 'none' }}
+            />
+          </label>
+          {/* Full Name */}
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label='Full Name'
+              {...register('fullName', { required: 'Full name is required' })}
+              error={Boolean(errors.fullName)}
+              helperText={errors.fullName?.message}
+            />
+          </Grid>
+        </Grid>
 
-      <div
-        className='form-header'
-        style={{ display: 'flex', gap: '0.6rem', flexDirection: mediaQuery ? 'column' : 'row' }}
-      >
-        <FormControl>
-          <Input
-            {...register('fullName', {
-              required: 'This field is required'
-            })}
-            id='fullName'
-            type='text'
-            name='fullName'
-            placeholder='Full Name'
-            style={{ margin: mediaQuery ? '0 auto' : '0', width: mediaQuery ? '80%' : '50%' }}
+        {/* Username */}
+        <Grid item xs={16} sm={8}>
+          <TextField
+            fullWidth
+            label='Username'
+            {...register('username', { required: 'Username is required' })}
+            error={Boolean(errors.username) || Boolean(registerError.username)}
+            helperText={errors.username?.message || registerError.username}
           />
-        </FormControl>
-        {errors.fullName && <FormHelperText>{String(errors.fullName?.message)}</FormHelperText>}
-      </div>
+        </Grid>
+        <Grid item xs={8} sm={4}>
+          <TextField fullWidth {...register('gender', { required: 'gender is required' })} select label='Gender'>
+            <MenuItem value='MALE'>Male</MenuItem>
+            <MenuItem value='FEMALE'>Female</MenuItem>
+          </TextField>
+        </Grid>
 
-      <div
-        className='form-header'
-        style={{ display: 'flex', gap: '0.6rem', flexDirection: mediaQuery ? 'column' : 'row' }}
-      >
-        <FormControl>
-          <Input
-            {...register('username', {
-              required: 'This field is required'
-            })}
-            id='username'
-            type='text'
-            name='username'
-            placeholder='Username'
-            style={{ margin: mediaQuery ? '0 auto' : '0', width: mediaQuery ? '80%' : '50%' }}
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            label='Bio'
+            multiline
+            rows={3}
+            {...register('bio', { required: 'Please write our a brief of yourself' })}
+            error={Boolean(errors.bio)}
+            helperText={errors.bio?.message}
           />
-          {errors.username && <FormHelperText>{String(errors.username?.message)}</FormHelperText>}
-        </FormControl>
-        <FormControl>
-          <Input
-            {...register('email', {
-              required: 'This field is required'
-            })}
-            id='email'
+        </Grid>
+
+        {/* Email */}
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            label='Email'
             type='email'
-            name='email'
-            placeholder='Email'
-            style={{ margin: mediaQuery ? '0 auto' : '0', width: mediaQuery ? '80%' : '50%' }}
-          />
-          {errors.email && <FormHelperText>{String(errors.email?.message)}</FormHelperText>}
-        </FormControl>
-      </div>
-      <div
-        className='form-header'
-        style={{ display: 'flex', gap: '0.6rem', flexDirection: mediaQuery ? 'column' : 'row' }}
-      >
-        <FormControl>
-          <Input
-            {...register('password', {
-              required: 'This field is required'
+            {...register('email', {
+              required: 'Email is required',
+              pattern: {
+                value: /^\S+@\S+\.\S+$/,
+                message: 'Invalid email format'
+              }
             })}
-            id='password'
-            type='password'
-            name='password'
-            placeholder='Password'
-            style={{ margin: mediaQuery ? '0 auto' : '0', width: mediaQuery ? '80%' : '50%' }}
+            error={Boolean(errors.email) || Boolean(registerError.email)}
+            helperText={errors.email?.message || registerError.email}
           />
-          {errors.password && <FormHelperText>{String(errors.password?.message)}</FormHelperText>}
-        </FormControl>
+        </Grid>
 
-        <FormControl style={{ margin: '0 10px' }}>
-          <Input
-            {...register('confirmPassword', {
-              required: 'This field is required',
-              validate: value => value === password.current || 'The passwords do not match'
-            })}
-            id='confirmPassword'
-            type='password'
-            name='confirmPassword'
-            placeholder='Confirm Password'
-            style={{ margin: mediaQuery ? '0 auto' : '0', width: mediaQuery ? '82%' : '50%' }}
-          />
-          {errors.confirmPassword && <FormHelperText>{String(errors.confirmPassword?.message)}</FormHelperText>}
-        </FormControl>
-      </div>
-      {/* birthDate and gender */}
-
-      <div
-        className='form-header'
-        style={{ display: 'flex', gap: '0.6rem', flexDirection: mediaQuery ? 'column' : 'row' }}
-      >
-        <FormControl style={{ margin: '0 10px', width: '45%' }}>
-          <Input
-            {...register('birthDate', {
-              required: 'This field is required'
-            })}
-            id='birthDate'
-            type='date'
-            name='birthDate'
-            placeholder='Birth Date'
-            style={{ margin: mediaQuery ? '0 20%' : '0', width: mediaQuery ? '80%' : '50%' }}
-          />
-          {errors.birthDate && <FormHelperText>{String(errors.birthDate?.message)}</FormHelperText>}
-        </FormControl>
-
-        <FormControl>
-          <select
-            {...register('gender')}
-            id='gender'
-            name='gender'
-            style={{ margin: mediaQuery ? '0 auto' : '0', width: mediaQuery ? '75%' : '50%' }}
-          >
-            <option value={'MALE'} key={'MALE'}>
-              Male
-            </option>
-            <option value={'FEMALE'} key={'FEMALE'}>
-              Female
-            </option>
-          </select>
-        </FormControl>
-      </div>
-
-      <div
-        className='form-header'
-        style={{ display: 'flex', gap: '0.6rem', flexDirection: mediaQuery ? 'column' : 'row' }}
-      >
-        {/* phoneNum */}
-        <FormControl style={{ margin: '0 10px' }}>
-          <Input
-            {...register('phoneNum', {
-              required: 'This field is required'
-            })}
-            id='phoneNum'
-            type='text'
-            name='phoneNum'
-            placeholder='Phone Number'
-            style={{ margin: mediaQuery ? '0 auto' : '0', width: mediaQuery ? '80%' : '50%' }}
-          />
-          {errors.phoneNum && <FormHelperText>{String(errors.phoneNum?.message)}</FormHelperText>}
-        </FormControl>
-
-        <FormControl>
-          <select
-            {...register('educationLevel')}
-            id='educationLevel'
+        <Grid item xs={12}>
+          <Controller
             name='educationLevel'
-            style={{ margin: mediaQuery ? '0 auto' : '0', width: mediaQuery ? '75%' : '50%' }}
-          >
-            <option value={'ELEMENTARY'} key={'ELEMENTARY'}>
-              Elementary
-            </option>
-            <option value={'MIDDLE'} key={'MIDDLE'}>
-              Middle
-            </option>
-            <option value={'HIGH'} key={'HIGH'}>
-              High
-            </option>
-            <option value={'COLLEGE'} key={'COLLEGE'}>
-              College
-            </option>
-            <option value={'UNIVERSITY'} key={'UNIVERSITY'}>
-              University
-            </option>
-            <option value={'MASTER'} key={'MASTER'}>
-              Master
-            </option>
-            <option value={'PHD'} key={'PHD'}>
-              Phd
-            </option>
-          </select>
-        </FormControl>
-      </div>
-      {/* bio */}
-
-      <div
-        className='form-header'
-        style={{ display: 'flex', gap: '0.6rem', flexDirection: mediaQuery ? 'column' : 'row' }}
-      >
-        <FormControl>
-          <Input
-            {...register('bio', {
-              required: 'This field is required'
-            })}
-            id='bio'
-            type='text'
-            name='bio'
-            placeholder='Bio'
-            style={{ margin: mediaQuery ? '0 auto' : '0', width: mediaQuery ? '80%' : '50%' }}
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextField select label='Education Level' fullWidth variant='outlined' value={value} onChange={onChange}>
+                {EDUCATION_LEVELS.map(level => (
+                  <MenuItem key={level.value} value={level.value}>
+                    {level.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            )}
           />
-          {errors.bio && <FormHelperText>{String(errors.bio?.message)}</FormHelperText>}
-        </FormControl>
-      </div>
+        </Grid>
 
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          margin: mediaQuery ? '0 auto' : '0',
-          width: mediaQuery ? '80%' : '100%'
-        }}
-      >
-        <Button type='submit' variant='contained' style={{ width: '45%', background: '#031999' }}>
+        {/* Password field */}
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            label='Password'
+            type={showPassword ? 'text' : 'password'}
+            {...register('password', { required: 'Password is required' })}
+            error={Boolean(errors.password)}
+            helperText={errors.password?.message}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position='end'>
+                  <IconButton onClick={toggleShowPassword} edge='end'>
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
+        </Grid>
+
+        {/* Confirm Password field */}
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            label='Confirm Password'
+            type={showConfirmPassword ? 'text' : 'password'}
+            {...register('confirmPassword', {
+              validate: value => value === watch('password') || 'The passwords do not match'
+            })}
+            error={Boolean(errors.confirmPassword)}
+            helperText={errors.confirmPassword?.message}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position='end'>
+                  <IconButton onClick={toggleShowConfirmPassword} edge='end'>
+                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
+        </Grid>
+
+        {/* Phone Number */}
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            label='Phone Number'
+            placeholder='e.g. 201xxxxxxxxx'
+            {...register('phoneNum', {
+              required: 'Phone number is required',
+              pattern: {
+                value: /^[0-9]+$/,
+                message: 'Invalid phone number'
+              }
+            })}
+            error={Boolean(errors.phoneNum) || Boolean(registerError.phoneNumber)}
+            helperText={!!errors.phoneNum || registerError.phoneNumber}
+          />
+        </Grid>
+
+        {/* Birth Date */}
+        <Grid item xs={12} sm={6}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Controller
+              name='birthDate'
+              control={control}
+              rules={{ required: 'Birth date is required', validate: isOldEnough }}
+              render={({ field }) => (
+                <DatePicker
+                  label='Birth Date'
+                  value={field.value as unknown as Dayjs}
+                  onChange={newValue => {
+                    field.onChange(newValue)
+                  }}
+                  maxDate={maxDate.isValid() ? maxDate : dayjs()}
+                  // @ts-ignore-next-line
+                  renderInput={params => (
+                    <TextField {...params} error={Boolean(errors.birthDate)} helperText={errors.birthDate?.message} />
+                  )}
+                />
+              )}
+            />
+          </LocalizationProvider>
+        </Grid>
+      </Grid>
+
+      <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', gap: 2, mt: 3, width: '100%' }}>
+        <Button type='submit' variant='contained' sx={{ px: 5, width: '60%' }}>
           Signup
         </Button>
-        <Button variant='contained' onClick={() => router.push('/')} style={{ width: '45%', background: '#031999' }}>
-          Cancel
-        </Button>
-      </div>
+        <Typography
+          sx={{
+            width: '70%',
+            color: '#b0cdff',
+            cursor: 'pointer',
+            fontSize: '1rem',
+            letterSpacing: '0.3px',
+            textDecoration: 'underline',
+            pb: '50px'
+          }}
+          className='hidden'
+          onClick={() => {
+            router.push('/auth?type=login')
+          }}
+          id='register'
+        >
+          Or you have an account, login now!
+        </Typography>
+      </Box>
     </Box>
   )
 }
