@@ -6,7 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { lightBlue } from '@mui/material/colors'
 import Navbar from '@/components/Nav/Nav'
 
-
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -39,7 +38,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
-          
+
           {children}
         </ThemeProvider>
       </body>

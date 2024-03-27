@@ -18,12 +18,17 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors }
   } = useForm<UserLoginI>()
+  const [loginError, setLoginError] = React.useState('')
 
   const router = useRouter()
 
   const handleFormSubmit = async (data: UserLoginI) => {
     const res = await authFetcher({ body: data, action: 'login' })
-    console.log(res)
+    if (res.status === 200) {
+      router.push('/')
+    } else {
+      setLoginError('Email or pasword is incorrect')
+    }
   }
 
   return (
@@ -33,9 +38,8 @@ const LoginForm = () => {
       onSubmit={handleSubmit(handleFormSubmit)}
       sx={{
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'flex-start',
-        margin: 'auto',
+        justifyContent: 'center',
         gap: 1
       }}
       className='auth-login'
@@ -53,8 +57,6 @@ const LoginForm = () => {
           id='email'
           label='Email'
           variant='outlined'
-          error={Boolean(errors.email)}
-          helperText={errors.email?.message}
           fullWidth
         />
         <TextField
@@ -63,10 +65,9 @@ const LoginForm = () => {
           label='Password'
           type='password'
           variant='outlined'
-          error={Boolean(errors.password)}
-          helperText={errors.password?.message}
           fullWidth
         />
+        <Typography sx={{ color: 'red', fontSize: '0.8rem' }}>{loginError}</Typography>
       </Box>
       <Box>
         <Link

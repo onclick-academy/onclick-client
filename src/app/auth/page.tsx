@@ -1,31 +1,30 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import RegisterForm from '@/components/Form/Register'
 import LoginForm from '@/components/Form/Login'
 import '../../styles/auth.scss'
-import { Button, Typography } from '@mui/material'
-import { useParams, useRouter, useSearchParams } from 'next/navigation'
-
-// useState
+import { Button } from '@mui/material'
+import { useRouter, useSearchParams } from 'next/navigation'
+import getAuthUser from '@/utilities/getAuthUser'
 
 const RegisterationPage = () => {
-  const [classNameList, setClassNameList] = useState('container')
-
-  const handleLoginBtn = () => {
-    setClassNameList('container')
-  }
-
-  const handleRegisterBtn = () => {
-    setClassNameList('container active')
-  }
-
   const params = useSearchParams()
   const router = useRouter()
   const type = params.get('type')
-  console.log(type)
+
+  useEffect(() => {
+    const isAuth = async () => {
+      const res = await getAuthUser()
+
+      if (res.status === 'success') {
+        router.push('/')
+      }
+    }
+
+    isAuth()
+  }, [router])
 
   return (
-    // <AuthNav />
     <div className='auth-wrapper'>
       <div className={`container ${type == 'login' ? '' : 'active'}`} id='container'>
         <div className='form-container sign-up' data-hidden={type === 'login' ? 'register' : ''}>

@@ -8,6 +8,10 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import '../../styles/auth.scss' // Ensure this SCSS file contains all the necessary styles.
 import { authFetcher } from '@/utilities/fetcher'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import dayjs, { Dayjs } from 'dayjs'
 
 const EDUCATION_LEVELS = [
   { value: 'ELEMENTARY', label: 'Elementary' },
@@ -37,7 +41,15 @@ interface UserRegisterI {
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [profilePicPreview, setProfilePicPreview] = useState('')
+  const [profilePicPreview, setProfilePicPreview] = useState({
+    sendV: '',
+    previewV: ''
+  })
+  const [registerError, setRegisterError] = useState({
+    phoneNumber: '',
+    email: '',
+    username: ''
+  })
 
   const {
     register,
@@ -48,34 +60,33 @@ const RegisterForm = () => {
   } = useForm<UserRegisterI>()
   const router = useRouter()
 
+  const isOldEnough = (value: string) => {
+    return dayjs().subtract(16, 'year').isAfter(value) || 'Must be at least 16 years old'
+  }
+  const maxDate = dayjs().subtract(16, 'years')
+
   const toggleShowPassword = () => setShowPassword(!showPassword)
   const toggleShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword)
 
-  const watchProfilePic = watch('profilePic')
-
-  useEffect(() => {
-    if (watchProfilePic && watchProfilePic.length > 0) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setProfilePicPreview(reader?.result?.toString() ?? '')
-      }
-      const file = watchProfilePic[0] as unknown as Blob // Cast watchProfilePic[0] to Blob
-      reader.readAsDataURL(file)
-    }
-  }, [watchProfilePic])
-
   const onSubmit = async (data: UserRegisterI) => {
-    // Assuming `authFetcher` is an async function that handles registration
     try {
       const res = await authFetcher({
         body: {
           ...data,
-          profilePic: data.profilePic ? data.profilePic : null
+          profilePic: profilePicPreview.sendV || 'default-avatar.png'
         },
         action: 'register'
       })
-      console.log(data)
-      // router.push('/') // Navigate to home or dashboard page
+      console.log(res.status)
+      if (res.status === 'success') {
+        router.push('/')
+      } else {
+        setRegisterError({
+          phoneNumber: res.error.toLowerCase().includes('phone') ? res.error : '',
+          email: res.error.toLowerCase().includes('email') ? res.error : '',
+          username: res.error.toLowerCase().includes('username') ? res.error : ''
+        })
+      }
     } catch (error) {
       console.error('Registration failed:', error)
     }
@@ -96,7 +107,7 @@ const RegisterForm = () => {
         >
           <label htmlFor='profilePicInput'>
             <Avatar
-              src={profilePicPreview}
+              src={profilePicPreview.previewV}
               alt='Profile Picture'
               sx={{ width: 80, height: 80, margin: 'auto', cursor: 'pointer' }}
             >
@@ -110,7 +121,15 @@ const RegisterForm = () => {
               onChange={e => {
                 const target = e.target as HTMLInputElement
                 if (target.files) {
-                  setProfilePicPreview(URL.createObjectURL(target.files[0]))
+                  const file = target.files[0]
+                  const reader = new FileReader()
+                  reader.onloadend = () => {
+                    setProfilePicPreview({
+                      sendV: file.name.toString(),
+                      previewV: reader.result?.toString() ?? ''
+                    })
+                  }
+                  reader.readAsDataURL(file)
                 }
               }}
               style={{ display: 'none' }}
@@ -134,8 +153,8 @@ const RegisterForm = () => {
             fullWidth
             label='Username'
             {...register('username', { required: 'Username is required' })}
-            error={Boolean(errors.username)}
-            helperText={errors.username?.message}
+            error={Boolean(errors.username) || Boolean(registerError.username)}
+            helperText={errors.username?.message || registerError.username}
           />
         </Grid>
         <Grid item xs={8} sm={4}>
@@ -170,8 +189,8 @@ const RegisterForm = () => {
                 message: 'Invalid email format'
               }
             })}
-            error={Boolean(errors.email)}
-            helperText={errors.email && (errors.email?.message || 'Please enter a valid email.')}
+            error={Boolean(errors.email) || Boolean(registerError.email)}
+            helperText={errors.email?.message || registerError.email}
           />
         </Grid>
 
@@ -248,23 +267,34 @@ const RegisterForm = () => {
                 message: 'Invalid phone number'
               }
             })}
-            error={Boolean(errors.phoneNum)}
-            helperText={!!errors.phoneNum && (errors.phoneNum?.message || 'Please enter a valid phone number.')}
+            error={Boolean(errors.phoneNum) || Boolean(registerError.phoneNumber)}
+            helperText={!!errors.phoneNum || registerError.phoneNumber}
           />
         </Grid>
 
         {/* Birth Date */}
         <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            label='Birth Date'
-            type='date'
-            InputProps={{ style: { color: 'white' } }}
-            InputLabelProps={{ shrink: true }}
-            {...register('birthDate', { required: 'Birth date is required' })}
-            error={Boolean(errors.birthDate)}
-            helperText={errors.birthDate?.message}
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Controller
+              name='birthDate'
+              control={control}
+              rules={{ required: 'Birth date is required', validate: isOldEnough }}
+              render={({ field }) => (
+                <DatePicker
+                  label='Birth Date'
+                  value={field.value as unknown as Dayjs}
+                  onChange={newValue => {
+                    field.onChange(newValue)
+                  }}
+                  maxDate={maxDate.isValid() ? maxDate : dayjs()}
+                  // @ts-ignore-next-line
+                  renderInput={params => (
+                    <TextField {...params} error={Boolean(errors.birthDate)} helperText={errors.birthDate?.message} />
+                  )}
+                />
+              )}
+            />
+          </LocalizationProvider>
         </Grid>
       </Grid>
 
