@@ -1,5 +1,13 @@
 export function Lecture({ lecture }) {
   const photo="https://png.pngtree.com/thumb_back/fh260/background/20230408/pngtree-rainbow-curves-abstract-colorful-background-image_2164067.jpg"
+
+  function limitParagraphByChars(paragraph, maxLength) {
+    if (paragraph.length > maxLength) {
+        return paragraph.slice(0, maxLength) + '...';
+    }
+    return paragraph;
+}
+
   return (
     <div style={{ width: '100%', height: '6rem', display:"flex"}}>
       <div style={{ width: '10%' }}>
@@ -11,7 +19,7 @@ export function Lecture({ lecture }) {
           <p style={{color:"#164863"}}>{lecture.duration}</p>
         </div>
         <div>
-          <span>{lecture.description}</span>
+          <span>{limitParagraphByChars(lecture.description, 200)}</span>
           </div>
       </div>
     </div>
