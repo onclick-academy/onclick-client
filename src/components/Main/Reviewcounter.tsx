@@ -52,7 +52,7 @@ const ReviewCounter = ({ totalReviews }) => {
   return (
     <div className={styles["review-counter"]} ref={counterRef}>
       <div className={styles["counter-background"]}>
-        <Image src={counterBack} alt="" layout="fill" objectFit="cover" style={{ borderRadius: "7px", border: "none" }} />
+        <Image src={counterBack} alt="" layout="fill" objectFit="cover" style={{ borderRadius: "7px", border: "none", }} />
       </div>
       <div className={styles["counter-content"]}>
         <div>

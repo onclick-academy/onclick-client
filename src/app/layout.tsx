@@ -8,6 +8,9 @@ import Navbar from '@/components/Nav/Nav'
 import Header from '@/components/Header/Header'
 import Main from '@/components/Main/Main'
 import MySwiper from '@/components/Swiper/MySwiper'
+import Courses from '@/components/Courses/Courses'
+import News from '@/components/News/News'
+import Footer from '@/components/Footer/Footer'
 
 const darkTheme = createTheme({
   palette: {
@@ -44,6 +47,9 @@ export default function RootLayout({
           <Header />
           <MySwiper width='50px' height='50px' />
           <Main />
+          <Courses/>
+          <News/>
+          <Footer/>
           {children}
         </ThemeProvider>
       </body>

@@ -22,7 +22,6 @@ export default function Home() {
   return (
     <main>
       <div>
-        <Link href={'/register'}>Register</Link>
       </div>
     </main>
   )

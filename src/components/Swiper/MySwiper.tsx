@@ -18,35 +18,45 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import style from "./MySwiper.module.scss";
 
 export default function MySwiper({ width, height }) {
   const svgs = [sv1, sv2, sv3, sv4, sv5];
+
+
+
   return (
     <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-      }}
+      className={style.container}
     >
       <div
-        style={{
-          marginTop: "5.5%",
-          width: "10%",
-          position: "absolute",
-          left:"14%",
-          color: "#2e1f85",
-          // fontFamily: "sans-serif",
-        }}
+        className={style.wordStyle}
       >
-        <h1 style={{ fontSize: "24px" }}>Trusted by:</h1>
+        <h1 className={style.word}>Trusted by:</h1>
       </div>
       <Swiper
-        // install Swiper modules
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         spaceBetween={0}
-        slidesPerView={6}
+        slidesPerView={6 }
+        breakpoints={
+          {
+            0: {
+              slidesPerView: 4,
+            },
+            640: {
+              slidesPerView: 4,
+            },
+            768: {
+              slidesPerView: 4,
+            },
+            1024: {
+              slidesPerView: 5,
+            },
+            1280: {
+              slidesPerView: 6,
+            },
+          }
+        }
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
@@ -56,7 +66,7 @@ export default function MySwiper({ width, height }) {
         pagination={{ clickable: true, el: ".swiper-pagination" }}
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log("slide change")}
-        style={{ width: "50%", marginTop: "6%" }}
+        className={style.swiper}
       >
         <SwiperSlide className="  ">
           <div className="flex  ">

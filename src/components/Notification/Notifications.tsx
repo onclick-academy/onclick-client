@@ -72,6 +72,7 @@ export default function NotificationMenu() {
 
     fetchData();
   }, []);
+  console.log(notifications);
 
   return (
     notifications && (

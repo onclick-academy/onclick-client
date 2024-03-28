@@ -112,7 +112,7 @@ export const svgs = [
         fill: 'none',
         stroke: 'currentColor',
         strokeMiterlimit: '10',
-        strokeWidth: '6',
+        strokeWidth: '12',
         d: 'M7.7 6s411.4-.5 422.9.4C249.7 10.9 197.6 9.7 40.9 21',
         clipPath: 'url(#hero-line-robotics-b)',
         style: linesStyle,
@@ -127,5 +127,31 @@ export const svgs = [
         }
       }
     ]
-  }
+  },
+  {
+    id: 'hero-line-nanotech',
+    className: 'hero-line',
+    xmlns: 'http://www.w3.org/2000/svg',
+    viewBox: '0 0 442.6 11.1',
+    style: svgStyle, 
+    paths: [
+      {
+        fill: 'none',
+        stroke: 'currentColor',
+        strokeMiterlimit: '10', // Not specified in original SVG, but might be needed
+        strokeWidth: '8',
+        d: 'M433.5 2.1C300.4 1.7 164.4 3.9 32.9 5.9l-24.3.4c-1.3 0-4.4.2-4.3 1.6 0 1.2 2.6 1.4 4.2 1.4h.2c19.8-.2 39.7-.3 59.6-.5 120-1 244-2 365.2-1.7h.1c4 0 6.6-1 6.6-2.5s-2.6-2.4-6.7-2.5z',
+        style:linesStyle,
+        animate: {
+          attributeName: 'stroke-dashoffset',
+          from: '500',
+          to: '0',
+          dur: '1s',
+          repeatCount: '1',
+          begin: '1s',
+          fill: 'freeze'
+        }
+      },
+    ]
+  },
 ]

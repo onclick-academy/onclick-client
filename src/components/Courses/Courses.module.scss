@@ -1,0 +1,23 @@
+
+.imgeimageContainer{
+        position: relative;
+        width: 100%;
+        padding-bottom: 62.5%;
+}
+
+
+
+.imageStyle{
+  padding: 4% 6% 2% 6%;
+  width: 100%;
+  border-radius: 10%;
+  background-color: transparent;
+}
+
+@media (max-width: 410px) {
+ .imageStyle{
+  padding: 4% 6% 0% 6%;
+ }
+  
+  
+}

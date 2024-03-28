@@ -8,7 +8,7 @@ export default function StylingTransition() {
   const [wordsWithSvgIndexes, setWordsWithSvgIndexes] = useState([
     {
       sentence: "From the Bottom of confusion      to the top of Succsetion",
-      svgs: [0, 1, 3],
+      svgs: [0, 1, 4],
       svgStyles: [
         styles.firstSvg,
         styles.secondSvg,
@@ -16,34 +16,33 @@ export default function StylingTransition() {
       ],
     },
     {
-      sentence: "From humble beginnings         grea  success can be achieved.",
-      svgs: [0, 1, 3, 3],
+      sentence: "From humble beginnings        great success can be achieved.",
+      svgs: [0, 1,  4],
       svgStyles: [
         styles.fourthSvg,
         styles.fifthSvg,
-        styles.sixthSvg,
         styles.seventhSvg,
       ],
     },
     {
       sentence: "From the depths of doubt, rise      to greatness",
-      svgs: [3, 0, 0, 0, 3],
+      svgs: [3,1, 4],
       svgStyles: [
        styles.eightSvg,
         styles.ninthSvg,
-        styles.tenthSvg,
-        styles.eleventhSvg,
+        // styles.tenthSvg,
+        // styles.eleventhSvg,
         styles.twelvethSvg,
       ],
     },
-    {
-      sentence: "OnClick your career begins",
-      svgs: [2, 3],
-      svgStyles: [
-        styles.thirteenthSvg,
-        styles.fourteenthSvg,
-      ],
-    },
+    // {
+    //   sentence: "  OnClick          your career begins",
+    //   svgs: [1, 3],
+    //   svgStyles: [
+    //     styles.thirteenthSvg,
+    //     styles.fourteenthSvg,
+    //   ],
+    // },
   ]);
 
   useEffect(() => {

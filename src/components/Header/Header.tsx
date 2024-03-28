@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../Nav/Nav";
 import StylingTransition from "./AnimatedHeader";
+import BasicRating from "../Rating/Rating";
 export default function Header() {
   return (
     <div
