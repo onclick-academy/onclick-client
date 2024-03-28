@@ -1,15 +1,28 @@
 'use client'
 import React, { useState } from 'react'
-import Layout from './pogressLayout'
+import CourseProgressLayout from './pogressLayout'
 import { Box, Button } from '@mui/material'
 import CourseStepTwo from './components/CourseStepTwo'
 import CourseStepThree from './components/CourseStepThree'
 import CourseStepOne from './components/strep1/Step1Form'
+import { fetcher } from '@/utilities/fetcher'
 
-const stepComponents = [<CourseStepOne key='1' />, <CourseStepTwo key='2' />, <CourseStepThree key='3' />]
+export interface SubCategoryI {
+  id: string
+  name: string
+}
+export interface CategoryI {
+  id: string
+  title: string
+  description: string
+  photo: string
+  subCategories: SubCategoryI[]
+}
 
 export default function CourseCreationPage() {
   const [activeStep, setActiveStep] = useState(0)
+
+  const stepComponents = [<CourseStepOne key='1' />, <CourseStepTwo key='2' />, <CourseStepThree key='3' />]
 
   const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1)
@@ -20,7 +33,7 @@ export default function CourseCreationPage() {
   }
 
   return (
-    <Layout activeStep={activeStep}>
+    <CourseProgressLayout activeStep={activeStep}>
       <Box sx={{ width: 700, maxWidth: '90%' }}>
         {stepComponents[activeStep]}
         <Box
@@ -37,6 +50,22 @@ export default function CourseCreationPage() {
           <Button onClick={handleNext}>{activeStep === stepComponents.length - 1 ? 'Finish' : 'Next'}</Button>
         </Box>
       </Box>
-    </Layout>
+    </CourseProgressLayout>
   )
 }
+
+// export async function load() {
+//   const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/categories')
+
+//   // Ensure the response is OK and then parse the JSON body
+//   if (!response.ok) {
+//     throw new Error('Failed to fetch categories')
+//   }
+//   const categories = await response.json()
+
+//   return {
+//     props: {
+//       categories
+//     }
+//   }
+// }

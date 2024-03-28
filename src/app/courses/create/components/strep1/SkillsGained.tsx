@@ -9,7 +9,7 @@ interface SkillsGainedProps {
 }
 
 const SkillsGained = ({ formHook: { register, reset }, skill, skills, setSkills }: SkillsGainedProps) => {
-  const handleRemoveSkill = skillToRemove => {
+  const handleRemoveSkill = (skillToRemove: string) => {
     setSkills(skills.filter(skill => skill !== skillToRemove))
   }
 
