@@ -21,9 +21,11 @@ const SkillsGained = ({ formHook: { register, reset }, skill, skills, setSkills 
       reset({ skillsGained: '' })
     }
   }
+
   useEffect(() => {
     console.log('Updated skills', skills)
   }, [skills])
+
   return (
     <form onSubmit={handleAddSkill}>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>

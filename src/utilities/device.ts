@@ -17,7 +17,12 @@ const getDeviceToken = async () => {
 }
 
 // Utility to register a device token
-const registerDeviceToken = async (deviceToken: string, userId: string) => {
+const registerDeviceToken = async (deviceToken: string, userId: string | null) => {
+  if (!userId) {
+    console.error('User ID is required to register device token')
+    return false
+  }
+
   const url = `${process.env.NEXT_PUBLIC_API_URL}/devicetokens/`
   try {
     const response = await fetch(url, {
@@ -69,6 +74,10 @@ const checkNotificationPermissionAndRegisterToken = async (userId: string | null
     method: 'GET',
     credentials: 'include'
   })
+  if (!response.ok) {
+    console.error('Failed to fetch device tokens:', response.statusText)
+    return false
+  }
   const { data: devices } = await response.json()
 
   const deviceRegistered = devices.some((device: any) => device.token === deviceToken)

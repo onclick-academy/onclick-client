@@ -7,9 +7,14 @@ import CourseStepThree from './components/CourseStepThree'
 import CourseStepOne from './components/strep1/Step1Form'
 import { fetcher } from '@/utilities/fetcher'
 
+export interface TopicI {
+  id: string
+  title: string
+}
 export interface SubCategoryI {
   id: string
   name: string
+  topics: TopicI[]
 }
 export interface CategoryI {
   id: string

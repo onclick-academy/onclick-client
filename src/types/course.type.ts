@@ -18,7 +18,7 @@ export interface CourseI {
   isApproved: boolean
 
   // Define properties that not in schema but only for frontend developement
-  skillsGained: string
+  skillsGained: string[]
   categories: CategoryI[]
 
   // Define properties for related entities
