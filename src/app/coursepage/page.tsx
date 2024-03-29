@@ -5,10 +5,12 @@ import PrimarySearchAppBar from '@/components/Nav/Nav'
 import Navbar from '@/components/Nav/Nav'
 
 const CoursePage = () => {
-  return (<>
-    <Navbar />
-    <CourseLandingPage />
-  </>)
+  return (
+    <>
+      <Navbar />
+      <CourseLandingPage />
+    </>
+  )
 }
 
-export default CoursePage;
+export default CoursePage

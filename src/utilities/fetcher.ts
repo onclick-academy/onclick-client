@@ -49,9 +49,5 @@ export const fetcher = async ({ url, method = 'GET', body = {} }: FetcherT) => {
   })
   console.log('res', res)
 
-  if (!res.ok) {
-    throw new Error('An error occurred while fetching the data.')
-  }
-
   return await res.json()
 }

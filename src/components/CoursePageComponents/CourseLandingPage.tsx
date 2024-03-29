@@ -74,7 +74,7 @@ export function CourseLandingPage() {
 
   useEffect(() => {
     const getCourseData = async () => {
-      const courseId = '0abe8853-8df2-4448-be4d-257bdb580960'
+      const courseId = '0f44ec0f-be02-4146-bb0b-dae6ebb91519'
       const url = `/courses/${courseId}`
       const response = await fetcher({ url })
       return response
@@ -82,7 +82,6 @@ export function CourseLandingPage() {
 
     const getCategory = async (categoryId: string) => {
       const category = await fetcher({ url: `/categories/${categoryId}` })
-      console.log('categoryyyyyyyyyyyyyyy  ', category)
       return category
     }
 
