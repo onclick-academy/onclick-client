@@ -283,7 +283,7 @@ const RegisterForm = () => {
                 <DatePicker
                   label='Birth Date'
                   value={field.value as unknown as Dayjs}
-                  onChange={newValue => {
+                  onChange={(newValue: any) => {
                     field.onChange(newValue)
                   }}
                   maxDate={maxDate.isValid() ? maxDate : dayjs()}

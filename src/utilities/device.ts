@@ -39,6 +39,10 @@ const registerDeviceToken = async (deviceToken: string, userId: string) => {
 
 // Utility to check and handle notification permission and device token registration
 const checkNotificationPermissionAndRegisterToken = async (userId: string | null) => {
+  if (!userId) {
+    console.error('User ID is required')
+    return false
+  }
   if (!('Notification' in window)) {
     console.error('This browser does not support desktop notifications')
     return false
@@ -69,6 +73,10 @@ const checkNotificationPermissionAndRegisterToken = async (userId: string | null
     method: 'GET',
     credentials: 'include'
   })
+  if (!response.ok) {
+    console.error('Failed to fetch device tokens:', response.statusText)
+    return false
+  }
   const { data: devices } = await response.json()
 
   const deviceRegistered = devices.some((device: any) => device.token === deviceToken)

@@ -1,10 +1,8 @@
 'use client'
-import { Inter } from 'next/font/google'
 import '../styles/globals.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import { lightBlue } from '@mui/material/colors'
-import Navbar from '@/components/Nav/Nav'
 
 const darkTheme = createTheme({
   palette: {
@@ -38,7 +36,6 @@ export default function RootLayout({
       <body>
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
-
           {children}
         </ThemeProvider>
       </body>

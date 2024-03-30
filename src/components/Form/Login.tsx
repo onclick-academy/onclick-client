@@ -1,9 +1,9 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { Box, Button, TextField, Link, Checkbox, FormControlLabel, Grid, Typography } from '@mui/material'
-
-import '../../styles/auth.scss'
+import '../../app/style.scss'
 import { authFetcher } from '@/utilities/fetcher'
+import '../../styles/auth.scss'
 import { useRouter } from 'next/navigation'
 
 interface UserLoginI {
@@ -13,11 +13,7 @@ interface UserLoginI {
 }
 
 const LoginForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<UserLoginI>()
+  const { register, handleSubmit } = useForm<UserLoginI>()
   const [loginError, setLoginError] = React.useState('')
 
   const router = useRouter()
