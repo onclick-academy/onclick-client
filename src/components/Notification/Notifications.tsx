@@ -63,6 +63,9 @@ export default function NotificationMenu() {
       const userId = localStorage.getItem('userId')
 
       const fetchedNotifications = await getAllNotifications()
+      if (!fetchedNotifications.length) {
+        return
+      }
 
       const userNotification = fetchedNotifications.filter(notification => notification.recipientId === userId)
       setNotifications(userNotification)

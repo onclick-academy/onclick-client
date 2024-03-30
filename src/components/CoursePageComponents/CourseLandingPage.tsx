@@ -64,7 +64,7 @@ interface SectionI {
   lectures: LectureI[]
 }
 
-export function CourseLandingPage() {
+export function CourseLandingPage({ id }) {
   const [courseData, setCourseData] = useState({} as CourseI)
   const [rating, setRating] = useState(0)
   const [categoryTitle, setCategoryTitle] = useState('' as CategoryI['title'])
@@ -74,32 +74,26 @@ export function CourseLandingPage() {
 
   useEffect(() => {
     const getCourseData = async () => {
-      const courseId = '0f44ec0f-be02-4146-bb0b-dae6ebb91519'
+      const courseId = id
       const url = `/courses/${courseId}`
       const response = await fetcher({ url })
       return response
     }
 
-    const getCategory = async (categoryId: string) => {
-      const category = await fetcher({ url: `/categories/${categoryId}` })
-      return category
-    }
-
     const fetchData = async () => {
       const fetchedCourseData = await getCourseData()
       console.log(' fetchedCourseData ', fetchedCourseData)
-      const fetchedCategory = await getCategory(fetchedCourseData.data.categoryId)
+      const fetchedCategory = fetchedCourseData.data.category
       setCourseData(fetchedCourseData.data)
-      console.log(fetchedCategory)
-      setCategoryTitle(fetchedCategory.data.title)
-      setRating(fetchedCourseData.avrageRating)
+      setCategoryTitle(fetchedCategory.title)
+      setRating(fetchedCourseData.data.avrageRating)
       setInstructorData(fetchedCourseData.data.publisher)
       setTopicsData(fetchedCourseData.data.topics)
       setSections(fetchedCourseData.data.sections)
     }
 
     fetchData()
-  }, [])
+  }, [id])
 
   return (
     <div>

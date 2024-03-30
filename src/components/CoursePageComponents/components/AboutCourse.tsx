@@ -52,7 +52,7 @@ export function AboutCourse({ courseData }) {
 
     checkWishListed()
     checkEnrollment()
-  }, [courseData.id])
+  }, [])
 
   const handleAddToWishList = async () => {
     console.log('Added to wishlist')
@@ -119,7 +119,7 @@ export function AboutCourse({ courseData }) {
                   padding: '0.6rem',
                   borderRadius: '35px',
                   border: '0',
-                  backgroundColor: wishListed? '#725ac1' : 'black',
+                  backgroundColor: wishListed ? '#725ac1' : 'black',
                   color: 'white',
                   fontSize: '16px',
                   width: '85%'
