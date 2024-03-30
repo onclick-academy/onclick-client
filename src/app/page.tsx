@@ -3,6 +3,9 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { getDeviceToken } from '@/utilities/device'
 import getAuthUser from '@/utilities/getAuthUser'
+import Header from '@/components/Header/Header'
+import Main from '@/components/Main/Main'
+import MySwiper from '@/components/Swiper/MySwiper'
 
 export default function Home() {
   const fetchDeviceToken = async () => {
@@ -21,9 +24,9 @@ export default function Home() {
 
   return (
     <main>
-      <div>
-        <Link href={'/register'}>Register</Link>
-      </div>
+        <Header />
+          <MySwiper width='50px' height='50px' />
+          <Main />
     </main>
   )
 }

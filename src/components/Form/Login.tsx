@@ -1,123 +1,110 @@
-"use client";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import {
-  Box,
-  Button,
-  FormControl,
-  Input,
-  FormHelperText,
-  Link,
-  useMediaQuery,
-} from "@mui/material";
-import { useRouter } from "next/navigation";
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import { Box, Button, TextField, Link, Checkbox, FormControlLabel, Grid, Typography } from '@mui/material'
+import '../../app/style.scss'
+import { authFetcher } from '@/utilities/fetcher'
+import '../../styles/auth.scss'
+import { useRouter } from 'next/navigation'
 
-import "../../app/style.scss";
-import { authFetcher } from "@/utilities/fetcher";
-
-const formFields = [
-  {
-    name: "email",
-    label: "Email",
-    type: "text",
-    validation: { required: true },
-  },
-  {
-    name: "password",
-    label: "Password",
-    type: "password",
-    validation: { required: true },
-  },
-];
+interface UserLoginI {
+  email: string
+  password: string
+  isRememberMe: boolean
+}
 
 const LoginForm = () => {
-  const mediaQuery = useMediaQuery("(max-width: 800px)"); //done
+  const { register, handleSubmit } = useForm<UserLoginI>()
+  const [loginError, setLoginError] = React.useState('')
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const router = useRouter()
 
-  const router = useRouter();
-
-  if (!mediaQuery) router.push("/registeration");
-
-  const handleFormSubmit = async (data: any) => {
+  const handleFormSubmit = async (data: UserLoginI) => {
     const res = await authFetcher({ body: data, action: 'login' })
-    console.log(res)
+    if (res.status === 200) {
+      router.push('/')
+    } else {
+      setLoginError('Email or pasword is incorrect')
+    }
   }
 
   return (
     <Box
-      component="form"
-      method="POST"
+      component='form'
+      method='POST'
       onSubmit={handleSubmit(handleFormSubmit)}
-      sx={ mediaQuery? {
-        display: "flex",
-        flexDirection: "column",
-        gap: 0.9,
-        width: "70%",
-        maxWidth:500,
-        margin: "auto",
-      } : {
-        display: "flex",
-        flexDirection: "column",
-        gap: 0.9,
-        width: "60%",
-        maxWidth: 500,
-        margin: "auto",
+      sx={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        gap: 1
       }}
+      className='auth-login'
     >
-
-      <div style={{display: mediaQuery? "flex": "none", flexDirection:"column", textAlign:"center", color:"white", gap:".6rem"}}>
-        <h3 >Welcome Back!</h3>
-        <p style={{color:"GrayText"}}>Log in to continue your learning! or <a href="/register" style={{color:"#031999"}}>Sign Up</a></p>
-        </div>
-
-      {formFields.map((field) => (
-        <FormControl key={field.name} error={Boolean(errors[field.name])}>
-          <Input
-            {...register(field.name, field.validation)}
-            id={field.name}
-            type={field.type}
-            name={field.name}
-            placeholder={
-              field.label === "Email" ? "Email or username" : "Password"
-            }
-          />
-          {errors[field.name] && (
-            <FormHelperText>
-              {String(errors[field.name]?.message)}
-            </FormHelperText>
-          )}
-        </FormControl>
-      ))}
-      <div style={{display:"flex"}}>
-        <Input
-          {...register("isRememberMe")}
-          type="checkbox"
-          id="isRememberMe"
-          name="isRememberMe"
-          // style={{ display: "inline" }}
-        />{" "}
-        <p style={{marginLeft:"5px"}}>Remember me?</p>
-      </div>
-      <div style={{display:"flex", justifyContent:"space-between", margin:mediaQuery? "0 auto": "0", width:mediaQuery? "80%" :"100%"}}>
-      <Button type="submit" variant="contained" style={{width:"40%",  background:"#031999"}}>
-        Login
-      </Button>
-      <Button variant="contained" onClick={()=>router.push("/")} style={{width:"40%",  background:"#031999"}}>
-        Cancel
-      </Button>
-      </div>
-      <Box mt={2}>
-        <Link href="/password/forgetpassword"  style={{color:"#031999"}}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '70%',
+          gap: 1
+        }}
+      >
+        <TextField
+          {...register('email', { required: 'Email is required' })}
+          id='email'
+          label='Email'
+          variant='outlined'
+          fullWidth
+        />
+        <TextField
+          {...register('password', { required: 'Password is required' })}
+          id='password'
+          label='Password'
+          type='password'
+          variant='outlined'
+          fullWidth
+        />
+        <Typography sx={{ color: 'red', fontSize: '0.8rem' }}>{loginError}</Typography>
+      </Box>
+      <Box>
+        <Link
+          href='/forgetpassword'
+          style={{
+            color: 'blue',
+            fontSize: '0.8rem'
+          }}
+        >
           Forgot Password?
         </Link>
       </Box>
+      <FormControlLabel
+        control={<Checkbox {...register('isRememberMe')} id='isRememberMe' name='isRememberMe' />}
+        label='Remember me?'
+      />
+      <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', width: '100%', gap: 1 }}>
+        <Button type='submit' variant='contained' sx={{ width: '50%' }}>
+          Login
+        </Button>
+      </Box>
+      <Typography
+        sx={{
+          width: '70%',
+          color: '#b0cdff',
+          cursor: 'pointer',
+          fontSize: '1.1rem',
+          letterSpacing: '0.3px',
+          textDecoration: 'underline',
+          pb: '50px'
+        }}
+        className='hidden'
+        onClick={() => {
+          router.push('/auth?type=register')
+        }}
+        id='register'
+      >
+        Or Create Account
+      </Typography>
     </Box>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

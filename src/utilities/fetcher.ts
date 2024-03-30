@@ -27,7 +27,7 @@ export const authFetcher = async ({ body = {}, action }: AuthFetcherT) => {
   // Initialize the Cookies instance
   const cookies = new Cookies()
 
-  if (data.status === 'success') {
+  if (res.ok) {
     // Save tokens in cookies instead of localStorage
     cookies.set('accessToken', accessTokn)
     cookies.set('refreshToken', refreshToken)

@@ -13,7 +13,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 
-export default function MySwiper({ width, height }) {
+export default function MySwiper() {
   const svgs = [sv1, sv2, sv3, sv4, sv5]
   return (
     <div
