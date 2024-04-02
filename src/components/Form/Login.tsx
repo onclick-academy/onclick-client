@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { Box, Button, TextField, Link, Checkbox, FormControlLabel, Grid, Typography } from '@mui/material'
-import '../../app/style.scss'
+// import '../../app/style.scss'
 import { authFetcher } from '@/utilities/fetcher'
 import '../../styles/auth.scss'
 import { useRouter } from 'next/navigation'
@@ -20,7 +20,7 @@ const LoginForm = () => {
 
   const handleFormSubmit = async (data: UserLoginI) => {
     const res = await authFetcher({ body: data, action: 'login' })
-    if (res.status === 200) {
+    if (res.status === 'success') {
       router.push('/')
     } else {
       setLoginError('Email or pasword is incorrect')

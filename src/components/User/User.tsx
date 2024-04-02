@@ -7,18 +7,23 @@ import MenuItem from '@mui/material/MenuItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
-import PersonAdd from '@mui/icons-material/PersonAdd'
 import Settings from '@mui/icons-material/Settings'
 import Logout from '@mui/icons-material/Logout'
 import { fetcher } from '@/utilities/fetcher'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import Link from 'next/link'
 
+
+interface UserI {
+  id: number
+  email: string
+  profilePic: string
+}
 
 export default function AccountMenu() {
-  const [userData, setUserData] = useState(null)
+  const [userData, setUserData] = useState({} as UserI)
   useEffect(() => {
     const getUserData = async () => {
       const res = await fetcher({ url: '/users/userinfo' })
@@ -31,6 +36,13 @@ export default function AccountMenu() {
     }
     fetchData()
   }, [])
+
+  const handleLogOut = async () => {
+    const res = await fetcher({ url: '/auth/logout' })
+    if (res.status === 'success') {
+      window.location.href = '/'
+    }
+  }
 
   console.log(userData)
 
@@ -115,10 +127,10 @@ export default function AccountMenu() {
             <ListItemIcon>
               <Settings fontSize='small' />
             </ListItemIcon>
-            Settings
+            <Link href="/user/settings" style={{color:"white", textDecoration:"none" }}> Settings</Link>
           </MenuItem>
 
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={handleLogOut}>
             <ListItemIcon>
               <Logout fontSize='small' />
             </ListItemIcon>

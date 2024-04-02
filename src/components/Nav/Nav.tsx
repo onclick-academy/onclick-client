@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import { Button } from '@mui/material'
+import { Button, Link } from '@mui/material'
 import InputBase from '@mui/material/InputBase'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
@@ -16,6 +16,8 @@ import { LanguageRounded } from '@mui/icons-material'
 import NestedList from '../Pops&Drops/TabPanel'
 import SideList from '../Pops&Drops/SideList'
 import NotificationMenu from '../Notification'
+import { authFetcher, fetcher } from '@/utilities/fetcher'
+import AccountMenu from '../User/User'
 
 const Container = styled(Box)({
   position: 'relative',
@@ -110,6 +112,20 @@ export default function PrimarySearchAppBar() {
   const [isHovered, setIsHovered] = React.useState(false)
   const [listshover, setListshover] = React.useState(false)
   const [openList, setOpenList] = React.useState(false)
+  const [userData, setUserData] = React.useState({})
+
+  React.useEffect(() => {
+    const getUserData = async () => {
+      const res = await fetcher({ url: '/users/userinfo' })
+      return res
+    }
+
+    const fetchData = async () => {
+      const fetchedUserData = await getUserData()
+      setUserData(fetchedUserData.data)
+    }
+    fetchData()
+  }, [])
 
   const handleOpenList = () => {
     setOpenList(!openList)
@@ -293,7 +309,8 @@ export default function PrimarySearchAppBar() {
               <NotificationMenu />
             </IconButton>
 
-            <Box
+{ userData? <AccountMenu/> :
+            (<Box
               sx={{
                 marginLeft: {
                   lg: '2%',
@@ -324,7 +341,7 @@ export default function PrimarySearchAppBar() {
                   }
                 }}
               >
-                Log in
+                <Link href="/auth" style={{textDecoration:"none"}}>Log in</Link>
               </Button>
               <Button
                 sx={{
@@ -344,9 +361,10 @@ export default function PrimarySearchAppBar() {
                   }
                 }}
               >
-                Sign up
+                 <Link href="/auth" style={{textDecoration:"none"}}>Sign up</Link>
               </Button>
             </Box>
+  )}
             <IconButton
               edge='end'
               aria-label='account of current user'
