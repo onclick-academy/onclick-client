@@ -1,8 +1,7 @@
 export interface CourseI {
   createdBy: string
   adminId?: string
-  categoryId: string
-  subCategoryId: string
+  category: string
   title: string
   description: string
   price: number
@@ -39,6 +38,7 @@ interface CategoryI {}
 interface CourseTopic {
   // Define properties for CourseTopic
   title: string
+  ID: string
 }
 
 interface Lecture {

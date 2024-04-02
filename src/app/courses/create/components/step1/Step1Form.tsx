@@ -1,10 +1,10 @@
 import React from 'react'
 import TheForm from './form'
 
-const Step1Form = () => {
+const Step1Form = ({ setActiveStep }: { setActiveStep: any }) => {
   return (
     <div>
-      <TheForm defaultValues={undefined} />
+      <TheForm setActiveStep={setActiveStep} />
     </div>
   )
 }
