@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Grid, Button, TextField, RadioGroup, FormControlLabel, Radio, Typography, Box } from '@mui/material'
 import StepNavigation from './StepNavigation'
+import { useRouter } from 'next/navigation'
 
 // Define the form's data structure
 interface FormData {
@@ -11,11 +12,7 @@ interface FormData {
   videoFile: FileList
 }
 
-const CourseStepTwo = ({
-  setActiveStep
-}: {
-  setActiveStep: (activeStepUpdater: (prevActiveStep: number) => number) => void
-}) => {
+const CourseStepTwo = ({ step }: { step: number }) => {
   const {
     control,
     handleSubmit,
@@ -45,6 +42,8 @@ const CourseStepTwo = ({
     }
   }, [videoLink])
 
+  const router = useRouter()
+
   const onSubmit = (data: FormData) => {
     console.log(data)
     const coursePhotoName = data.coursePhoto.length > 0 ? data.coursePhoto[0].name : ''
@@ -66,7 +65,7 @@ const CourseStepTwo = ({
     localStorage.setItem('step2', JSON.stringify(dataToSave))
 
     console.log('Saved data:', dataToSave)
-    setActiveStep((prevActiveStep: number) => prevActiveStep + 1)
+    router.push(`/courses/create?step=${step + 1}`)
   }
 
   return (
@@ -250,13 +249,7 @@ const CourseStepTwo = ({
             </Box>
           )}
         </Grid>
-        <StepNavigation
-          activeStep={1}
-          handleBack={() => {
-            setActiveStep((prevActiveStep: number) => prevActiveStep - 1)
-          }}
-          handleNext={handleSubmit(onSubmit)}
-        />
+        <StepNavigation />
       </Grid>
     </form>
   )

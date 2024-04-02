@@ -2,15 +2,13 @@ import React from 'react'
 import { Button, Typography, Box, Container, Paper } from '@mui/material'
 import { fetcher } from '@/utilities/fetcher'
 import getAuthUser from '@/utilities/getAuthUser'
+import { useRouter } from 'next/navigation'
 
-const CourseStepThree = ({
-  setActiveStep
-}: {
-  setActiveStep: (activeStepUpdater: (prevActiveStep: number) => number) => void
-}) => {
+const CourseStepThree = ({ step }: { step: number }) => {
+  const router = useRouter()
   const handleBack = () => {
     // Allows the user to edit course information
-    setActiveStep((prevActiveStep: number) => prevActiveStep - 1)
+    router.push(`/courses/create?step=${step - 1}`)
   }
 
   const handleSubmit = async () => {

@@ -1,4 +1,5 @@
 import { Box, Button } from '@mui/material'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
 
 interface StepPropsI {
@@ -7,7 +8,17 @@ interface StepPropsI {
   handleNext: () => void
 }
 
-const StepNavigation = ({ activeStep, handleBack, handleNext }: StepPropsI) => {
+const StepNavigation = () => {
+  const params = useSearchParams()
+  const router = useRouter()
+  const activeStep = parseInt(params.get('step') || '0')
+
+  const handleBack = () => {
+    router.push(`/courses/create?step=${activeStep - 1}`)
+  }
+  const handleNext = () => {
+    router.push(`/courses/create?step=${activeStep + 1}`)
+  }
   return (
     <>
       <Box

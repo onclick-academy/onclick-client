@@ -5,14 +5,17 @@ import { LoadingButton } from '@mui/lab'
 import { CourseI } from '@/types/course.type'
 import CategoriesInput from './CategoriesInput'
 import './style.scss'
+import { useRouter } from 'next/navigation'
 
 interface TheFormI {
-  setActiveStep: any
+  step: number
 }
 
-const TheForm = ({ setActiveStep }: TheFormI) => {
+const TheForm = ({ step }: TheFormI) => {
   const [init, setInit] = React.useState<CourseI | null>(null)
   const [skills, setSkills] = React.useState<string[]>([])
+
+  const router = useRouter()
 
   const {
     control,
@@ -59,7 +62,8 @@ const TheForm = ({ setActiveStep }: TheFormI) => {
         skillsGained: skills
       })
     )
-    setActiveStep((prevActiveStep: number) => prevActiveStep + 1)
+
+    router.push(`/courses/create?step=${step + 1}`)
   }
 
   return (

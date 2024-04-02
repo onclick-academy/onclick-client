@@ -1,10 +1,10 @@
 import React from 'react'
 import TheForm from './form'
 
-const Step1Form = ({ setActiveStep }: { setActiveStep: any }) => {
+const Step1Form = ({ step }: { step: any }) => {
   return (
     <div>
-      <TheForm setActiveStep={setActiveStep} />
+      <TheForm step={step} />
     </div>
   )
 }
