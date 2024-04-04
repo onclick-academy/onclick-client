@@ -5,11 +5,17 @@ import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
 
-const steps = ['Step 1', 'Step 2', 'Step 3']
-export default function Layout({ children, activeStep }) {
+
+interface CourseProgressLayoutI {
+  children: React.ReactNode
+  activeStep: number
+}
+
+const steps = ['Keywords', 'Media', 'Review', 'Upload', 'Finish']
+export default function CourseProgressLayout({ children, activeStep }: CourseProgressLayoutI) {
   return (
     <>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%', marginBlock: 5 }}>
         <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map(label => {
             return (
@@ -23,8 +29,7 @@ export default function Layout({ children, activeStep }) {
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          justifyContent: 'center',
           mt: 5
         }}
       >
