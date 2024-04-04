@@ -38,7 +38,7 @@ export default function ImgMediaCard() {
         md: '0% 11% 0 11%',
         lg: '0% 11% 0 11%',
         xl: '0% 11% 0 11%'
-      } , display: 'flex', flexWrap: 'wrap', gap: '5%' }}
+      } , display: 'flex', flexWrap: 'wrap', gap: '5%', maxWidth: '100%' }}
       className={style['courses-container']}
     >
       {courses.map((course, index) => (
@@ -59,7 +59,14 @@ export default function ImgMediaCard() {
               lg: 500,
               xl: 500
             },
-            backgroundColor: '#121212',
+            width: {
+              xs: 250,
+              sm: 300,
+              md: 'calc(45% - 20px)',
+              lg: 'calc(45% - 40px)',
+              xl: 'calc(45% - 20px)'
+            },
+            backgroundColor:"transparent",
             borderRadius: '1%',
             position: 'relative',
             marginTop: '3%',
@@ -78,7 +85,8 @@ export default function ImgMediaCard() {
             // style={{ padding: '4% 6% 2% 6%', borderRadius: '10%', backgroundColor: 'transparent' }}
             className={style['imageStyle']}
             alt='green iguana'
-            src={course.photo}
+            src={course.photo0 ? course.photo :'https://via.placeholder.com/300'}
+            loading='lazy'
           />
           <BookmarkBorderIcon
             sx={{
@@ -101,11 +109,12 @@ export default function ImgMediaCard() {
             {course.skillsGained.slice(0, 2).map((skill, index) => (
               <Chip
                 key={index}
+                variant='outlined'
                 label={skill.slice(0, 5)}
-                sx={{
-                  border: '1px solid transparet',
-                  fontSize: '14px'
-                }}
+                // sx={{
+                //   border: '1px solid transparet',
+                //   fontSize: '14px'
+                // }}
               >
                 {skill.slice(0, 15)}
               </Chip>
@@ -153,6 +162,7 @@ export default function ImgMediaCard() {
                 display: 'flex',
                 flexDirection: 'column',
                 overflow: 'hidden',
+                height: '65px',
               }}
               href={'/'}
             >
