@@ -40,7 +40,7 @@ export default function ImgMediaCard() {
           sm: '5% 20% 8% 25%',
           md: '5% 20% 8% 25%',
           lg: '3% 20% 8% 25%',
-          xl: '0% 20% 8% 25%',
+          xl: '0% 20% 8% 25%'
         },
         marginTop: '5%',
         display: 'flex',
@@ -71,10 +71,10 @@ export default function ImgMediaCard() {
           sx={{
             maxWidth: 1000,
             height: {
-              lg:'230px',
+              lg: '230px',
               md: '350px',
               sm: '400px',
-              xs: '400px',
+              xs: '400px'
             },
             display: 'flex',
             flexDirection: {
@@ -176,7 +176,7 @@ export default function ImgMediaCard() {
                   md: '0 12% 0 0%',
                   sm: '0 12% 0 0%',
                   xs: '0 0% 0 0%'
-                },
+                }
               }}
             >
               <Link
@@ -195,13 +195,17 @@ export default function ImgMediaCard() {
               </Link>
             </CardContent>
           </Box>
-          <CardActions sx={{ width: '40%', marginTop:{
-              lg: '0%',
-              md: '0%',
-              sm: '12%',
-              xs: '19%'
-            
-          } }}>
+          <CardActions
+            sx={{
+              width: '40%',
+              marginTop: {
+                lg: '0%',
+                md: '0%',
+                sm: '12%',
+                xs: '19%'
+              }
+            }}
+          >
             <Button
               variant='contained'
               sx={{

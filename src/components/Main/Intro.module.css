@@ -1,134 +1,125 @@
-.intro-container{
-    display: flex;
-    justify-content: center;
-    gap: 3%;
+.intro-container {
+  display: flex;
+  justify-content: center;
+  gap: 3%;
+  align-items: center;
+  padding: 0 10%;
+  margin-top: 4%;
+  height: 70vh;
+}
+
+.left-container {
+  display: flex;
+  width: 50%;
+  flex-direction: row;
+
+  gap: 2%;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  gap: 4%;
+}
+
+.leftside-image {
+  height: 360px;
+  border-radius: 7px;
+}
+
+.right-container {
+  display: flex;
+  width: 45%;
+  flex-direction: column;
+  gap: 0%;
+  height: 65%;
+}
+
+.container-icons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 5%;
+  border-bottom: 0.5px solid #ddd8f9;
+}
+.image-container {
+  position: relative;
+}
+.about {
+  display: flex;
+  align-items: center;
+  gap: 3%;
+  padding-top: 5%;
+}
+
+.play-image {
+  border-radius: 7px;
+  filter: brightness(0.8);
+}
+
+@media screen and (max-width: 1700px) {
+  .intro-container {
+    padding: 0 4%;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .intro-container {
+    height: 100%;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 1090px) {
+  .intro-container {
+    height: 100%;
+    flex-direction: column;
+    align-items: start;
+    padding: 0 11%;
+  }
+  .right-container {
+    width: 80%;
+  }
+  .left-container {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 840px) {
+  .intro-container {
+    padding: 0 0%;
+  }
+  .leftside-image {
+    display: none;
+  }
+  .left-container {
+    flex-direction: column;
     align-items: center;
-    padding: 0 10%;
-    margin-top: 4%;
-    height: 70vh;
+  }
+  .right-container {
+    padding: 5% 0% 5% 10%;
+  }
+  .image-container {
+    width: 80%;
+  }
+  .play-image {
+    width: 100%;
+  }
+  .left-side {
+    width: 60%;
+  }
+  .leftside-image {
+    margin-top: 8%;
+    width: 100%;
+  }
 }
-
-.left-container{
-        display: flex;
-        width:50%;
-        flex-direction: row;
-
-        gap: 2%;
-}
-
-.left-side{
-        display: flex;
-        flex-direction: column;
-        gap: 4%;
-}
-
-.leftside-image{
-        height: 360px;
-        border-radius: 7px;
-}
-
-.right-container{
-        display: flex;
-        width: 45%;
-        flex-direction: column;
-        gap: 0%;
-        height:65%;
-}
-
-.container-icons{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        gap: 5%;
-        border-bottom: 0.5px solid  #DDD8F9;
-        
-}
-.image-container{
-       position: relative;
-}
-.about{
-display: flex;
-align-items: center;
-gap: 3%;
-padding-top: 5%;
-}
-
-
-.play-image{
-        border-radius: 7px;
-        filter: brightness(0.8);
-}
-
-@media screen and (max-width: 1700px){
-        .intro-container{
-                padding: 0 4%;
-        }
-
-}
-@media screen and (max-width: 1500px){
-        .intro-container{
-                height: 100%;
-                flex-direction: column  ;
-               
-                
-        }
-
-}@media screen and (max-width: 1090px){
-        .intro-container{
-                height: 100%;
-                flex-direction: column  ;
-                align-items: start;
-                padding: 0 11%;
-               
-                
-        }
-        .right-container{
-                width: 80%;
-        }
-        .left-container{
-                width: 100%;
-        }
-
-}@media screen and (max-width: 840px){
-       .intro-container{
-               padding: 0 0%;
-       }
-       .leftside-image{
-        display: none;
-       }
-       .left-container{
-               flex-direction: column   ;
-               align-items: center;
-       }
-       .right-container{
-               padding: 5% 0% 5% 10%;
-       }
-       .image-container{
-               width: 80%;
-       }
-.play-image{
-        width: 100%;
-}
-.left-side{
-
-        width: 60%;
-}
-.leftside-image{
-        margin-top: 8%;
-        width: 100%;
-}
-}@media screen and (max-width: 760px){
-
-        
- .container-icons{
-         flex-direction: column;
-         gap: 5%;
- }
- .about{
-         flex-direction: column;
-         align-items: start;
- }
- .about-button{
-         margin-left: 0%;
- }
+@media screen and (max-width: 760px) {
+  .container-icons {
+    flex-direction: column;
+    gap: 5%;
+  }
+  .about {
+    flex-direction: column;
+    align-items: start;
+  }
+  .about-button {
+    margin-left: 0%;
+  }
 }

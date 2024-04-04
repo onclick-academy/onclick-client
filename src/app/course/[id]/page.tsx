@@ -10,7 +10,7 @@ const CoursePage = () => {
   return (
     <>
       <Navbar />
-      <CourseLandingPage id={id} />
+      <CourseLandingPage id={id as string} />
     </>
   )
 }

@@ -1,7 +1,7 @@
-import { ApplyInstructor } from "@/components/Form/ApplyInstructor";
+import { ApplyInstructor } from '@/components/Form/ApplyInstructor'
 
 const ApplyInstructorPage = () => {
-  return <ApplyInstructor />;
-};
+  return <ApplyInstructor />
+}
 
-export default ApplyInstructorPage;
+export default ApplyInstructorPage

@@ -32,13 +32,20 @@ export default function ImgMediaCard() {
 
   return (
     <Box
-      sx={{ backgroundColor: 'transparent', padding:{
-        xs: '0% 10% 0% 10%',
-        sm: '0% 25% 0 25%',
-        md: '0% 11% 0 11%',
-        lg: '0% 11% 0 11%',
-        xl: '0% 11% 0 11%'
-      } , display: 'flex', flexWrap: 'wrap', gap: '5%', maxWidth: '100%' }}
+      sx={{
+        backgroundColor: 'transparent',
+        padding: {
+          xs: '0% 10% 0% 10%',
+          sm: '0% 25% 0 25%',
+          md: '0% 11% 0 11%',
+          lg: '0% 11% 0 11%',
+          xl: '0% 11% 0 11%'
+        },
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '5%',
+        maxWidth: '100%'
+      }}
       className={style['courses-container']}
     >
       {courses?.map((course, index) => (
@@ -66,7 +73,7 @@ export default function ImgMediaCard() {
               lg: 'calc(45% - 40px)',
               xl: 'calc(45% - 20px)'
             },
-            backgroundColor:"transparent",
+            backgroundColor: 'transparent',
             borderRadius: '1%',
             position: 'relative',
             marginTop: '3%',
@@ -85,7 +92,7 @@ export default function ImgMediaCard() {
             // style={{ padding: '4% 6% 2% 6%', borderRadius: '10%', backgroundColor: 'transparent' }}
             className={style['imageStyle']}
             alt='green iguana'
-            src={course.photo ? course.photo :'https://via.placeholder.com/300'}
+            src={course.photo ? course.photo : 'https://via.placeholder.com/300'}
             loading='lazy'
           />
           <BookmarkBorderIcon
@@ -144,13 +151,17 @@ export default function ImgMediaCard() {
               <Typography sx={{ color: '#83858b', marginTop: '3%' }}>{course.duration} </Typography>
             </Box>
           </Box>
-          <CardContent sx={{ height: {
-              xl: '150px',
-              lg: '150px',
-              md: '150px',
-              sm: '150px',
-              xs: '120px'
-          },}}>
+          <CardContent
+            sx={{
+              height: {
+                xl: '150px',
+                lg: '150px',
+                md: '150px',
+                sm: '150px',
+                xs: '120px'
+              }
+            }}
+          >
             <Link
               style={{
                 fontSize: '20px',
@@ -162,7 +173,7 @@ export default function ImgMediaCard() {
                 display: 'flex',
                 flexDirection: 'column',
                 overflow: 'hidden',
-                height: '65px',
+                height: '65px'
               }}
               href={'/'}
             >
@@ -186,14 +197,18 @@ export default function ImgMediaCard() {
             </Typography>
           </CardContent>
           <CardActions
-            sx={{ padding: {
-              xs: '5% 0% 0% 5%',
-              sm: '0% 0% 0% 5%',
-              md: '0% 0% 0% 5%',
-              lg: '0% 0% 0% 5%',
-              xl: '0% 0% 0% 5%'
-            
-            }, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+            sx={{
+              padding: {
+                xs: '5% 0% 0% 5%',
+                sm: '0% 0% 0% 5%',
+                md: '0% 0% 0% 5%',
+                lg: '0% 0% 0% 5%',
+                xl: '0% 0% 0% 5%'
+              },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}
           >
             <BasicRating />
             <Typography sx={{ color: '#95979b', fontSize: '20px', padding: '0% 5% 0% 0%' }}>

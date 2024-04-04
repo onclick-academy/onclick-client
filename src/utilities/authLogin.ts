@@ -42,21 +42,21 @@ export async function login(email, password) {
 export async function fetchSubCategories() {
   try {
     const cookies = new Cookies()
-const accessToken = cookies.get('accessToken')
+    const accessToken = cookies.get('accessToken')
 
-const url = 'http://localhost:3000/api/v1/subcategories/all'
-const options = {
-        method: 'GET',
-        credentials: 'include' as RequestCredentials, // Update the credentials property to a valid RequestCredentials value
-}
+    const url = 'http://localhost:3000/api/v1/subcategories/all'
+    const options = {
+      method: 'GET',
+      credentials: 'include' as RequestCredentials // Update the credentials property to a valid RequestCredentials value
+    }
 
-const response = await fetch(url, options)
-if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to fetch categories')
-}
+    const response = await fetch(url, options)
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(errorData.error || 'Failed to fetch categories')
+    }
 
-const categoriesData = await response.json()
+    const categoriesData = await response.json()
     return categoriesData
   } catch (error) {
     console.error('Error fetching categories:', error)

@@ -180,11 +180,11 @@ export default function PinnedSubheaderList() {
           sx={{
             width: '100%',
             maxWidth: {
-                  xs: '100%',
-                  sm: '100%',
-                  md: 320,
-                  lg: 320,
-                  xl: 320
+              xs: '100%',
+              sm: '100%',
+              md: 320,
+              lg: 320,
+              xl: 320
             },
             bgcolor: 'background.paper',
             position: 'relative',

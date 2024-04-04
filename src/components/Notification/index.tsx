@@ -21,7 +21,7 @@ export interface NotificationI {
   isRead: boolean
 }
 
-const userId = localStorage.getItem('userId')
+const userId = typeof window !== 'undefined' && localStorage.getItem('userId')
 
 export default function NotificationMenu() {
   const [anchorEl, setAnchorEl] = useState(null)

@@ -1,7 +1,7 @@
 import { NotificationI } from '@/components/Notification'
 
 const getUnreadNotifications = async () => {
-  const userId = localStorage.getItem('userId')
+  const userId = typeof window !== 'undefined' && localStorage.getItem('userId')
   try {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications/unread/${userId}`
     const res = await fetch(url, {
@@ -17,7 +17,7 @@ const getUnreadNotifications = async () => {
 }
 
 const getReadNotifications = async () => {
-  const userId = localStorage.getItem('userId')
+  const userId = typeof window !== 'undefined' && localStorage.getItem('userId')
   try {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications/${userId}`
     const res = await fetch(url, {

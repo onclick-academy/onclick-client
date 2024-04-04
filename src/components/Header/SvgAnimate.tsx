@@ -1,11 +1,11 @@
-import React from "react";
-import { svgs } from "./Svgs";
+import React from 'react'
+import { svgs } from './Svgs'
 
 function SvgAnimate({ svgIndex, svgStyle, activeIndex }) {
-  const svg = svgs[svgIndex];
+  const svg = svgs[svgIndex]
 
   if (!svg) {
-    return null;
+    return null
   }
 
   return (
@@ -16,7 +16,7 @@ function SvgAnimate({ svgIndex, svgStyle, activeIndex }) {
         </path>
       ))}
     </svg>
-  );
+  )
 }
 
-export default SvgAnimate;
+export default SvgAnimate

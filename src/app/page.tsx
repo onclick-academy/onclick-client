@@ -22,9 +22,5 @@ export default function Home() {
     _()
   }, [])
 
-  return (
-    <main>
-       
-    </main>
-  )
+  return <main></main>
 }

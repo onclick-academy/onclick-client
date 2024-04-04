@@ -49,16 +49,17 @@ $slides: 6;
   .word {
     font-size: 20px;
   }
-}@media (max-width: 630px) {
+}
+@media (max-width: 630px) {
   .container {
- height: 28vh;
- width: 100%;
+    height: 28vh;
+    width: 100%;
   }
   .wordStyle {
-   top: 0;
-left: 40%;
-margin-top: 0;
-width: 100%;
+    top: 0;
+    left: 40%;
+    margin-top: 0;
+    width: 100%;
   }
   .swiper {
     width: 80%;

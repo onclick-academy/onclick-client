@@ -65,7 +65,7 @@ interface SectionI {
   lectures: LectureI[]
 }
 
-export function CourseLandingPage({ id }: { id: string}) {
+export function CourseLandingPage({ id }: { id: string }) {
   const [courseData, setCourseData] = useState({} as CourseI)
   const [rating, setRating] = useState(0)
   const [categoryTitle, setCategoryTitle] = useState('' as CategoryI['title'])
@@ -95,7 +95,6 @@ export function CourseLandingPage({ id }: { id: string}) {
 
     fetchData()
   }, [id])
-
 
   return (
     <div>

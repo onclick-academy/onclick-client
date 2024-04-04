@@ -45,38 +45,38 @@ function a11yProps(index: number) {
 }
 
 export default function VerticalTabs() {
-  const [Subcategories, setSubcategories] = useState({ data: [] });
-  const [value, setValue] = React.useState(0);
+  const [Subcategories, setSubcategories] = useState({ data: [] })
+  const [value, setValue] = React.useState(0)
 
   useEffect(() => {
     async function exampleUsage() {
       try {
-        const email = 'omar88@gmail.com';
-        const password = 'password';
+        const email = 'omar88@gmail.com'
+        const password = 'password'
 
-        const userData = await login(email, password);
-        console.log('Logged in successfully:', userData);
+        const userData = await login(email, password)
+        console.log('Logged in successfully:', userData)
 
-        const SubcategoriesData = await fetchSubCategories();
-        setSubcategories(SubcategoriesData);
-        console.log('Categories:', SubcategoriesData);
+        const SubcategoriesData = await fetchSubCategories()
+        setSubcategories(SubcategoriesData)
+        console.log('Categories:', SubcategoriesData)
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error:', error)
       }
     }
 
-    exampleUsage();
-  }, []);
+    exampleUsage()
+  }, [])
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   return (
     <Box
       sx={{
         flexGrow: 1,
-        backgroundColor: "linear-gradient(60deg, #29323c 0%, #485563 100%)",
+        backgroundColor: 'linear-gradient(60deg, #29323c 0%, #485563 100%)',
         display: 'flex',
         height: 224,
         position: 'absolute',
@@ -102,12 +102,16 @@ export default function VerticalTabs() {
           {Subcategories.data
             .filter(subCategory => category.id === subCategory.categoryId)
             .map((subCategory, subIndex) => (
-              <Link 
-              sx={{ color: 'white', textDecoration: 'none', display:"flex" }}
-               href={`/courses/${subCategory.name}/${subCategory.id}`} key={subIndex}>{subCategory.name}</Link>
+              <Link
+                sx={{ color: 'white', textDecoration: 'none', display: 'flex' }}
+                href={`/courses/${subCategory.name}/${subCategory.id}`}
+                key={subIndex}
+              >
+                {subCategory.name}
+              </Link>
             ))}
         </TabPanel>
       ))}
     </Box>
-  );
+  )
 }
