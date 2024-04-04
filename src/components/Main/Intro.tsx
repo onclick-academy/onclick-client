@@ -21,11 +21,11 @@ export default function Intro() {
           <Image
             alt={"intro"}
             src={intro4}
-            style={{ height: "360px", borderRadius: "7px" }}
+            className={style["leftside-image"]}
           />
         </div>
 
-        <div style={{position:"relative"}}>
+        <div className={style["image-container"]}>
           <Image alt={"intro"} src={intro3}  className={style["play-image"]} />
           <IntroVideo />
         </div>
@@ -57,7 +57,7 @@ export default function Intro() {
               </div>
             </div>
 
-            <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+            <div style={{ display: "flex", gap: "20px", alignItems: "center", }}>
               <Image
                 alt={"intro"}
                 src={intro2}
@@ -71,7 +71,7 @@ export default function Intro() {
           </div>
         </div>
         <div
-          style={{ paddingTop: "5%", display: "flex", alignItems: "center" , gap:"3%"}}
+          className={style["about"]}
         >
           <Image
             alt={"intro"}
@@ -92,7 +92,12 @@ export default function Intro() {
             sx={{
               backgroundColor: "#4f35e2",
               color: "white",
-              marginLeft: "10%",
+              marginLeft: {
+                xl: "10%",
+                lg: "10%",
+                md: "10%",
+              xs: "0%",
+              },
               height: "50px",
               width: "120px",
               "&:hover":{
@@ -101,6 +106,7 @@ export default function Intro() {
                 border: "1px solid #4f35e2",
               },
             }}
+            className={style["about-button"]}
           >
             About Us
           </Button>

@@ -60,11 +60,10 @@ $activeIndex: 0;
 }
 
 .animation {
-  animationName: draw-from-above-#{$activeIndex};
+  animationname: draw-from-above-#{$activeIndex};
   animation-duration: 1s;
   animation-timing-function: ease-in-out;
 }
-
 
 .wordStyle {
   font-size: 2.1rem;
@@ -87,7 +86,6 @@ $activeIndex: 0;
   animation-timing-function: ease-in-out;
 }
 
-
 .wordStyle {
   font-size: 2.1rem;
   opacity: 0;
@@ -99,18 +97,18 @@ $activeIndex: 0;
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
   position: absolute;
-  top:0%;
+  top: 0%;
   z-index: 888;
 }
 
-.animationStyle{
-  animationName: fade-out;
-  animationDuration: 20s;
-  animationTimingFunction: ease-in-out;
-  animationFillMode: forwards;
-} 
+.animationStyle {
+  animationname: fade-out;
+  animationduration: 20s;
+  animationtimingfunction: ease-in-out;
+  animationfillmode: forwards;
+}
 
-.activeStyle{
+.activeStyle {
   opacity: 1;
 }
 
@@ -126,301 +124,162 @@ $activeIndex: 0;
 
 .Headstyle {
   position: relative;
-  white-space:pre ;
+  white-space: pre;
   z-index: 888;
 }
-.letterStyle{
+.letterStyle {
   width: 100%;
 }
 
-
-
-.firstSvg{
-   position: absolute;
-          top: 47%;
-          left: 75%;
-          color: #bbff8e;
-          width: 170px;
-          zIndex: 1;
+.firstSvg {
+  position: absolute;
+  top: 47%;
+  left: 75%;
+  color: #bbff8e;
+  width: 18%;
+  zindex: 1;
 }
 
-.secondSvg{
+.secondSvg {
   position: absolute;
-          top: 30%;
-          left: 12%;
-          color: #ff0000;
-          width: 205px;
-          zIndex: 1;
+  top: 30%;
+  left: 12%;
+  color: #ff0000;
+  width: 22%;
+  zindex: 1;
 }
 
-.thirdSvg{
+.thirdSvg {
   position: absolute;
-          top: 90%;
-          left: 38%;
-          color: #bbff8e;
-          width: 260px;
-          zIndex: 1;
+  top: 90%;
+  left: 36%;
+  color: #bbff8e;
+  width: 31%;
+  zindex: 1;
 }
 
-.fourthSvg{
+.fourthSvg {
   position: absolute;
-          top: 78%;
-          left: 12%;
-          transform: rotate(270deg);
-          color: #bbff8e;
-          width: 70px;
-          zIndex: 1;
+  top: 46%;
+  left: 58%;
+  color: #bbff8e;
+  width: 24%;
+  zindex: 1;
 }
 
-.fifthSvg{
+.fifthSvg {
   position: absolute;
-          top: 30%;
-          left: 0%;
-          color: #ff0000;
-          width: 205px;
-          zIndex: 1;
+  top: 30%;
+  left: 0%;
+  color: #ff0000;
+  width: 22%;
+  zindex: 1;
 }
 
-
-.sixthSvg{
+.sixthSvg {
   position: absolute;
-          top: 75%;
-          left: 12%;
-          color: #9ee46f;
-          width: 70px;
-          zIndex: 1;
+  top: 20%;
+  left: 12%;
+  color: #9ee46f;
+  width: 20%;
+  zindex: 1;
 }
 
-.seventhSvg{
+.seventhSvg {
   position: absolute;
-          top: 90%;
-          left: 70%;
-          color: #9ee46f;
-          width: 250px;
-          zIndex: 1;
+  top: 90%;
+  left: 50%;
+  color: #9ee46f;
+  width: 29%;
+  zindex: 999;
 }
 
-.eightSvg{
+.eightSvg {
   position: absolute;
-          top: 48%;
-          left: 45%;
-          color: #ff0000;
-          width: 190px;
-          zIndex: 999;
+  top: 58%;
+  left: 46%;
+  color: #9ee46f;
+  width: 19%;
+  zindex: 999;
 }
 
-
-.ninthSvg{
+.ninthSvg {
   position: absolute;
-          bottom: 20%;
-          right: 55%;
-          color: #9ee46f;
-          transform: rotate(270deg);
-          width: 70px;
-          zIndex: 999;
+  top: 30%;
+  left: 13%;
+  color: #ff0000;
+  width: 22%;
+  zindex: 999;
 }
 
-
-.tenthSvg{
+.tenthSvg {
   position: absolute;
-          bottom:20%;
-          right: 53%;
-          color: #9ee46f;
-          transform: rotate(270deg);
-          width: 80px;
-          zIndex: 888;
+  bottom: 20%;
+  right: 53%;
+  color: #9ee46f;
+  transform: rotate(270deg);
+  width: 9%;
+  zindex: 888;
 }
 
-
-.eleventhSvg{
+.eleventhSvg {
   position: absolute;
-          bottom: 20%;
-          right: 50%;
-          color: #9ee46f;
-          transform: rotate(270deg);
-          width: 100px;
-          zIndex: 888;
+  bottom: 20%;
+  right: 50%;
+  color: #9ee46f;
+  transform: rotate(270deg);
+  width: 12%;
+  zindex: 888;
 }
 
-.twelvethSvg{
+.twelvethSvg {
   position: absolute;
-          bottom: 9%;
-          right: 60%;
-          color: #9ee46f;
-          width: 250px;
-          zIndex: 888;
+  bottom: 9%;
+  right: 60%;
+  color: #9ee46f;
+  width: 29%;
+  zindex: 888;
 }
 
-.thirteenthSvg{
+.thirteenthSvg {
   position: absolute;
-          top: 10%;
-          left: 0%;
-          color: #ff0000;
-          width: 280px;
-          zIndex: 1;
+  top: 0%;
+  left: 3%;
+  color: #ff0000;
+  width: 44%;
+  zindex: 1;
 }
 
-.fourteenthSvg{
+.fourteenthSvg {
   position: absolute;
-          bottom: 6%;
-          left: 5%;
-          color: #9ee46f;
-          width: 550px;
-          zIndex: 1;
+  bottom: 6%;
+  left: 4%;
+  color: #9ee46f;
+  width: 98%;
+  zindex: 1;
 }
 
 @media (max-width: 1000px) {
   .wordStyle {
-    font-size: 1.70rem;
-  }
-  .firstSvg{
-    width: 135px;
-  }
-  .secondSvg{
-    width: 165px;
-  }
-  .thirdSvg{
-    width: 210px;
-  }
-  .fourthSvg{
-    width: 60px;
-  }
-  .fifthSvg{
-    width: 165px;
-  }
-  .sixthSvg{
-    width: 60px;
-  }
-  .seventhSvg{
-    width: 210px;
-  }
-  .eightSvg{
-    width: 160px;
-  }
-  .ninthSvg{
-    width: 60px;
-  }
-  .tenthSvg{
-    width: 70px;
-  }
-  .eleventhSvg{
-    width: 90px;
-  }
-  .twelvethSvg{
-    width: 210px;
-  }
-  .thirteenthSvg{
-    width: 240px;
-  }
-  .fourteenthSvg{
-    width: 400px;
+    font-size: 1.7rem;
   }
 }
 
 @media (max-width: 800px) {
   .wordStyle {
-    font-size: 1.20rem;
+    font-size: 1.4rem;
   }
-  .firstSvg{
-    width: 100px;
+}
+@media (max-width: 700px) {
+  .wordStyle {
+    font-size: 1.2rem;
   }
-  .secondSvg{
-    width: 120px;
-  }
-  .thirdSvg{
-    width: 150px;
-  }
-  .fourthSvg{
-    width: 50px;
-  }
-  .fifthSvg{
-    width: 120px;
-  }
-  .sixthSvg{
-    width: 50px;
-  }
-  .seventhSvg{
-    width: 150px;
-    
-  }
-  .eightSvg{
-    width: 110px;
-
-  }
-  .ninthSvg{
-    width: 50px;
-    right: 55%;
-  }
-  .tenthSvg{
-    width: 60px;
-    right: 52%;
-  }
-  .eleventhSvg{
-    width: 80px;
-    right: 48%;
-  }
-  .twelvethSvg{
-    width: 150px;
-  }
-  .thirteenthSvg{
-    width: 180px;
-  }
-  .fourteenthSvg{
-    width: 300px;
-  }
-
 }
 @media (max-width: 600px) {
   .wordStyle {
-    font-size: 0.90rem;
+    font-size: 0.9rem;
   }
   .containerStyle {
     margin-top: 20%;
-  }
-  .firstSvg{
-    width: 70px;
-  }
-  .secondSvg{
-    width: 90px;
-  }
-  .thirdSvg{
-    width: 110px;
-  }
-  .fourthSvg{
-    width: 40px;
-  }
-  .fifthSvg{
-    width: 90px;
-  }
-  .sixthSvg{
-    width: 40px;
-  }
-  .seventhSvg{
-    width: 110px;
-  }
-  .eightSvg{
-    width: 80px;
-  }
-  .ninthSvg{
-    width: 40px;
-    right: 54%;
-  }
-  .tenthSvg{
-    width: 50px;
-    right: 51%;
-  }
-  .eleventhSvg{
-    width: 60px;
-    right: 47%;
-  }
-  .twelvethSvg{
-    width: 110px;
-  }
-
-  .thirteenthSvg{
-    width: 130px;
-  }
-  .fourteenthSvg{
-    width: 220px;
   }
 }

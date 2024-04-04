@@ -1,5 +1,6 @@
 .review-counter {
         text-align: center;
+       
       }
       
       
@@ -51,3 +52,25 @@
         align-items: center;
         gap: 10px;
       }
+
+      @media screen and (max-width: 840px){
+        .review-counter{
+          margin-left: 20%;
+        }
+      }  @media screen and (max-width: 550px){
+        .review-counter{
+          margin-left: 15%;
+        }
+      }  @media screen and (max-width: 485px){
+        .review-counter{
+          margin-left: 10%;
+        }
+      }  @media screen and (max-width: 451px){
+        .review-counter{
+          margin-left: 0%;
+          .counter-background{
+            width: 265px;
+            
+          }
+        }
+      } 
