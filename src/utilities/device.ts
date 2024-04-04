@@ -17,7 +17,12 @@ const getDeviceToken = async () => {
 }
 
 // Utility to register a device token
-const registerDeviceToken = async (deviceToken: string, userId: string) => {
+const registerDeviceToken = async (deviceToken: string, userId: string | null) => {
+  if (!userId) {
+    console.error('User ID is required to register device token')
+    return false
+  }
+
   const url = `${process.env.NEXT_PUBLIC_API_URL}/devicetokens/`
   try {
     const response = await fetch(url, {
