@@ -14,6 +14,7 @@ interface TopicsDataI {
 }
 
 interface CourseI {
+  id: string
   title: string
   photo: string
   topics: TopicsDataI[]
@@ -64,7 +65,7 @@ interface SectionI {
   lectures: LectureI[]
 }
 
-export function CourseLandingPage({ id }) {
+export function CourseLandingPage({ id }: { id: string}) {
   const [courseData, setCourseData] = useState({} as CourseI)
   const [rating, setRating] = useState(0)
   const [categoryTitle, setCategoryTitle] = useState('' as CategoryI['title'])
@@ -95,6 +96,7 @@ export function CourseLandingPage({ id }) {
     fetchData()
   }, [id])
 
+
   return (
     <div>
       <IntroSection
@@ -104,7 +106,7 @@ export function CourseLandingPage({ id }) {
         instructorData={instructorData}
         topicsData={topicsData}
       />
-      <AboutCourse courseData={courseData} />
+      <AboutCourse courseData={courseData as CourseI} />
       <div style={{ display: 'flex', width: '70%', padding: '1rem', justifyContent: 'flex-start', margin: '0 auto' }}>
         <h1> Course Content </h1>
       </div>

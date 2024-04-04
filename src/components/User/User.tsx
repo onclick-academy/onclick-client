@@ -11,10 +11,9 @@ import Tooltip from '@mui/material/Tooltip'
 import Settings from '@mui/icons-material/Settings'
 import Logout from '@mui/icons-material/Logout'
 import { fetcher } from '@/utilities/fetcher'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined'
 import Link from 'next/link'
-
 
 interface UserI {
   id: number
@@ -44,7 +43,7 @@ export default function AccountMenu() {
     }
   }
 
-  console.log(userData)
+  // console.log(userData)
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -110,24 +109,30 @@ export default function AccountMenu() {
             <Avatar src={userData.profilePic} sx={{ width: 32, height: 32 }} /> Profile
           </MenuItem>
           <Divider />
-            <MenuItem onClick={handleClose}>
-                <ListItemIcon>
-                <FavoriteOutlinedIcon fontSize='small'/>
-                </ListItemIcon>
-                Wishlist
-            </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <ListItemIcon>
+              <FavoriteOutlinedIcon fontSize='small' />
+            </ListItemIcon>
+            <Link href='/user/wishlist' style={{ color: 'white', textDecoration: 'none' }}>
+              {' '}
+              WishList
+            </Link>
+          </MenuItem>
 
           <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <ShoppingCartOutlinedIcon fontSize='small'/>
+            <ListItemIcon>
+              <ShoppingCartOutlinedIcon fontSize='small' />
             </ListItemIcon>
-              My Cart
+            My Cart
           </MenuItem>
           <MenuItem onClick={handleClose}>
             <ListItemIcon>
               <Settings fontSize='small' />
             </ListItemIcon>
-            <Link href="/user/settings" style={{color:"white", textDecoration:"none" }}> Settings</Link>
+            <Link href='/user/settings' style={{ color: 'white', textDecoration: 'none' }}>
+              {' '}
+              Settings
+            </Link>
           </MenuItem>
 
           <MenuItem onClick={handleLogOut}>
