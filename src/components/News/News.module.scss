@@ -1,21 +1,21 @@
-.imageStyle{
-matginLeft: 2%;
-borderRadius: 2%;
+.imageStyle {
+  matginleft: 2%;
+  borderradius: 2%;
 }
 
-.wordStyle{
-font-size: 40px;
+.wordStyle {
+  font-size: 40px;
 }
 
 @media (max-width: 1200px) {
-.imageStyle{
-width: 100%;
-padding: 0 2% 0 0%;
-borderRadius: 10%;
-}
+  .imageStyle {
+    width: 100%;
+    padding: 0 2% 0 0%;
+    borderradius: 10%;
+  }
 }
 @media (max-width: 530px) {
-.wordStyle{
-font-size:5px;
-}
+  .wordStyle {
+    font-size: 5px;
+  }
 }

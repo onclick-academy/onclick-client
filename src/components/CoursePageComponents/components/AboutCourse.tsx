@@ -2,7 +2,6 @@ import { fetcher } from '@/utilities/fetcher'
 import React, { useState, useEffect } from 'react'
 import { format } from 'date-fns'
 
-
 interface TopicI {
   title: string
   id: string
@@ -46,7 +45,7 @@ interface CategoryI {
   title: string
 }
 
-export function AboutCourse(courseData : {courseData: CourseI} ) {
+export function AboutCourse(courseData: { courseData: CourseI }) {
   console.log('courseData', courseData)
   const [enrolled, setEnrolled] = useState(false)
   const [wishListed, setWishListed] = useState(false)
@@ -88,7 +87,7 @@ export function AboutCourse(courseData : {courseData: CourseI} ) {
 
     const checkWishListed = async () => {
       const url = `/wishlist/isWishListed/${courseData.courseData.id}`
-      const res = await fetcher({ url})
+      const res = await fetcher({ url })
       console.log('checkWishListed ', res.data)
       if (res.data) {
         setWishListed(true)

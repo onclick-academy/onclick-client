@@ -243,7 +243,9 @@ option:hover {
 
 .form-container {
   width: 50%; /* Make each form take half of the container's width */
-  transition: opacity 0.3s, visibility 0.2s;
+  transition:
+    opacity 0.3s,
+    visibility 0.2s;
 }
 
 [data-hidden='login'] .sign-up,

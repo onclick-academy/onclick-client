@@ -1,76 +1,73 @@
 .review-counter {
-        text-align: center;
-       
-      }
-      
-      
-      .counter-value {
-        font-size: 36px;
-        font-weight: bold;
-        color: rgb(228, 221, 221);
-        opacity: 0; /* Initially hide the counter */
-        animation: fadeIn 1s ease-in forwards; /* Apply fade-in animation */
-      }
-      
-      @keyframes fadeIn {
-        from {
-          opacity: 0; /* Start from fully transparent */
-        }
-        to {
-          opacity: 1; /* End with full opacity */
-        }
-      }
-      
-      .total-reviews {
-        font-size: 14px;
-        color: rgb(228, 221, 221);
-      }
-      
-      .review-counter {
-        position: relative;
-        display: flex;
-        align-items: center;
-      }
-      
-      .counter-background {
-        position: relative;
-        width: 220px;
-        height: 110px;
-        z-index: -1;
-        
-        
-        
-      }
-      
-      .counter-content {
-        position: absolute;
-        top: 8;
-        left: 40px;
-        top:10;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
+  text-align: center;
+}
 
-      @media screen and (max-width: 840px){
-        .review-counter{
-          margin-left: 20%;
-        }
-      }  @media screen and (max-width: 550px){
-        .review-counter{
-          margin-left: 15%;
-        }
-      }  @media screen and (max-width: 485px){
-        .review-counter{
-          margin-left: 10%;
-        }
-      }  @media screen and (max-width: 451px){
-        .review-counter{
-          margin-left: 0%;
-          .counter-background{
-            width: 265px;
-            
-          }
-        }
-      } 
+.counter-value {
+  font-size: 36px;
+  font-weight: bold;
+  color: rgb(228, 221, 221);
+  opacity: 0; /* Initially hide the counter */
+  animation: fadeIn 1s ease-in forwards; /* Apply fade-in animation */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Start from fully transparent */
+  }
+  to {
+    opacity: 1; /* End with full opacity */
+  }
+}
+
+.total-reviews {
+  font-size: 14px;
+  color: rgb(228, 221, 221);
+}
+
+.review-counter {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.counter-background {
+  position: relative;
+  width: 220px;
+  height: 110px;
+  z-index: -1;
+}
+
+.counter-content {
+  position: absolute;
+  top: 8;
+  left: 40px;
+  top: 10;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media screen and (max-width: 840px) {
+  .review-counter {
+    margin-left: 20%;
+  }
+}
+@media screen and (max-width: 550px) {
+  .review-counter {
+    margin-left: 15%;
+  }
+}
+@media screen and (max-width: 485px) {
+  .review-counter {
+    margin-left: 10%;
+  }
+}
+@media screen and (max-width: 451px) {
+  .review-counter {
+    margin-left: 0%;
+    .counter-background {
+      width: 265px;
+    }
+  }
+}

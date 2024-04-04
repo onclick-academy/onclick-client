@@ -1,33 +1,33 @@
-import React, { useState } from "react";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
+import React, { useState } from 'react'
+import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import Dialog from '@mui/material/Dialog'
+import DialogContent from '@mui/material/DialogContent'
 
 const Video = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const handleOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
-    <div style={{ position: "absolute", top: "45%", left: "46%" }}>
+    <div style={{ position: 'absolute', top: '45%', left: '46%' }}>
       {/* Play button icon */}
       <PlayArrowIcon
         onClick={handleOpen}
         sx={{
-          color: "#553CDF",
-          cursor: "pointer",
-          fontSize: "70px",
-          backgroundColor: "white",
-          borderRadius: "50%",
-          "&:hover": {
-            color: "#2e1f85",
-          },
+          color: '#553CDF',
+          cursor: 'pointer',
+          fontSize: '70px',
+          backgroundColor: 'white',
+          borderRadius: '50%',
+          '&:hover': {
+            color: '#2e1f85'
+          }
         }}
       />
 
@@ -36,17 +36,17 @@ const Video = () => {
         <DialogContent>
           {/* Embed the YouTube video here */}
           <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/ezbJwaLmOeM"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            width='560'
+            height='315'
+            src='https://www.youtube.com/embed/ezbJwaLmOeM'
+            title='YouTube video player'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen
           ></iframe>
         </DialogContent>
       </Dialog>
     </div>
-  );
-};
+  )
+}
 
-export default Video;
+export default Video

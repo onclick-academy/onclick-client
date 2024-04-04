@@ -12,7 +12,7 @@ import PublicProfile from './PublicProfile'
 export default function Settings() {
   const [activeTab, setActiveTab] = useState('personalData')
   const [userData, setUserData] = useState(null)
- 
+
   useEffect(() => {
     const getUserData = async () => {
       const res = await fetcher({ url: '/users/userinfo' })
@@ -25,7 +25,6 @@ export default function Settings() {
     }
     fetchData()
   }, [])
-
 
   const handlePersonalData = () => {
     setActiveTab('personalData')
@@ -58,12 +57,8 @@ export default function Settings() {
             </div>
 
             <div className='settings_btn_body'>
-              {activeTab === 'personalData' && (
-               <PersonalData userData={userData}/>
-              )}
-              {activeTab === 'publicData' && (
-               <PublicProfile userData={userData}/>
-              )}
+              {activeTab === 'personalData' && <PersonalData userData={userData} />}
+              {activeTab === 'publicData' && <PublicProfile userData={userData} />}
             </div>
           </div>
         </div>

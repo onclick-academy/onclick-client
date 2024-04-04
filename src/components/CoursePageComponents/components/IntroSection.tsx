@@ -3,8 +3,7 @@ import React from 'react'
 import { Avatar } from '@mui/material'
 
 export function IntroSection({ courseData, rating, categoryTitle, instructorData, topicsData }) {
-
-  console.log("intro section ",courseData)
+  console.log('intro section ', courseData)
 
   return (
     <div

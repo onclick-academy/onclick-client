@@ -1,96 +1,95 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+'use client'
+import React, { useState, useEffect } from 'react'
+import IconButton from '@mui/material/IconButton'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
 // import MoreVertIcon from "@mui/icons-material/MoreVert";
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import getData from "@/utilities/getUserData";
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import getData from '@/utilities/getUserData'
 
-const ITEM_HEIGHT = 100;
+const ITEM_HEIGHT = 100
 
 export default function NotificationMenu() {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [notifications, setNotifications] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [notifications, setNotifications] = useState([])
 
   // TODO Browser
-  const [permission, setPermission] = useState(Notification.permission);
+  const [permission, setPermission] = useState(Notification.permission)
 
-  const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl)
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   useEffect(() => {
     // #TODO Browser
     const updatePermission = async () => {
-      const perm = await Notification.requestPermission();
-      setPermission(perm);
-    };
+      const perm = await Notification.requestPermission()
+      setPermission(perm)
+    }
 
-    if (Notification.permission !== "granted") {
-      updatePermission();
+    if (Notification.permission !== 'granted') {
+      updatePermission()
     }
 
     const getAllNotifications = async () => {
       try {
-        const url = "http://localhost:3000/api/v1/notifications";
+        const url = 'http://localhost:3000/api/v1/notifications'
         const options = {
-          method: "GET",
+          method: 'GET',
           headers: {
-            "Content-Type": "application/json",
-            credentials: "include",
-          },
-        };
-        const res = await fetch(url, options);
-        if (!res.ok) {
-          throw new Error("Failed to fetch notifications");
+            'Content-Type': 'application/json',
+            credentials: 'include'
+          }
         }
-        const notifications = await res.json();
-        return notifications;
+        const res = await fetch(url, options)
+        if (!res.ok) {
+          throw new Error('Failed to fetch notifications')
+        }
+        const notifications = await res.json()
+        return notifications
       } catch (error) {
-        console.error("Error fetching notifications:", error);
-        return [];
+        console.error('Error fetching notifications:', error)
+        return []
       }
-    };
-
+    }
 
     const fetchData = async () => {
-      const user = await getData();
-      const userId = user.data.id;
+      const user = await getData()
+      const userId = user.data.id
 
-      const fetchedNotifications = await getAllNotifications();
+      const fetchedNotifications = await getAllNotifications()
 
-      const userNotification = fetchedNotifications.filter((notification) => notification.recipientId === userId);
-      setNotifications(userNotification);
-    };
+      const userNotification = fetchedNotifications.filter(notification => notification.recipientId === userId)
+      setNotifications(userNotification)
+    }
 
-    fetchData();
-  }, []);
-  console.log(notifications);
+    fetchData()
+  }, [])
+  console.log(notifications)
 
   return (
     notifications && (
       <div>
         <IconButton
-          aria-label="more"
-          id="long-button"
-          aria-controls={open ? "long-menu" : undefined}
-          aria-expanded={open ? "true" : undefined}
-          aria-haspopup="true"
+          aria-label='more'
+          id='long-button'
+          aria-controls={open ? 'long-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
+          aria-haspopup='true'
           onClick={handleClick}
         >
-          <NotificationsIcon/>
+          <NotificationsIcon />
         </IconButton>
         <Menu
-          id="long-menu"
+          id='long-menu'
           MenuListProps={{
-            "aria-labelledby": "long-button",
+            'aria-labelledby': 'long-button'
           }}
           anchorEl={anchorEl}
           open={open}
@@ -98,11 +97,11 @@ export default function NotificationMenu() {
           PaperProps={{
             style: {
               maxHeight: ITEM_HEIGHT * 4.5,
-              width: "100ch",
-            },
+              width: '100ch'
+            }
           }}
         >
-          {notifications.map((notification) => (
+          {notifications.map(notification => (
             <MenuItem key={notification.id} onClick={handleClose}>
               <div>
                 <p>{notification.icon}</p>
@@ -117,7 +116,7 @@ export default function NotificationMenu() {
         </Menu>
       </div>
     )
-  );
+  )
 }
 
 // if permission is not granted, show a button to request permission

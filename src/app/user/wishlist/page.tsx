@@ -1,8 +1,9 @@
-import { WishList } from "@/components/User/components/WishList/WishList";
+import { WishList } from '@/components/User/components/WishList/WishList'
 
 export default function WishlistPage() {
-    return (
+  return (
     <div>
-        <WishList/>
-    </div>)
+      <WishList />
+    </div>
+  )
 }

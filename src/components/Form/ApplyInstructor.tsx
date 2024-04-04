@@ -13,7 +13,7 @@ export const ApplyInstructor = () => {
   const mediaQuery = useMediaQuery('(max-width: 800px)')
 
   const applyInstructor = async (data: any) => {
-    const user = localStorage.getItem('user')
+    const user = typeof window !== 'undefined' && localStorage.getItem('user')
     const userObj = JSON.parse(user)
     const userId = userObj.id
     data.userId = userId

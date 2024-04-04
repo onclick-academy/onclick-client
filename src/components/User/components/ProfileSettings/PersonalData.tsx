@@ -3,8 +3,6 @@ import { Box, Button, FormControl, TextField } from '@mui/material'
 import { fetcher } from '@/utilities/fetcher'
 
 export default function PersonalData({ userData }) {
-  console.log('userData', userData)
-
   const {
     handleSubmit,
     register,
@@ -43,13 +41,13 @@ export default function PersonalData({ userData }) {
     >
       <FormControl fullWidth>
         <TextField
-       fullWidth
-     type='email'
-   label='Email'
- {...register('email')}
-       placeholder={userData?.email}
-     variant='outlined'
-  />
+          fullWidth
+          type='email'
+          label='Email'
+          {...register('email')}
+          placeholder={userData?.email}
+          variant='outlined'
+        />
       </FormControl>
 
       <FormControl fullWidth>
@@ -58,12 +56,12 @@ export default function PersonalData({ userData }) {
 
       <FormControl fullWidth>
         <TextField
-  fullWidth
-type='password'
-      label='Password Confirm'
-    {...register('passwordConfirm')}
-  variant='outlined'
-       />
+          fullWidth
+          type='password'
+          label='Password Confirm'
+          {...register('passwordConfirm')}
+          variant='outlined'
+        />
       </FormControl>
 
       <FormControl fullWidth>

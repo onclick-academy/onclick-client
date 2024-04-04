@@ -1,5 +1,1 @@
-
-export function WishListCard({  }) {
-
-
-}
+export function WishListCard({}) {}

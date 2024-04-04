@@ -1,13 +1,10 @@
-
-.imgeimageContainer{
-        position: relative;
-        width: 100%;
-        padding-bottom: 62.5%;
+.imgeimageContainer {
+  position: relative;
+  width: 100%;
+  padding-bottom: 62.5%;
 }
 
-
-
-.imageStyle{
+.imageStyle {
   padding: 4% 6% 2% 6%;
   width: 100%;
   border-radius: 10%;
@@ -15,9 +12,7 @@
 }
 
 @media (max-width: 410px) {
- .imageStyle{
-  padding: 4% 6% 0% 6%;
- }
-  
-  
+  .imageStyle {
+    padding: 4% 6% 0% 6%;
+  }
 }
