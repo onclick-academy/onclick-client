@@ -24,9 +24,7 @@ export default function Home() {
 
   return (
     <main>
-        <Header />
-          <MySwiper width='50px' height='50px' />
-          <Main />
+       
     </main>
   )
 }

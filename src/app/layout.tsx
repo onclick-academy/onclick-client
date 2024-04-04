@@ -47,10 +47,11 @@ export default function RootLayout({
           <Header />
           <MySwiper width='50px' height='50px' />
           <Main />
-          <Courses/>
-          <News/>
-          <Footer/>
+          <Courses />
+          <News />
+
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

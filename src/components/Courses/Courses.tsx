@@ -41,7 +41,7 @@ export default function ImgMediaCard() {
       } , display: 'flex', flexWrap: 'wrap', gap: '5%', maxWidth: '100%' }}
       className={style['courses-container']}
     >
-      {courses.map((course, index) => (
+      {courses?.map((course, index) => (
         <Card
           key={course.id}
           sx={{
@@ -85,7 +85,7 @@ export default function ImgMediaCard() {
             // style={{ padding: '4% 6% 2% 6%', borderRadius: '10%', backgroundColor: 'transparent' }}
             className={style['imageStyle']}
             alt='green iguana'
-            src={course.photo0 ? course.photo :'https://via.placeholder.com/300'}
+            src={course.photo ? course.photo :'https://via.placeholder.com/300'}
             loading='lazy'
           />
           <BookmarkBorderIcon
