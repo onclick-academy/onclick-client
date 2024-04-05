@@ -1,5 +1,6 @@
 import { getMessaging, getToken } from 'firebase/messaging'
 import app from '../firebase'
+import { fetcher } from './fetcher'
 
 const getDeviceToken = async () => {
   const isAccessible = await Notification.requestPermission()
@@ -23,17 +24,8 @@ const registerDeviceToken = async (deviceToken: string, userId: string | null) =
     return false
   }
 
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/devicetokens/`
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ token: deviceToken, userId })
-    })
-    const data = await response.json()
+    const data = fetcher({ url: `/devicetokens/`, method: 'POST', body: { token: deviceToken, userId } })
     console.log('Device token registration response:', data)
     return true // Indicate successful registration
   } catch (error) {

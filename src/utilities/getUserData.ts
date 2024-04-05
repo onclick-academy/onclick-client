@@ -1,14 +1,9 @@
 import { fetcher } from './fetcher'
 
 const getData = async () => {
-  const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/users/userinfo', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    credentials: 'include'
-  }).then(res => res.json())
-  const userInfo = await res
+  const userInfo = await fetcher({
+    url: `/users/userinfo`
+  })
 
   console.log(userInfo)
   if (!userInfo.data.id) throw Error('Error: User not found.')
