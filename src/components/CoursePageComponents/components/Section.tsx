@@ -1,5 +1,6 @@
 import React from 'react'
 import { Lecture } from './Lecture'
+import Link from 'next/link'
 export function CourseSection({ sections }) {
   return (
     <div
@@ -19,9 +20,9 @@ export function CourseSection({ sections }) {
               <p>{section.fullduration}</p>
             </div>
             {section.lectures.map(lecture => (
-              <div key={lecture.id} style={{ width: '100%' }}>
+              <Link href={`/course/lecture/${lecture.id}`} key={lecture.id} style={{ width: '100%' }}>
                 <Lecture key={lecture.id} lecture={lecture} />
-              </div>
+              </Link>
             ))}
           </div>
         ))}
