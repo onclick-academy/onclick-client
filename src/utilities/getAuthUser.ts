@@ -1,16 +1,9 @@
-const getAuthUser = async () => {
-  const url = `http://localhost:3000/api/v1/users/userinfo`
-  try {
-    const res = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include'
-    })
-    const user = await res.json()
+import { fetcher } from "./fetcher"
 
-    return user
+const getAuthUser = async () => {
+  try {
+      const res = await fetcher({ url: '/users/userinfo' })
+      return res
   } catch (err) {
     console.error('ERRO: ' + err)
   }
