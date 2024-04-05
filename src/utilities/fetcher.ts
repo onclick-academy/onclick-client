@@ -43,5 +43,6 @@ export const fetcher = async ({ url, method = 'GET', body = {} }: FetcherT) => {
     body: method === 'GET' ? undefined : JSON.stringify(body)
   })
 
+
   return await res.json()
 }
