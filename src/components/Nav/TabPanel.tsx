@@ -76,11 +76,11 @@ export default function VerticalTabs() {
     <Box
       sx={{
         flexGrow: 1,
-        backgroundColor: 'linear-gradient(60deg, #29323c 0%, #485563 100%)',
+        backgroundColor: 'transparent',
         display: 'flex',
         height: 224,
         position: 'absolute',
-        top: '100%',
+        top: 60,
         zIndex: 1000
       }}
     >
@@ -103,7 +103,7 @@ export default function VerticalTabs() {
             .filter(subCategory => category.id === subCategory.categoryId)
             .map((subCategory, subIndex) => (
               <Link
-                sx={{ color: 'white', textDecoration: 'none', display: 'flex' }}
+                sx={{ color: 'white', textDecoration: 'none', display: 'flex', padding: 1, textTransform:"capitalize"}}
                 href={`/courses/${subCategory.name}/${subCategory.id}`}
                 key={subIndex}
               >

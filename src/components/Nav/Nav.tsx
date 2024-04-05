@@ -116,7 +116,7 @@ export default function PrimarySearchAppBar() {
                 md: 'flex'
               },
               width: {
-                xl: '44%',
+                xl: !userData ?'44%' : '35%',
                 lg: '52%',
                 md: '54%'
               },
@@ -127,7 +127,8 @@ export default function PrimarySearchAppBar() {
               },
               gap: {
                 lg: '15px',
-                md: '11px'
+                md: '11px',
+                xl: userData ? '3%' : '11px'
               },
               backgroundColor: {
                 xl: 'transparent',
@@ -135,7 +136,7 @@ export default function PrimarySearchAppBar() {
                 md: 'transparent'
               },
               justifyContent: {
-                xl: 'flex-start',
+                xl: userData ? 'center': 'flex-start',
                 lg: 'flex-end',
                 md: 'flex-end'
               }
@@ -149,6 +150,10 @@ export default function PrimarySearchAppBar() {
                 display: {
                   md: 'none',
                   lg: 'block',
+                  width: {
+                    xl: '50%',
+                    
+                  },
                   cursor: 'pointer',
                   marginLeft: '1%',
                   marginTop: '0.6%',
@@ -165,13 +170,19 @@ export default function PrimarySearchAppBar() {
             </Typography>
             <Typography
               noWrap
-              component='div'
+              component='a'
+              href='/applyinstructor'
               variant='body2'
               sx={{
                 display: {
                   xs: 'none',
                   sm: 'block',
                   cursor: 'pointer',
+                  textDecoration: 'none',
+                  width: {
+                    xl: '50%',
+                    lg: '70%'
+                  },
                   marginLeft: '1%',
                   marginTop: '0.6%',
                   fontSize: '13px',
@@ -196,7 +207,7 @@ export default function PrimarySearchAppBar() {
                 '&:hover': {
                   textDecoration: 'none',
                   color: '#7157b3',
-                  backgroundColor: 'transparent'
+                  backgroundColor: 'transparent',
                 }
               }}
             >

@@ -20,6 +20,7 @@ const darkTheme = createTheme({
       main: lightBlue[200],
       dark: lightBlue[400]
     }
+   
   },
   typography: {
     subtitle1: {
@@ -41,7 +42,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body>
+      <body style={{
+         backgroundColor: '#0F0F0F',
+         
+      }}>
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
           {children}
