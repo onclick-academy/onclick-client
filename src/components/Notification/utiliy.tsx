@@ -1,6 +1,7 @@
 import { NotificationI } from '@/components/Notification'
 import React, { useState, useEffect, Dispatch } from 'react'
 import { getReadNotifications, getUnreadNotifications } from '@/utilities/notification/sendNotification'
+import { fetcher } from '@/utilities/fetcher'
 
 export const useRealTimeNotifications = (userId: string | null) => {
   const [notifications, setNotifications] = useState<NotificationI[]>([])
@@ -48,11 +49,7 @@ export const useNotifications = (userId: string | null, setAllNotifications: any
   const handleRead = async (id: string) => {
     console.log('Marking notification as read:', id)
     try {
-      const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications/${id}`
-      await fetch(url, {
-        method: 'PUT',
-        credentials: 'include'
-      })
+      fetcher({ url: `/notifications//${id}`, method: 'PUT' })
       setAllNotifications((prev: any) =>
         prev.filter((notification: NotificationI) => {
           if (notification.id === id) {
@@ -68,10 +65,7 @@ export const useNotifications = (userId: string | null, setAllNotifications: any
   const handleDelete = async (id: string) => {
     try {
       const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications/${id}`
-      await fetch(url, {
-        method: 'DELETE',
-        credentials: 'include'
-      })
+      fetcher({ url: `/notifications//${id}`, method: 'DELETE' })
       setAllNotifications((prev: NotificationI[]) =>
         prev.filter((notification: NotificationI) => notification.id !== id)
       )
