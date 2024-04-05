@@ -8,7 +8,7 @@ export function Lecture({ lecture }) {
   }
 
   return (
-    <div style={{ width: '100%', height: '6rem', display: 'flex' }}>
+    <div style={{ width: '100%', height: '10rem', display: 'flex', marginBottom:"1rem" }}>
       <div style={{ width: '10%' }}>
         <img style={{ width: '100%', margin: '20px 0' }} src={lecture.thumbnail} alt='video' />
       </div>
