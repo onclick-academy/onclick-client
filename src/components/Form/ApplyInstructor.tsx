@@ -18,7 +18,7 @@ export const ApplyInstructor = () => {
     const userId = userObj.id
     data.userId = userId
 
-    console.log(data)
+    // console.log(data)
 
     const url = 'http://localhost:3000/api/v1/instructors/'
     const response = await fetch(url, {
@@ -31,7 +31,7 @@ export const ApplyInstructor = () => {
     })
 
     const result = await response.json()
-    console.log(result)
+    // console.log(result)
     if (result.success) {
       router.push('/')
     }

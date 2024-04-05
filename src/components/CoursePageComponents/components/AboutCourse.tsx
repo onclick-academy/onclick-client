@@ -47,7 +47,7 @@ interface CategoryI {
 }
 
 export function AboutCourse(courseData: { courseData: CourseI }) {
-  console.log('courseData', courseData)
+  // console.log('courseData', courseData)
 
   const [enrolled, setEnrolled] = useState(false)
   const [wishListed, setWishListed] = useState(false)
@@ -68,7 +68,7 @@ export function AboutCourse(courseData: { courseData: CourseI }) {
   }
 
   const handleEnrollment = async () => {
-    console.log('Enrolled')
+    // console.log('Enrolled')
     const url = '/courseEnrolls'
     const data = {
       courseId: courseData.courseData.id
@@ -84,7 +84,7 @@ export function AboutCourse(courseData: { courseData: CourseI }) {
       try {
         const url = `/wishlist/isWishListed/${courseId}`
         const res = await fetcher({ url })
-        console.log('res wishlisted', res)
+        // console.log('res wishlisted', res)
 
         if (!res.data.isDeleted) {
           setWishListed(true)
@@ -115,7 +115,7 @@ export function AboutCourse(courseData: { courseData: CourseI }) {
   }, [courseId])
 
   const handleAddToWishList = async () => {
-    console.log('Added to wishlist')
+    // console.log('Added to wishlist')
     const url = '/wishlist'
     const data = {
       courseId: courseData.courseData.id
