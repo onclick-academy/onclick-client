@@ -107,6 +107,12 @@ export function WishList() {
           userWishList
             .filter(userWishList => !userWishList.isDeleted)
             .map(course => <WishListCard key={course.id} course={course} />)}
+
+        {userWishList.length === 0 && (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <h1 style={{ color: '#333', textAlign: 'center' }}>No courses in your wish list yet</h1>
+          </div>
+        )}
       </div>
     </div>
   )
