@@ -1,4 +1,3 @@
-import Cookies from 'universal-cookie'
 
 type FetcherT = {
   url: string
@@ -21,16 +20,10 @@ export const authFetcher = async ({ body = {}, action }: AuthFetcherT) => {
     body: JSON.stringify(body)
   })
   const data = await res.json()
-  const accessTokn = data.accessToken
-  const refreshToken = data.refreshToken
-
-  // Initialize the Cookies instance
-  const cookies = new Cookies()
 
   if (res.ok) {
-    // Save tokens in cookies instead of localStorage
-    cookies.set('accessToken', accessTokn)
-    cookies.set('refreshToken', refreshToken)
+    localStorage.setItem('accessToken', data.accessToken)
+    localStorage.setItem('refreshToken',  data.refreshToken)
     localStorage.setItem('userId', data.data.id)
   }
 
@@ -42,12 +35,13 @@ export const fetcher = async ({ url, method = 'GET', body = {} }: FetcherT) => {
   const res = await fetch(fullUrl, {
     method,
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'token': `Bearer ${localStorage.getItem('accessToken')}`,
+      'refreshToken': `Bearer ${localStorage.getItem('refreshToken')}`,
     },
     credentials: 'include',
     body: method === 'GET' ? undefined : JSON.stringify(body)
   })
-  // console.log('res', res)
 
   return await res.json()
 }
