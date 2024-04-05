@@ -60,6 +60,7 @@ interface LectureI {
   description: string
   videoUrl: string
   duration: string
+  thumbnail: string
 }
 
 interface SectionI {
