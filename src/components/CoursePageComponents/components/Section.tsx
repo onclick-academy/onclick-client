@@ -20,7 +20,7 @@ export function CourseSection({ sections }) {
               <p>{section.fullduration}</p>
             </div>
             {section.lectures.map(lecture => (
-              <Link href={`/course/lecture/${lecture.id}`} key={lecture.id} style={{ width: '100%' }}>
+              <Link href={`/course/lecture/${lecture.id}`} key={lecture.id} style={{ width: '100%', textDecoration:"none", color:"#332" }}>
                 <Lecture key={lecture.id} lecture={lecture} />
               </Link>
             ))}
