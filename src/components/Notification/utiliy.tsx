@@ -49,7 +49,7 @@ export const useNotifications = (userId: string | null, setAllNotifications: any
   const handleRead = async (id: string) => {
     console.log('Marking notification as read:', id)
     try {
-      fetcher({ url: `/notifications//${id}`, method: 'PUT' })
+      fetcher({ url: `/notifications/${id}`, method: 'PUT' })
       setAllNotifications((prev: any) =>
         prev.filter((notification: NotificationI) => {
           if (notification.id === id) {
@@ -65,7 +65,7 @@ export const useNotifications = (userId: string | null, setAllNotifications: any
   const handleDelete = async (id: string) => {
     try {
       const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications/${id}`
-      fetcher({ url: `/notifications//${id}`, method: 'DELETE' })
+      fetcher({ url: `/notifications/${id}`, method: 'DELETE' })
       setAllNotifications((prev: NotificationI[]) =>
         prev.filter((notification: NotificationI) => notification.id !== id)
       )
