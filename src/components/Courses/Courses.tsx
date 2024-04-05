@@ -21,7 +21,7 @@ export default function ImgMediaCard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const courseData = await fetcher({ url: 'courses' })
+        const courseData = await fetcher({ url: '/courses' })
         setCourses(courseData.data)
       } catch (error) {
         console.error('An error occurred while fetching the data:', error)

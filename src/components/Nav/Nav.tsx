@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import { Button, Link } from '@mui/material'
+import { Button, Link as MuiLink } from '@mui/material'
 import InputBase from '@mui/material/InputBase'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
@@ -29,6 +29,7 @@ import {
 import NotificationMenu from '../Notification'
 import { authFetcher, fetcher } from '@/utilities/fetcher'
 import AccountMenu from '../User/User'
+import Link from 'next/link'
 
 export default function PrimarySearchAppBar() {
   React.useState<null | HTMLElement>(null)
@@ -71,14 +72,16 @@ export default function PrimarySearchAppBar() {
       >
         <Toolbar>
           <LogoContainer onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-            <Logo
-              src={logo2}
-              alt='logo'
-              style={{
-                opacity: isHovered ? 1 : 0,
-                width: '100%'
-              }}
-            />
+            <Link href='/'>
+              <Logo
+                src={logo2}
+                alt='logo'
+                style={{
+                  opacity: isHovered ? 1 : 0,
+                  width: '100%'
+                }}
+              />
+            </Link>
             <LogoHover
               src={logo3}
               alt='logo'
@@ -251,9 +254,9 @@ export default function PrimarySearchAppBar() {
                     }
                   }}
                 >
-                  <Link href='/auth' style={{ textDecoration: 'none' }}>
+                  <MuiLink component={Link} href='/auth' style={{ textDecoration: 'none' }}>
                     Log in
-                  </Link>
+                  </MuiLink>
                 </Button>
                 <Button
                   sx={{
@@ -273,9 +276,9 @@ export default function PrimarySearchAppBar() {
                     }
                   }}
                 >
-                  <Link href='/auth' style={{ textDecoration: 'none' }}>
+                  <MuiLink component={Link} href='/auth' style={{ textDecoration: 'none' }}>
                     Sign up
-                  </Link>
+                  </MuiLink>
                 </Button>
               </Box>
             )}
