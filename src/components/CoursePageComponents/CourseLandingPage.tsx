@@ -23,6 +23,12 @@ interface CourseI {
   createdAt: string
   introVideo: string
   description: string
+  price: number
+  avrageRating: number
+  category: {
+    title: string
+  }
+  
 }
 interface UserI {
   id: string
