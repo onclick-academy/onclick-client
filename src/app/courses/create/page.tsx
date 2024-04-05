@@ -8,7 +8,6 @@ import CourseStepOne from './components/step1/Step1Form'
 import { useSearchParams } from 'next/navigation'
 import CourseStepFour from './components/step4/CourseStepFour'
 import CourseStepFive from './components/CourseStepFive'
-import { Suspense } from 'react'
 
 export interface TopicI {
   id: string

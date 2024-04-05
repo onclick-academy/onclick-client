@@ -1,6 +1,7 @@
 import { fetcher } from './fetcher'
 
 const getAuthUser = async () => {
+  const url = process.env.NEXT_PUBLIC_API_URL + '/users/userinfo'
   try {
     const res = await fetch(url, {
       method: 'GET',

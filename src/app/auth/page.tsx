@@ -6,9 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import getAuthUser from '@/utilities/getAuthUser'
 
 const Page = () => {
-  const params = useSearchParams()
   const router = useRouter()
-  const type = params.get('type')
 
   useEffect(() => {
     const isAuth = async () => {
@@ -24,7 +22,6 @@ const Page = () => {
     isAuth()
   }, [router])
 
-const Page = () => {
   return (
     <Suspense>
       <RegistrationPage />
