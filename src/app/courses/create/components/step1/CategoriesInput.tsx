@@ -21,24 +21,6 @@ const CategoriesInput = ({ control, setValue }: CategoriesInputPropsI) => {
     topics: ''
   })
 
-  const t = {
-    title: 'Title',
-    description:
-      'Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description ',
-    skillsGained: '',
-    category: '7477fded-1418-4ff5-9fad-d9f70345c12f',
-    subcategories: [
-      'd103f198-2774-4147-9359-d76325480c15',
-      '8c53fe41-f0a2-45ba-b98a-e7569b60822f',
-      '37705b8d-3658-4a2f-9ee2-67a5c6c8e355'
-    ],
-    topics: [
-      'f2bd9f69-ca9c-4e19-867b-f75de6232c57',
-      'd99364ba-d285-4ecd-a347-d45af561d22f',
-      '1d33639a-786e-4e37-89d5-1bcaa468bd8d'
-    ]
-  }
-
   useEffect(() => {
     const defaultValues = localStorage.getItem('step1')
     if (defaultValues) {
@@ -106,7 +88,7 @@ const CategoriesInput = ({ control, setValue }: CategoriesInputPropsI) => {
   return (
     <>
       <Grid item xs={12}>
-        <FormControl fullWidth margin='normal'>
+        <FormControl fullWidth>
           <InputLabel>Category</InputLabel>
           <Controller
             name='category'
@@ -135,7 +117,9 @@ const CategoriesInput = ({ control, setValue }: CategoriesInputPropsI) => {
                   ))}
                 </Select>
                 {error.category ? (
-                  <Typography color='error'>{error.category}</Typography>
+                  <Typography margin={'normal'} color='error'>
+                    {error.category}
+                  </Typography>
                 ) : (
                   <Typography color='textSecondary' className='caption'>
                     Category should be related to the course content, please select the mopst fitting category
@@ -150,7 +134,7 @@ const CategoriesInput = ({ control, setValue }: CategoriesInputPropsI) => {
       {selectedCategory && (
         <Grid item xs={12}>
           {error.subcategories && <Typography color='error'>{error.subcategories}</Typography>}
-          <FormControl fullWidth margin='normal'>
+          <FormControl fullWidth>
             <InputLabel>Subcategory</InputLabel>
             <Controller
               name='subcategories'
@@ -198,7 +182,7 @@ const CategoriesInput = ({ control, setValue }: CategoriesInputPropsI) => {
       {topics.length > 0 && (
         <Grid item xs={12}>
           {error && <Typography color='error'>{error.topics}</Typography>}
-          <FormControl fullWidth margin='normal'>
+          <FormControl fullWidth>
             <InputLabel>Topics</InputLabel>
             <Controller
               name='topics'

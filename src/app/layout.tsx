@@ -44,14 +44,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
-          <Header />
-          <MySwiper width='50px' height='50px' />
-          <Main />
-          <Courses />
-          <News />
-
           {children}
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

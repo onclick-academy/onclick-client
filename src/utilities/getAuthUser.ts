@@ -8,6 +8,7 @@ const getAuthUser = async () => {
       },
       credentials: 'include'
     })
+    if (!res.ok) throw Error('Error when getting auth user')
     const user = await res.json()
 
     return user

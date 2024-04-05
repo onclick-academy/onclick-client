@@ -3,13 +3,16 @@ import { Button, Typography, Box, Container, Paper } from '@mui/material'
 import { fetcher } from '@/utilities/fetcher'
 import getAuthUser from '@/utilities/getAuthUser'
 import { useRouter } from 'next/navigation'
+import { LoadingButton } from '@mui/lab'
 
 const CourseStepThree = ({ step }: { step: number }) => {
+  const [loading, setLoading] = React.useState(false)
   const router = useRouter()
   const handleBack = () => {
     // Allows the user to edit course information
     router.push(`/courses/create?step=${step - 1}`)
   }
+  const submitted = localStorage.getItem('submitted')
 
   const handleSubmit = async () => {
     console.log('Course submitted for review')
@@ -22,6 +25,7 @@ const CourseStepThree = ({ step }: { step: number }) => {
     }
     const sendCourse = async () => {
       try {
+        setLoading(true)
         const instructor = await getAuthUser()
         const dataToSend = {
           createdBy: instructor.data.instructor.id,
@@ -44,6 +48,9 @@ const CourseStepThree = ({ step }: { step: number }) => {
           method: 'POST',
           body: dataToSend
         })
+        setLoading(false)
+
+        localStorage.setItem('submitted', 'true')
         console.log('🚀 ~ sendCourse ~ res:', res)
       } catch (error) {
         console.log('error', error)
@@ -59,30 +66,49 @@ const CourseStepThree = ({ step }: { step: number }) => {
         height: '400px'
       }}
     >
-      <Box sx={{ mt: 4, height: '400px' }}>
-        <Typography variant='h2' gutterBottom color='primary.main'>
-          Ready to Launch Your Course?
-        </Typography>
-        <Typography variant='h6' paragraph>
-          You&apos;re just one step away! Submitting now will send your course to our team for a quick review. While
-          it&apos;s being reviewed, you won&apos;t be able to make further edits.
-        </Typography>
-        <Typography variant='h6' paragraph>
-          Don&apos;t worry, this isn&apos;t the final step. Once approved, you&apos;ll move on to adding your lectures
-          and bringing your course to life.
-        </Typography>
-        <Typography variant='body2' paragraph sx={{ fontStyle: 'italic' }}>
-          Tip: Make sure everything&apos;s just right before you submit. You can go back and review if needed.
-        </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 5 }}>
-          <Button variant='contained' color='secondary' onClick={handleBack}>
-            Review Course
-          </Button>
-          <Button variant='contained' color='primary' onClick={handleSubmit}>
-            Submit for Review
-          </Button>
-        </Box>
-      </Box>
+      {submitted ? (
+        <>
+          <Typography variant='h2' gutterBottom color='primary.main'>
+            Course Submitted for Review
+          </Typography>
+          <Typography variant='h6' paragraph>
+            Your course is now under review. This process usually takes around 1 hour. You can check the status of your
+            course in the dashboard.
+          </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 5 }}>
+            <Button variant='contained' color='secondary' onClick={() => router.push('/')}>
+              Go to Home
+            </Button>
+          </Box>
+        </>
+      ) : (
+        <>
+          <Box sx={{ mt: 4, height: '400px' }}>
+            <Typography variant='h2' gutterBottom color='primary.main'>
+              Ready to Launch Your Course?
+            </Typography>
+            <Typography variant='h6' paragraph>
+              You&apos;re just one step away! Submitting now will send your course to our team for a quick review. While
+              it&apos;s being reviewed, you won&apos;t be able to make further edits.
+            </Typography>
+            <Typography variant='h6' paragraph>
+              Don&apos;t worry, this isn&apos;t the final step. Once approved, you&apos;ll move on to adding your
+              lectures and bringing your course to life.
+            </Typography>
+            <Typography variant='body2' paragraph sx={{ fontStyle: 'italic' }}>
+              Tip: Make sure everything&apos;s just right before you submit. You can go back and review if needed.
+            </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 5 }}>
+              <Button variant='contained' color='secondary' onClick={handleBack}>
+                Review Course
+              </Button>
+              <LoadingButton loading={loading} variant='contained' color='primary' onClick={handleSubmit}>
+                Submit for Review
+              </LoadingButton>
+            </Box>
+          </Box>
+        </>
+      )}
     </Box>
   )
 }

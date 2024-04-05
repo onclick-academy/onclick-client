@@ -1,3 +1,4 @@
+import { Console } from 'console'
 import Cookies from 'universal-cookie'
 
 type FetcherT = {
@@ -13,10 +14,12 @@ type AuthFetcherT = {
 
 export const authFetcher = async ({ body = {}, action }: AuthFetcherT) => {
   const fullUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/${action}`
+  console.log(fullUrl)
   const res = await fetch(fullUrl, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     },
     body: JSON.stringify(body)
   })
