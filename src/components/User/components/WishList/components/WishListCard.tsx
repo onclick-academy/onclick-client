@@ -149,8 +149,6 @@ export function WishListCard({ course }: { course: CourseII }) {
                 cursor: 'pointer',
                 width: '100%',
                 height: '20px',
-                border: '0px',
-                borderRadius: '35px',
                 border: '0',
                 borderRadius: '35px',
                 backgroundColor: 'blue'
