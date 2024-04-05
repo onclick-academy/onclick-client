@@ -22,7 +22,7 @@ export default function ImgMediaCard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const courseData = await fetcher({ url: 'news' })
+        const courseData = await fetcher({ url: '/news' })
         setCourses(courseData.data)
       } catch (error) {
         console.error('An error occurred while fetching the data:', error)
@@ -65,7 +65,7 @@ export default function ImgMediaCard() {
           Our mission is to provide you with valuable insights
         </Typography>
       </Box>
-      {courses.map((course, index) => (
+      {courses?.map((course, index) => (
         <Card
           key={course.id}
           sx={{
@@ -149,21 +149,6 @@ export default function ImgMediaCard() {
                   })}
                 </Typography>
               </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '3%',
-                  width: {
-                    xl: '40%',
-                    lg: '100%'
-                  },
-                  justifyContent: 'center'
-                }}
-              >
-                <PersonIcon sx={{ color: '#7f8188', fontSize: '18px' }}></PersonIcon>
-                <Typography sx={{ color: '#83858b', marginTop: '3%' }}>John Doe </Typography>
-              </Box>
             </Box>
             <CardContent
               sx={{
@@ -171,11 +156,11 @@ export default function ImgMediaCard() {
                 width: '100%',
                 textAlign: 'center',
                 padding: {
-                  xl: '0 12% 0 0%',
-                  lg: '0 12% 0 0%',
-                  md: '0 12% 0 0%',
-                  sm: '0 12% 0 0%',
-                  xs: '0 0% 0 0%'
+                  xl: '0 4% 0 0%',
+                  lg: '0 4% 0 0%',
+                  md: '0 4% 0 0%',
+                  sm: '0 4% 0 0%',
+                  xs: '0 4% 0 0%'
                 }
               }}
             >
@@ -193,6 +178,25 @@ export default function ImgMediaCard() {
               >
                 {course.title}
               </Link>
+              <Typography
+                variant='body2'
+                color='text.secondary'
+                sx={{
+                  marginTop: '0%',
+                  display: 'flex',
+                  overflow: 'hidden',
+                  lineHeight: '1.5',
+                  whiteSpace: 'stable',
+                  width: '100%',
+                  justifyContent: 'center',
+                  marginLeft:"1%",
+                  fontSize: '13px',
+                  textTransform: 'uppercase',
+                  color: '#a2aab9'
+                }}
+              >
+                {course.subtitle.slice(0, 100) + '...'}
+              </Typography>
             </CardContent>
           </Box>
           <CardActions

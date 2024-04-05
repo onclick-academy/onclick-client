@@ -1,7 +1,6 @@
 'use client'
-import { Suspense } from 'react'
 import RegistrationPage from './Registration'
-import React, { useEffect } from 'react'
+import React, { useEffect, Suspense } from 'react'
 import '../../styles/auth.scss'
 import { useRouter, useSearchParams } from 'next/navigation'
 import getAuthUser from '@/utilities/getAuthUser'
@@ -25,6 +24,7 @@ const Page = () => {
     isAuth()
   }, [router])
 
+const Page = () => {
   return (
     <Suspense>
       <RegistrationPage />

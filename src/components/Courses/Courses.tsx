@@ -15,13 +15,14 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder'
 import { fetcher } from '../../utilities/fetcher'
 import style from './Courses.module.scss'
+import ceo from '../../img/ceo.png'
 export default function ImgMediaCard() {
   const [courses, setCourses] = useState([])
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const courseData = await fetcher({ url: 'courses' })
+        const courseData = await fetcher({ url: '/courses' })
         setCourses(courseData.data)
       } catch (error) {
         console.error('An error occurred while fetching the data:', error)
@@ -33,17 +34,17 @@ export default function ImgMediaCard() {
   return (
     <Box
       sx={{
-        backgroundColor: 'transparent',
         padding: {
           xs: '0% 10% 0% 10%',
           sm: '0% 25% 0 25%',
           md: '0% 11% 0 11%',
-          lg: '0% 11% 0 11%',
-          xl: '0% 11% 0 11%'
+          lg: '0% 0% 0 0%',
+          xl: '0% 5% 0 5%'
         },
         display: 'flex',
+        justifyContent: 'center',
         flexWrap: 'wrap',
-        gap: '5%',
+        gap: '3%',
         maxWidth: '100%'
       }}
       className={style['courses-container']}
@@ -175,7 +176,7 @@ export default function ImgMediaCard() {
                 overflow: 'hidden',
                 height: '65px'
               }}
-              href={'/'}
+              href={'/course/' + course.id}
             >
               {course.title}
             </Link>
@@ -190,10 +191,20 @@ export default function ImgMediaCard() {
                 justifyContent: 'space-between'
               }}
             >
-              dr.loll
-              <AccountCircleIcon
-                sx={{ color: '#737477', fontSize: '28px', border: '1px solid #553CDF', borderRadius: '15px' }}
-              ></AccountCircleIcon>
+              {course?.publisher.user.fullName}
+              {course?.publisher?.user?.profilePic ? (
+                <Image
+                  src={course?.publisher?.user?.profilePic}
+                  alt='ceo'
+                  width={30}
+                  height={30}
+                  style={{ border: '1px solid #553CDF', borderRadius: '50%' }}
+                />
+              ) : (
+                <AccountCircleIcon
+                  sx={{ color: '#737477', fontSize: '28px', border: '1px solid #553CDF', borderRadius: '15px' }}
+                />
+              )}
             </Typography>
           </CardContent>
           <CardActions

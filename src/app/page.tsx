@@ -3,9 +3,12 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { getDeviceToken } from '@/utilities/device'
 import getAuthUser from '@/utilities/getAuthUser'
-import Header from '@/components/Header/Header'
 import Main from '@/components/Main/Main'
 import MySwiper from '@/components/Swiper/MySwiper'
+import Courses from '@/components/Courses/Courses'
+import News from '@/components/News/News'
+import Header from '@/components/Header/Header'
+import Footer from '@/components/Footer/Footer'
 
 export default function Home() {
   const fetchDeviceToken = async () => {
@@ -22,5 +25,14 @@ export default function Home() {
     _()
   }, [])
 
-  return <main></main>
+  return (
+    <main>
+      <Header />
+      <MySwiper width='50px' height='50px' />
+      <Main />
+      <Courses />
+      <News />
+      <Footer />
+    </main>
+  )
 }

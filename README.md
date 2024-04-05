@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# onClick-Client
 
-## Getting Started
+onClick-client is a frontend repository for an LMS (Learning Management System) project developed by onClick Academy. This project facilitates the management of learning materials, user accounts, and interactions within an educational environment.
 
-First, run the development server:
+## What is an LMS?
+
+A Learning Management System (LMS) is a software application designed to deliver, manage, and track educational content and resources. It provides instructors and learners with tools for creating, delivering, and managing online courses, assessments, and communication.
+
+## Installation
+
+To install onClick-server, you can either clone the repository using Git:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/onclick-organization/onclick-client.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Or download it as a zip file and extract it to your desired location.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage and Configurations
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1- Firebase Keys: Obtain Firebase keys for authentication and other related services.
+2- CloudFlare Account so you can manage your media
 
-## Learn More
+### Install Dependencies: Install project dependencies using Yarn:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+yarn
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Run Development Server: Start the development server using the command:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+yarn dev
+```
 
-## Deploy on Vercel
+## Examples
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+You can navigate to the desired route just by navigating to "http://localhost/3001/" then explore the site as you wish, OR just visit => https://onclick-ten.vercel.app/
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technologies Used
+
+- TypeScript
+- React.js
+- Next.js
+- MUI
+- CSS
+- SASS
+- FireBase
+- Joi
+
+## Summary
+
+This project utilizes modern technologies and frameworks to provide a robust frontend friendly UI for managing an LMS environment efficiently.
+
+Feel free to explore the repository and contribute to its development!
+
+## License
+
+This project is licensed under the MIT License.

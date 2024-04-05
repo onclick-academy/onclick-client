@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import CourseProgressLayout from './pogressLayout'
 import { Box, Button } from '@mui/material'
 import CourseStepTwo from './components/CourseStepTwo'
@@ -27,7 +27,15 @@ export interface CategoryI {
   subCategories: SubCategoryI[]
 }
 
-export default function CourseCreationPage() {
+export default function Page() {
+  return (
+    <Suspense>
+      <CourseCreationPage />
+    </Suspense>
+  )
+}
+
+function CourseCreationPage() {
   const params = useSearchParams()
   const step = parseInt(params.get('step') || '0')
 

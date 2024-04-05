@@ -18,6 +18,8 @@ const RegistrationPage = () => {
 
       if (res.status === 'success') {
         router.push('/')
+      } else if (res.error === 'Token is expired') {
+        router.push('/auth?type=login')
       }
     }
 

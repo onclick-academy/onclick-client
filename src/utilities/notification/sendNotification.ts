@@ -1,14 +1,10 @@
 import { NotificationI } from '@/components/Notification'
+import { fetcher } from '../fetcher'
 
 const getUnreadNotifications = async () => {
   const userId = typeof window !== 'undefined' && localStorage.getItem('userId')
   try {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications/unread/${userId}`
-    const res = await fetch(url, {
-      method: 'GET',
-      credentials: 'include'
-    })
-    const data = await res.json()
+    const data = await fetcher({ url: `/notifications/unread/${userId}` })
 
     return data.data
   } catch (error) {
@@ -19,12 +15,7 @@ const getUnreadNotifications = async () => {
 const getReadNotifications = async () => {
   const userId = typeof window !== 'undefined' && localStorage.getItem('userId')
   try {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications/${userId}`
-    const res = await fetch(url, {
-      method: 'GET',
-      credentials: 'include'
-    })
-    const data = await res.json()
+    const data = await fetcher({ url: `/notifications/${userId}` })
     const notifications = data.data
 
     const readedNotifiacation = notifications.filter((notification: NotificationI) => notification.isRead === true)

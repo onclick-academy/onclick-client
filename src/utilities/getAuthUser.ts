@@ -1,5 +1,6 @@
+import { fetcher } from './fetcher'
+
 const getAuthUser = async () => {
-  const url = `http://localhost:3000/api/v1/users/userinfo`
   try {
     const res = await fetch(url, {
       method: 'GET',

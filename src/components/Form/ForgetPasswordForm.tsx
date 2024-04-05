@@ -19,7 +19,7 @@ const ForgetPasswordForm = () => {
 
   const handleForgetFormSubmit = async (data: any) => {
     try {
-      console.log('data', data)
+      // console.log('data', data)
       const res = await fetch(process.env.NEXT_PUBLIC_API_URL + '/auth/password/forgetpassword', {
         method: 'POST',
         headers: {
@@ -29,7 +29,7 @@ const ForgetPasswordForm = () => {
       })
       const user = await res.json()
       setIsForget(false)
-      console.log(user)
+      // console.log(user)
     } catch (err) {
       console.log('error', err)
     }
@@ -37,7 +37,7 @@ const ForgetPasswordForm = () => {
 
   const handleCodeFormSubmit = async (data: any) => {
     try {
-      console.log('data', data)
+      // console.log('data', data)
       const res = await fetch(process.env.NEXT_PUBLIC_API_URL + `/auth/password/verifycode`, {
         method: 'POST',
         headers: {
@@ -49,7 +49,7 @@ const ForgetPasswordForm = () => {
         })
       })
       const co = await res.json()
-      console.log(co)
+      // console.log(co)
       if (co.status === 'success') {
         router.push(`/resetpassword?email=${data.email}&code=${data.code}`)
       }

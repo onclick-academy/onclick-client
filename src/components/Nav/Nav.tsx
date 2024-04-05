@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import { Button, Link } from '@mui/material'
+import { Button, Link as MuiLink } from '@mui/material'
 import InputBase from '@mui/material/InputBase'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
@@ -29,6 +29,7 @@ import {
 import NotificationMenu from '../Notification'
 import { authFetcher, fetcher } from '@/utilities/fetcher'
 import AccountMenu from '../User/User'
+import Link from 'next/link'
 
 export default function PrimarySearchAppBar() {
   React.useState<null | HTMLElement>(null)
@@ -71,14 +72,16 @@ export default function PrimarySearchAppBar() {
       >
         <Toolbar>
           <LogoContainer onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-            <Logo
-              src={logo2}
-              alt='logo'
-              style={{
-                opacity: isHovered ? 1 : 0,
-                width: '100%'
-              }}
-            />
+            <Link href='/'>
+              <Logo
+                src={logo2}
+                alt='logo'
+                style={{
+                  opacity: isHovered ? 1 : 0,
+                  width: '100%'
+                }}
+              />
+            </Link>
             <LogoHover
               src={logo3}
               alt='logo'
@@ -113,7 +116,7 @@ export default function PrimarySearchAppBar() {
                 md: 'flex'
               },
               width: {
-                xl: '44%',
+                xl: !userData ?'44%' : '35%',
                 lg: '52%',
                 md: '54%'
               },
@@ -124,7 +127,8 @@ export default function PrimarySearchAppBar() {
               },
               gap: {
                 lg: '15px',
-                md: '11px'
+                md: '11px',
+                xl: userData ? '3%' : '11px'
               },
               backgroundColor: {
                 xl: 'transparent',
@@ -132,7 +136,7 @@ export default function PrimarySearchAppBar() {
                 md: 'transparent'
               },
               justifyContent: {
-                xl: 'flex-start',
+                xl: userData ? 'center': 'flex-start',
                 lg: 'flex-end',
                 md: 'flex-end'
               }
@@ -146,6 +150,10 @@ export default function PrimarySearchAppBar() {
                 display: {
                   md: 'none',
                   lg: 'block',
+                  width: {
+                    xl: '50%',
+                    
+                  },
                   cursor: 'pointer',
                   marginLeft: '1%',
                   marginTop: '0.6%',
@@ -162,13 +170,19 @@ export default function PrimarySearchAppBar() {
             </Typography>
             <Typography
               noWrap
-              component='div'
+              component='a'
+              href='/applyinstructor'
               variant='body2'
               sx={{
                 display: {
                   xs: 'none',
                   sm: 'block',
                   cursor: 'pointer',
+                  textDecoration: 'none',
+                  width: {
+                    xl: '50%',
+                    lg: '70%'
+                  },
                   marginLeft: '1%',
                   marginTop: '0.6%',
                   fontSize: '13px',
@@ -193,7 +207,7 @@ export default function PrimarySearchAppBar() {
                 '&:hover': {
                   textDecoration: 'none',
                   color: '#7157b3',
-                  backgroundColor: 'transparent'
+                  backgroundColor: 'transparent',
                 }
               }}
             >
@@ -251,9 +265,9 @@ export default function PrimarySearchAppBar() {
                     }
                   }}
                 >
-                  <Link href='/auth' style={{ textDecoration: 'none' }}>
+                  <MuiLink component={Link} href='/auth' style={{ textDecoration: 'none' }}>
                     Log in
-                  </Link>
+                  </MuiLink>
                 </Button>
                 <Button
                   sx={{
@@ -273,9 +287,9 @@ export default function PrimarySearchAppBar() {
                     }
                   }}
                 >
-                  <Link href='/auth' style={{ textDecoration: 'none' }}>
+                  <MuiLink component={Link} href='/auth' style={{ textDecoration: 'none' }}>
                     Sign up
-                  </Link>
+                  </MuiLink>
                 </Button>
               </Box>
             )}
