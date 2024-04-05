@@ -28,7 +28,6 @@ interface CourseI {
   category: {
     title: string
   }
-  
 }
 interface UserI {
   id: string

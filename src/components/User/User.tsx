@@ -38,6 +38,7 @@ export default function AccountMenu() {
 
   const handleLogOut = async () => {
     const res = await fetcher({ url: 'auth/logout' })
+    window.localStorage.clear()
     if (res.status === 'success') {
       window.location.href = '/'
     }

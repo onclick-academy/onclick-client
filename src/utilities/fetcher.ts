@@ -1,4 +1,3 @@
-
 type FetcherT = {
   url: string
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
@@ -23,7 +22,7 @@ export const authFetcher = async ({ body = {}, action }: AuthFetcherT) => {
 
   if (res.ok) {
     localStorage.setItem('accessToken', data.accessToken)
-    localStorage.setItem('refreshToken',  data.refreshToken)
+    localStorage.setItem('refreshToken', data.refreshToken)
     localStorage.setItem('userId', data.data.id)
   }
 
@@ -36,13 +35,12 @@ export const fetcher = async ({ url, method = 'GET', body = {} }: FetcherT) => {
     method,
     headers: {
       'Content-Type': 'application/json',
-      'token': `Bearer ${localStorage.getItem('accessToken')}`,
-      'refreshToken': `Bearer ${localStorage.getItem('refreshToken')}`,
+      token: `Bearer ${localStorage.getItem('accessToken')}`,
+      refreshToken: `Bearer ${localStorage.getItem('refreshToken')}`
     },
     credentials: 'include',
     body: method === 'GET' ? undefined : JSON.stringify(body)
   })
-
 
   return await res.json()
 }

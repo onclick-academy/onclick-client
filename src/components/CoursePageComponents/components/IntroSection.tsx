@@ -26,12 +26,12 @@ export function IntroSection({ courseData, rating, categoryTitle, instructorData
               <img style={{ width: '90%', height: '90%' }} src={courseData.photo} alt='coursePhoto' />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <h1 style={{margin:"0"}}>{courseData.title}</h1>
+              <h1 style={{ margin: '0' }}>{courseData.title}</h1>
               <StarRate rating={rating} />
               <div style={{ display: 'flex', marginBottom: '1rem' }}>
                 <p>Category: {categoryTitle}</p>
                 <p style={{ marginLeft: '3rem' }}>
-                  <ul style={{ display: 'flex', gap: '1rem', margin:"0" }}>
+                  <ul style={{ display: 'flex', gap: '1rem', margin: '0' }}>
                     Topics:
                     {topicsData.map(topic => (
                       <li key={topic.topic.id} style={{ marginLeft: '1rem' }}>
@@ -44,9 +44,9 @@ export function IntroSection({ courseData, rating, categoryTitle, instructorData
               {instructorData.user && (
                 <div key={instructorData.id} style={{ display: 'flex', gap: '1rem' }}>
                   <Avatar alt='instructorPhoto' src={instructorData.user.profilePic} sx={{ width: 50, height: 50 }} />
-                  <div style={{ display: 'flex', flexDirection: 'column', gap:"0.2rem" }}>
-                    <p style={{margin:"0", padding:"0"}}>{instructorData.user.fullName}</p>
-                    <p  style={{margin:"0", padding:"0"}}>{instructorData.user.username}</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                    <p style={{ margin: '0', padding: '0' }}>{instructorData.user.fullName}</p>
+                    <p style={{ margin: '0', padding: '0' }}>{instructorData.user.username}</p>
                   </div>
                 </div>
               )}

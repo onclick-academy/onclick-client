@@ -25,7 +25,7 @@ const registerDeviceToken = async (deviceToken: string, userId: string | null) =
   }
 
   try {
-    const data = fetcher({ url: `/devicetokens/`, method: 'POST',body: { token: deviceToken, userId } })
+    const data = fetcher({ url: `/devicetokens/`, method: 'POST', body: { token: deviceToken, userId } })
     console.log('Device token registration response:', data)
     return true // Indicate successful registration
   } catch (error) {
