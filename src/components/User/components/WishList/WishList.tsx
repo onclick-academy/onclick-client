@@ -4,6 +4,7 @@ import { AboutCourse } from '@/components/CoursePageComponents/components/AboutC
 import Nav from '@/components/Nav/Nav'
 import { fetcher } from '@/utilities/fetcher'
 import { useEffect, useState } from 'react'
+import { WishListCard } from './components/WishListCard'
 
 interface TopicI {
   title: string
@@ -43,10 +44,21 @@ interface CourseI {
   introVideo: string
   description: string
   isDeleted: boolean
+  category: {
+    title: string
+  }
+  price: number
+  rating: number
+}
+
+interface CourseII {
+  course: CourseI
+  id: string
+  isDeleted: boolean
 }
 
 export function WishList() {
-  const [userWishList, setUserWishList] = useState([] as CourseI[])
+  const [userWishList, setUserWishList] = useState([] as CourseII[])
 
   useEffect(() => {
     const getAllUserWishLists = async () => {
@@ -62,6 +74,8 @@ export function WishList() {
     }
     fetchData()
   }, [])
+
+  console.log('wishlists', userWishList)
 
   return (
     <div>
@@ -89,7 +103,10 @@ export function WishList() {
           margin: '0 auto'
         }}
       >
-        {userWishList && userWishList.filter(course => !course.isDeleted).map(course => <h1 key={course.id}>Hello</h1>)}
+        {userWishList &&
+          userWishList
+            .filter(userWishList => !userWishList.isDeleted)
+            .map(course => <WishListCard key={course.id} course={course} />)}
       </div>
     </div>
   )

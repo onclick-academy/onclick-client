@@ -47,7 +47,7 @@ export const fetcher = async ({ url, method = 'GET', body = {} }: FetcherT) => {
     credentials: 'include',
     body: method === 'GET' ? undefined : JSON.stringify(body)
   })
-  // console.log('res', res)
+  console.log('res', res)
 
   return await res.json()
 }

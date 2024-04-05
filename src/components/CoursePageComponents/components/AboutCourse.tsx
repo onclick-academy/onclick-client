@@ -21,6 +21,7 @@ interface CourseI {
   createdAt: string
   introVideo: string
   description: string
+  price: number
 }
 interface UserI {
   id: string
@@ -47,8 +48,11 @@ interface CategoryI {
 
 export function AboutCourse(courseData: { courseData: CourseI }) {
   console.log('courseData', courseData)
+
   const [enrolled, setEnrolled] = useState(false)
   const [wishListed, setWishListed] = useState(false)
+
+  const courseId = courseData.courseData.id
 
   function formatDate(dateString: any) {
     try {
@@ -72,31 +76,43 @@ export function AboutCourse(courseData: { courseData: CourseI }) {
     const res = await fetcher({ url, method: 'POST', body: data })
 
     if (res.status === 'success') window.alert('Enrolled successfully')
-    if (res.status === 500) window.alert('You are already enrolled in this course')
+    if (res.status !== 'success') window.alert("You are already enrolled in this course or there's a problem")
   }
 
   useEffect(() => {
+    const checkWishListed = async () => {
+      try {
+        const url = `/wishlist/isWishListed/${courseId}`
+        const res = await fetcher({ url })
+        console.log('res wishlisted', res)
+
+        if (!res.data.isDeleted) {
+          setWishListed(true)
+        } else {
+          setWishListed(false)
+        }
+      } catch (error) {
+        console.error('Error checking wishlist:', error)
+        setWishListed(false)
+      }
+    }
+
     const checkEnrollment = async () => {
-      const url = `/courseEnrolls/${courseData.courseData.id}`
+      const url = `/courseEnrolls/${courseId}`
       const res = await fetcher({ url })
-      console.log(res)
       if (res.data) {
         setEnrolled(true)
+      } else {
+        setEnrolled(false)
       }
     }
 
-    const checkWishListed = async () => {
-      const url = `/wishlist/isWishListed/${courseData.courseData.id}`
-      const res = await fetcher({ url })
-      console.log('checkWishListed ', res.data)
-      if (res.data) {
-        setWishListed(true)
-      }
+    const fetchData = async () => {
+      await checkWishListed()
+      await checkEnrollment()
     }
-
-    checkWishListed()
-    checkEnrollment()
-  }, [])
+    fetchData()
+  }, [courseId])
 
   const handleAddToWishList = async () => {
     console.log('Added to wishlist')
@@ -139,9 +155,21 @@ export function AboutCourse(courseData: { courseData: CourseI }) {
             )}
           </div>
           <div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '2rem' }}>
-              <p>{courseData.courseData.description}</p>
-              <span>Published At: {formatDate(courseData.courseData.createdAt)}</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '0 2rem' }}>
+              <p>
+                <span style={{ fontWeight: 'Bolder', textDecoration: 'underline' }}>Course Description:</span>{' '}
+                {courseData.courseData.description}
+              </p>
+              <span>
+                <span style={{ fontWeight: 'Bolder', textDecoration: 'underline' }}>Published At:</span>{' '}
+                {formatDate(courseData.courseData.createdAt)}
+              </span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'start', padding: '0 2rem', marginTop: '0' }}>
+              <p>
+                <span style={{ fontWeight: 'Bolder', textDecoration: 'underline' }}>Price:</span>{' '}
+                {courseData.courseData.price}$
+              </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', margin: '0 auto', width: '95%' }}>
               <button

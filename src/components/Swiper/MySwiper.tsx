@@ -65,7 +65,6 @@ export default function MySwiper({ width, height }) {
         loop={true}
         pagination={{ clickable: true, el: '.swiper-pagination' }}
         onSwiper={swiper => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
         style={{ width: '50%', marginTop: '6%' }}
       >
         <SwiperSlide className='  '>
