@@ -115,7 +115,7 @@ export function CourseLandingPage({ id }: { id: string }) {
       <div style={{ display: 'flex', width: '70%', padding: '1rem', justifyContent: 'flex-start', margin: '0 auto' }}>
         <h1> Course Content </h1>
       </div>
-      <CourseSection sections={sections} />
+      <CourseSection sections={sections} courseId={courseData.id}/>
     </div>
   )
 }

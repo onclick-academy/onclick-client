@@ -1,11 +1,10 @@
-'use client'
-import { useParams } from 'next/navigation'
 import React from 'react'
+import Courseplayer from '@/components/CoursePlayer/CoursePlayer'
 
-export default function LecturePage() {
-    const { lectureId } = useParams()
-
+export default function page() {
   return (
-    <div>{lectureId}</div>
+    <div>
+      <Courseplayer />
+    </div>
   )
 }
