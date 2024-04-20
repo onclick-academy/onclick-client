@@ -14,7 +14,8 @@ export default function PublicProfile({ userData }) {
 
   const handleUpdateUser = async data => {
     if (profilePic) data.profilePic = profilePic
-    if (!data.fullName) delete data.fullName
+    if (!data.firstName) delete data.firstName
+    if (!data.lastName) delete data.lastName
     if (!data.username) delete data.username
     if (!data.bio) delete data.bio
     if (!data.birthDate) delete data.birthDate
@@ -85,9 +86,18 @@ export default function PublicProfile({ userData }) {
         <FormControl style={{ width: '45%' }}>
           <TextField
             fullWidth
-            label='Full Name'
-            {...register('fullName')}
-            placeholder={userData?.fullName}
+            label='First Name'
+            {...register('firstName')}
+            placeholder={userData?.firstName}
+            variant='outlined'
+          />
+        </FormControl>
+        <FormControl style={{ width: '45%' }}>
+          <TextField
+            fullWidth
+            label='Last Name'
+            {...register('lastName')}
+            placeholder={userData?.lastName}
             variant='outlined'
           />
         </FormControl>

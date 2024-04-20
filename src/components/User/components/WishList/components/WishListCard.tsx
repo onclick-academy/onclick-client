@@ -15,7 +15,8 @@ interface TopicsDataI {
 
 interface UserI {
   id: string
-  fullName: string
+  firstName: string
+  lastName: string
   username: string
   profilePic: string | null
 }
@@ -117,7 +118,8 @@ export function WishListCard({ course }: { course: CourseII }) {
               src={course.course.publisher.user.profilePic}
               sx={{ width: 50, height: 50 }}
             />
-            <h4>{course.course.publisher.user.fullName}</h4>
+            <h4>{course.course.publisher.user.firstName}</h4>
+            <h4>{course.course.publisher.user.lastName}</h4>
           </div>
         </div>
       </div>

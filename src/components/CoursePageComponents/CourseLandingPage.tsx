@@ -31,7 +31,8 @@ interface CourseI {
 }
 interface UserI {
   id: string
-  fullName: string
+  firstName: string
+  lastName: string
   username: string
   profilePic: string | null
 }

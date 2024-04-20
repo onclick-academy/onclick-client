@@ -191,7 +191,8 @@ export default function ImgMediaCard() {
                 justifyContent: 'space-between'
               }}
             >
-              {course?.publisher.user.fullName}
+              {course?.publisher.user.firstName}
+              {course?.publisher.user.lastName}
               {course?.publisher?.user?.profilePic ? (
                 <Image
                   src={course?.publisher?.user?.profilePic}

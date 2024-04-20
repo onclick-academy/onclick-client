@@ -45,7 +45,8 @@ export function IntroSection({ courseData, rating, categoryTitle, instructorData
                 <div key={instructorData.id} style={{ display: 'flex', gap: '1rem' }}>
                   <Avatar alt='instructorPhoto' src={instructorData.user.profilePic} sx={{ width: 50, height: 50 }} />
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
-                    <p style={{ margin: '0', padding: '0' }}>{instructorData.user.fullName}</p>
+                    <p style={{ margin: '0', padding: '0' }}>{instructorData.user.firstName}</p>
+                    <p style={{ margin: '0', padding: '0' }}>{instructorData.user.lastName}</p>
                     <p style={{ margin: '0', padding: '0' }}>{instructorData.user.username}</p>
                   </div>
                 </div>

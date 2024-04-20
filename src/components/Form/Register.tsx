@@ -25,7 +25,8 @@ const EDUCATION_LEVELS = [
 
 type EducationLevels = 'ELEMENTARY' | 'MIDDLE' | 'HIGH' | 'COLLEGE' | 'UNIVERSITY' | 'MASTER' | 'PHD'
 interface UserRegisterI {
-  fullName: string
+  firstName: string
+  lastName: string
   email: string
   username: string
   password: string
@@ -139,10 +140,19 @@ const RegisterForm = () => {
           <Grid item xs={12}>
             <TextField
               fullWidth
-              label='Full Name'
-              {...register('fullName', { required: 'Full name is required' })}
-              error={Boolean(errors.fullName)}
-              helperText={errors.fullName?.message}
+              label='First Name'
+              {...register('firstName', { required: 'First name is required' })}
+              error={Boolean(errors.firstName)}
+              helperText={errors.firstName?.message}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label='Last Name'
+              {...register('lastName', { required: 'Last name is required' })}
+              error={Boolean(errors.lastName)}
+              helperText={errors.lastName?.message}
             />
           </Grid>
         </Grid>
